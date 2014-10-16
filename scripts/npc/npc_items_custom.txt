@@ -1,0 +1,7043 @@
+"DOTAAbilities"
+{
+	//=================================
+	//掉落物品, ID 范围 1001-1030
+	//=================================
+	"item_cf_feather"	
+	{	
+	    "ID"	"1001"
+	    "BaseClass"	"item_datadriven"
+	    "Model"	"models/items/skywrath_mage/vengancebound_wings/vengancebound_wings.vmdl"
+	    "AbilityTextureName"	"item_cf_feather"
+		
+	    "AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+	    "AbilityCastRange"	"500"
+	    "AbilityCastPoint"	"0.2"
+		
+	    "ItemCost"		"3000"
+	    "ItemQuality"	"artifact"
+	    "ItemStackable"	"0"
+	    "ItemShareability"	"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"	"0"
+	    "ItemInitialCharges"	"1"
+	    "ItemKillable"	"0"
+	}	
+	//停怪
+	"item_cf_increase_rest"	
+	{	
+	    "ID"	"1301"
+	    "BaseClass"	"item_datadriven"
+	    "AbilityTextureName"	"item_cf_increase_rest"
+		"Model"				"models/props_debris/creep_camp001o.vmdl"
+	    "AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		
+	    "ItemCost"	"5000"
+	    "ItemQuality"	"rare"
+	    "ItemStackable"	"1"
+	    "ItemShareability"	"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"	"0"
+	    "ItemInitialCharges"	"1"
+	    "ItemKillable"	"0"
+
+	    "OnSpellStart"
+	    {
+	    	"SpendCharge"
+	    	{}
+	    	"RunScript"
+	    	{
+	    		"ScriptFile"	"scripts/vscripts/items/general_item.lua"
+	    		"Target"		"CASTER"
+	    		"RestTime"		"%rest_time"
+	    		"Function"		"OnItemRestPurchased"
+	    	}
+	    }
+
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"rest_time"		"30"
+			}
+		}
+	}
+	//消耗品 ID范围 1100 -
+	"item_heal_lvl1"
+	{
+		"ID"							"1101"
+
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"item_heal_lvl1"
+		"ItemKillable"					"0"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"100"
+		"AbilityCastPoint"				"0.0"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"200"
+		"ItemShopTags"					"consumable"
+		"ItemQuality"					"consumable"
+		"ItemStackable"					"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+		"SideShop"						"1"
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target" "CURSOR_TARGET"
+				"ModifierName" "heal_lvl1"
+			}
+
+			"SpendCharge"
+			{}
+		}
+
+		"Modifiers"
+		{
+			"heal_lvl1"
+			{
+				"Duration" "20"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%health_regen"
+				}
+				
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"health_regen"			"30"
+			}
+		}
+	}
+	"item_heal_lvl2"
+	{
+		"ID"							"1102"
+
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"item_heal_lvl2"
+		"ItemKillable"					"0"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"100"
+		"AbilityCastPoint"				"0.0"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"400"
+		"ItemShopTags"					"consumable"
+		"ItemQuality"					"consumable"
+		"ItemStackable"					"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+		"SideShop"						"1"
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target" "CURSOR_TARGET"
+				"ModifierName" "heal_lvl2"
+			}
+
+			"SpendCharge"
+			{}
+		}
+		"Modifiers"
+		{
+			"heal_lvl2"
+			{
+				"Duration" "20"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%health_regen"
+				}
+				
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"health_regen"			"50"
+			}
+		}
+	}
+	"item_heal_lvl3"
+	{
+		"ID"							"1103"
+
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"item_heal_lvl3"
+		"ItemKillable"					"0"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"100"
+		"AbilityCastPoint"				"0.0"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"200"
+		"ItemShopTags"					"consumable"
+		"ItemQuality"					"consumable"
+		"ItemStackable"					"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+		"SideShop"						"1"
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target" "CURSOR_TARGET"
+				"ModifierName" "heal_lvl3"
+			}
+
+			"SpendCharge"
+			{}
+		}
+
+		"Modifiers"
+		{
+			"heal_lvl3"
+			{
+				"Duration" "20"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT" "%health_regen"
+				}
+				
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"health_regen"			"120"
+			}
+		}
+	}
+	"item_mana_lvl1"
+	{
+		"ID"							"1104"
+
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"item_mana_lvl1"
+		"ItemKillable"					"0"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"100"
+		"AbilityCastPoint"				"0.0"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"350"
+		"ItemShopTags"					"consumable"
+		"ItemQuality"					"consumable"
+		"ItemStackable"					"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+		"SideShop"						"1"
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target" "CURSOR_TARGET"
+				"ModifierName" "mana_lvl1"
+			}
+
+			"SpendCharge"
+			{}
+		}
+
+		"Modifiers"
+		{
+			"mana_lvl1"
+			{
+				
+				"EffectName" "particles/items_fx/healing_clarity.vpcf"
+				"EffectAttachType" "follow_origin"
+				"Duration" "10"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "%mana_regen"
+				}
+				
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"mana_regen"			"50"
+			}
+		}
+	}
+	"item_mana_lvl2"
+	{
+		"ID"							"1105"
+
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"item_mana_lvl2"
+		"ItemKillable"					"0"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"100"
+		"AbilityCastPoint"				"0.0"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"550"
+		"ItemShopTags"					"consumable"
+		"ItemQuality"					"consumable"
+		"ItemStackable"					"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+		"SideShop"						"1"
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target" "CURSOR_TARGET"
+				"ModifierName" "mana_lvl2"
+			}
+
+			"SpendCharge"
+			{}
+		}
+
+		"Modifiers"
+		{
+			"mana_lvl2"
+			{
+				
+				"EffectName" "particles/items_fx/healing_clarity.vpcf"
+				"EffectAttachType" "follow_origin"
+				"Duration" "10"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "%mana_regen"
+				}
+				
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"mana_regen"			"80"
+			}
+		}
+	}
+	"item_mana_lvl3"
+	{
+		"ID"							"1106"
+
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_DONT_RESUME_ATTACK"
+		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO"
+		
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"item_mana_lvl3"
+		"ItemKillable"					"0"
+
+		// Stats
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityCastRange"				"100"
+		"AbilityCastPoint"				"0.0"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"800"
+		"ItemShopTags"					"consumable"
+		"ItemQuality"					"consumable"
+		"ItemStackable"					"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemPermanent"					"0"
+		"ItemInitialCharges"			"1"
+		"SideShop"						"1"
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target" "CURSOR_TARGET"
+				"ModifierName" "mana_lvl3"
+			}
+
+			"SpendCharge"
+			{}
+		}
+
+		"Modifiers"
+		{
+			"mana_lvl3"
+			{
+				
+				"EffectName" "particles/items_fx/healing_clarity.vpcf"
+				"EffectAttachType" "follow_origin"
+				"Duration" "10"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT" "%mana_regen"
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"		"FIELD_INTEGER"
+				"mana_regen"			"120"
+			}
+		}
+	}
+
+	//物品合成宝石 1110
+	"item_gem_manli"
+	{
+		"ID"							"1110"
+
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"item_gem_manli"
+		"ItemKillable"					"0"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"300"
+		"ItemShopTags"					"rare"
+		"ItemQuality"					"rare"
+		"ItemStackable"					"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemPermanent"					"1"
+		"ItemInitialCharges"			"1"
+	}
+	"item_gem_ruizhi"
+	{
+		"ID"							"1111"
+
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"item_gem_ruizhi"
+		"ItemKillable"					"0"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"300"
+		"ItemShopTags"					"rare"
+		"ItemQuality"					"rare"
+		"ItemStackable"					"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemPermanent"					"1"
+		"ItemInitialCharges"			"1"
+	}
+	"item_gem_jiaozha"
+	{
+		"ID"							"1112"
+
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"item_gem_jiaozha"
+		"ItemKillable"					"0"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"300"
+		"ItemShopTags"					"rare"
+		"ItemQuality"					"rare"
+		"ItemStackable"					"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemPermanent"					"1"
+		"ItemInitialCharges"			"1"
+	}
+	"item_gem_lingmin"
+	{
+		"ID"							"1113"
+
+		// General
+		//-------------------------------------------------------------------------------------------------------------
+		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"BaseClass"						"item_datadriven"
+		"AbilityTextureName"			"item_gem_lingmin"
+		"ItemKillable"					"0"
+		
+		// Item Info
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemCost"						"300"
+		"ItemShopTags"					"rare"
+		"ItemQuality"					"rare"
+		"ItemStackable"					"1"
+		"ItemShareability"				"ITEM_FULLY_SHAREABLE_STACKING"
+		"ItemPermanent"					"1"
+		"ItemInitialCharges"			"1"
+	}
+
+	
+
+	//主手武器 item_zs_xxxx
+	//副手武器 item_fs_xxxx
+	//衣服     item_yf_xxxx
+	//裤子     item_kz_xxxx
+	//鞋子     item_xz_xxxx
+	//请严格遵守，这是区分物品类型的关键
+
+	//=================================
+	//武器部分，ID 范围 1301-1600
+	//所有合成卷轴的ID = 他所合成的物品的ID + 1
+	//=================================
+	// 区域：基础斧子
+	"item_zs_steel_axe_lvl1"//1302
+	{
+		"ID"					"1302"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_steel_axe_lvl1"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"500"
+	    "ItemQuality"			"common"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+	    "Modifiers"
+	    {
+	    	"modifier_steel_axe_lvl1"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+	    		}
+	    	}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"bonus_damage"		"10"
+	    	}
+	    }
+	}
+	"item_zs_steel_axe_lvl2"//1303
+	{
+		"ID"					"1303"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_steel_axe_lvl2"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"1000"
+	    "ItemQuality"			"common"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+	    "Modifiers"
+	    {
+	    	"modifier_steel_axe_lv2"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+	    			"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%str_bonus"
+	    		}
+	    	}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"bonus_damage"		"20"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"str_bonus"			"10"
+	    	}
+	    }
+	}
+	"item_recipe_zs_steel_axe_lvl2"//1304
+	{
+		"ID"							"1304"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"500"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_steel_axe_lvl2"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_steel_axe_lvl1"
+		}
+	}
+	"item_zs_steel_axe_lvl3"//1305
+	{
+		"ID"					"1305"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_steel_axe_lvl3"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"1500"
+	    "ItemQuality"			"common"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+	    "Modifiers"
+	    {
+	    	"modifier_steel_axe_lvl3"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+	    			"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%str_bonus"
+	    			"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"		"%health_regen"
+	    		}
+	    	}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"bonus_damage"		"25"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"str_bonus"			"15"
+	    	}
+	    	"03"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"health_regen"		"4"
+	    	}
+	    }
+	}
+	"item_recipe_zs_steel_axe_lvl3"//1306
+	{
+		"ID"							"1306"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"500"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_steel_axe_lvl3"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_steel_axe_lvl2"
+		}
+	}
+	"item_zs_steel_axe_lvl4"//1307
+	{
+		"ID"					"1307"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_steel_axe_lvl4"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"3000"
+	    "ItemQuality"			"common"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+	    "Modifiers"
+	    {
+	    	"modifier_steel_axe_lvl4"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+	    			"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%str_bonus"
+	    			"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"		"%health_regen"
+	    			"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"%magic_resist"
+	    		}
+	    	}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"bonus_damage"		"30"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"str_bonus"			"20"
+	    	}
+	    	"03"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"health_regen"		"6"
+	    	}
+	    	"04"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"magic_resist"		"15"
+	    	}
+	    }
+	}
+	"item_recipe_zs_steel_axe_lvl4"//1308
+	{
+		"ID"							"1308"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"1500"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_steel_axe_lvl4"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_steel_axe_lvl3"
+		}
+	}
+	"item_zs_steel_axe_lvl5"//1309
+	{
+		"ID"					"1309"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_steel_axe_lvl5"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"5000"
+	    "ItemQuality"			"common"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+	    "Modifiers"
+	    {
+	    	"modifier_steel_axe_lvl5"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+	    			"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"		"%str_bonus"
+	    			"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"		"%health_regen"
+	    			"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"%magic_resist"
+	    			"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"%damage_reduce"
+	    		}
+	    	}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"bonus_damage"		"50"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"str_bonus"			"40"
+	    	}
+	    	"03"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"health_regen"		"13"
+	    	}
+	    	"04"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"magic_resist"		"30"
+	    	}
+	    	"05"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"damage_reduce"		"10"
+	    	}
+	    }
+	}
+	"item_recipe_zs_steel_axe_lvl5"//1310
+	{
+		"ID"							"1310"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"2000"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_steel_axe_lvl5"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_steel_axe_lvl4"
+		}
+	}
+	// 结束区域：基础斧子
+
+
+	// 区域：基础剑 1311
+	"item_zs_steel_sword_lvl1"//1302
+	{
+		"ID"					"1311"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_steel_sword_lvl1"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"500"
+	    "ItemQuality"			"common"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+	    "Modifiers"
+	    {
+	    	"modifier_steel_sword_lvl1"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+	    		}
+	    	}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"bonus_damage"		"10"
+	    	}
+	    }
+	}
+	"item_zs_steel_sword_lvl2"//1303
+	{
+		"ID"					"1312"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_steel_sword_lvl2"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"1000"
+	    "ItemQuality"			"common"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+	    "Modifiers"
+	    {
+	    	"modifier_steel_sword_lv2"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+	    			"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%agi_bonus"
+	    		}
+	    	}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"bonus_damage"		"20"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"agi_bonus"			"10"
+	    	}
+	    }
+	}
+	"item_recipe_zs_steel_sword_lvl2"//1304
+	{
+		"ID"							"1313"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"500"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_steel_sword_lvl2"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_steel_sword_lvl1"
+		}
+	}
+	"item_zs_steel_sword_lvl3"//1305
+	{
+		"ID"					"1314"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_steel_sword_lvl3"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"1500"
+	    "ItemQuality"			"common"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+	    "Modifiers"
+	    {
+	    	"modifier_steel_sword_lvl3"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+	    			"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%agi_bonus"
+	    			"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"%ms_bonus"
+	    		}
+	    	}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"bonus_damage"		"25"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"agi_bonus"			"15"
+	    	}
+	    	"03"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"ms_bonus"			"40"
+	    	}
+	    }
+	}
+	"item_recipe_zs_steel_sword_lvl3"//1306
+	{
+		"ID"							"1315"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"500"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_steel_sword_lvl3"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_steel_sword_lvl2"
+		}
+	}
+	"item_zs_steel_sword_lvl4"//1307
+	{
+		"ID"					"1316"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_steel_sword_lvl4"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"3000"
+	    "ItemQuality"			"common"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+	    "Modifiers"
+	    {
+	    	"modifier_steel_sword_lvl4"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+	    			"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%agi_bonus"
+	    			"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"%ms_bonus"
+	    			"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_speed"
+	    		}
+	    	}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"bonus_damage"		"30"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"agi_bonus"			"20"
+	    	}
+	    	"03"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"ms_bonus"		"40"
+	    	}
+	    	"04"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"attack_speed"		"15"
+	    	}
+	    }
+	}
+	"item_recipe_zs_steel_sword_lvl4"//1308
+	{
+		"ID"							"1317"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"1500"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_steel_sword_lvl4"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_steel_sword_lvl3"
+		}
+	}
+	"item_zs_steel_sword_lvl5"//1309
+	{
+		"ID"					"1318"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_steel_sword_lvl5"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"5000"
+	    "ItemQuality"			"common"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+	    "Modifiers"
+	    {
+	    	"modifier_steel_sword_lvl5"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+	    			"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%agi_bonus"
+	    			"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"%ms_bonus"
+	    			"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_speed"
+	    			"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE_POST_CRIT"	"%bonus_crit"
+	    		}
+	    	}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"bonus_damage"		"50"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"agi_bonus"			"40"
+	    	}
+	    	"03"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"ms_bonus"		"40"
+	    	}
+	    	"04"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"attack_speed"		"30"
+	    	}
+	    	"05"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"bonus_crit"		"10"
+	    	}
+	    }
+	}
+	"item_recipe_zs_steel_sword_lvl5"//1310
+	{
+		"ID"							"1319"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"2000"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_steel_sword_lvl5"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_steel_sword_lvl4"
+		}
+	}
+	// 结束区域：基础剑
+
+	// 区域：基础暗器 1321
+	"item_zs_steel_shuriken_lvl1"//1302
+	{
+		"ID"					"1321"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_steel_shuriken_lvl1"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"500"
+	    "ItemQuality"			"common"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+	    "Modifiers"
+	    {
+	    	"modifier_steel_shuriken_lvl1"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+	    		}
+	    	}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"bonus_damage"		"10"
+	    	}
+	    }
+	}
+	"item_zs_steel_shuriken_lvl2"//1303
+	{
+		"ID"					"1322"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_steel_shuriken_lvl2"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"1000"
+	    "ItemQuality"			"common"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+	    "Modifiers"
+	    {
+	    	"modifier_steel_shuriken_lv2"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+	    			"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%agi_bonus"
+	    		}
+	    	}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"bonus_damage"		"20"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"agi_bonus"			"10"
+	    	}
+	    }
+	}
+	"item_recipe_zs_steel_shuriken_lvl2"//1304
+	{
+		"ID"							"1323"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"500"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_steel_shuriken_lvl2"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_steel_shuriken_lvl1"
+		}
+	}
+	"item_zs_steel_shuriken_lvl3"//1305
+	{
+		"ID"					"1324"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_steel_shuriken_lvl3"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"1500"
+	    "ItemQuality"			"common"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+	    "Modifiers"
+	    {
+	    	"modifier_steel_shuriken_lvl3"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+	    			"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%agi_bonus"
+	    			"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"%ms_bonus"
+	    		}
+	    	}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"bonus_damage"		"25"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"agi_bonus"			"15"
+	    	}
+	    	"03"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"ms_bonus"			"40"
+	    	}
+	    }
+	}
+	"item_recipe_zs_steel_shuriken_lvl3"//1306
+	{
+		"ID"							"1325"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"500"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_steel_shuriken_lvl3"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_steel_shuriken_lvl2"
+		}
+	}
+	"item_zs_steel_shuriken_lvl4"//1307
+	{
+		"ID"					"1326"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_steel_shuriken_lvl4"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"3000"
+	    "ItemQuality"			"common"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+	    "Modifiers"
+	    {
+	    	"modifier_steel_shuriken_lvl4"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+	    			"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%agi_bonus"
+	    			"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"%ms_bonus"
+	    			"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_speed"
+	    		}
+	    	}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"bonus_damage"		"30"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"agi_bonus"			"20"
+	    	}
+	    	"03"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"ms_bonus"		"40"
+	    	}
+	    	"04"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"attack_speed"		"15"
+	    	}
+	    }
+	}
+	"item_recipe_zs_steel_shuriken_lvl4"//1308
+	{
+		"ID"							"1327"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"1500"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_steel_shuriken_lvl4"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_steel_shuriken_lvl3"
+		}
+	}
+	"item_zs_steel_shuriken_lvl5"//1309
+	{
+		"ID"					"1328"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_steel_shuriken_lvl5"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"5000"
+	    "ItemQuality"			"common"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+	    "Modifiers"
+	    {
+	    	"modifier_steel_shuriken_lvl5"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+	    			"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%agi_bonus"
+	    			"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"		"%ms_bonus"
+	    			"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_speed"
+	    			"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE_POST_CRIT"	"%bonus_crit"
+	    		}
+	    	}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"bonus_damage"		"50"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"agi_bonus"			"40"
+	    	}
+	    	"03"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"ms_bonus"		"40"
+	    	}
+	    	"04"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"attack_speed"		"30"
+	    	}
+	    	"05"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"bonus_crit"		"10"
+	    	}
+	    }
+	}
+	"item_recipe_zs_steel_shuriken_lvl5"//1310
+	{
+		"ID"							"1329"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"2000"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_steel_shuriken_lvl5"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_steel_shuriken_lvl4"
+		}
+	}
+	// 结束区域：基础暗器
+
+
+	// 区域：基础法杖 1331
+	"item_zs_basic_staff_lvl1"//1302
+	{
+		"ID"					"1331"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_basic_staff_lvl1"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"500"
+	    "ItemQuality"			"common"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+	    "Modifiers"
+	    {
+	    	"modifier_basic_staff_lvl1"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+	    		}
+	    	}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"bonus_damage"		"10"
+	    	}
+	    }
+	}
+	"item_zs_basic_staff_lvl2"//1303
+	{
+		"ID"					"1332"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_basic_staff_lvl2"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"1000"
+	    "ItemQuality"			"common"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+	    "Modifiers"
+	    {
+	    	"modifier_basic_staff_lv2"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+	    			"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"			"%int_bonus"
+	    		}
+	    	}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"bonus_damage"		"20"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"int_bonus"			"10"
+	    	}
+	    }
+	}
+	"item_recipe_zs_basic_staff_lvl2"//1304
+	{
+		"ID"							"1333"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"500"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_basic_staff_lvl2"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_basic_staff_lvl1"
+		}
+	}
+	"item_zs_basic_staff_lvl3"//1305
+	{
+		"ID"					"1334"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_basic_staff_lvl3"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"1500"
+	    "ItemQuality"			"common"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+	    "Modifiers"
+	    {
+	    	"modifier_basic_staff_lvl3"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+	    			"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"			"%int_bonus"
+	    			"MODIFIER_PROPERTY_MANA_BONUS"					"%mana_bonus"
+	    		}
+	    	}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"bonus_damage"		"25"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"int_bonus"			"15"
+	    	}
+	    	"03"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"mana_bonus"			"300"
+	    	}
+	    }
+	}
+	"item_recipe_zs_basic_staff_lvl3"//1306
+	{
+		"ID"							"1335"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"500"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_basic_staff_lvl3"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_basic_staff_lvl2"
+		}
+	}
+	"item_zs_basic_staff_lvl4"//1307
+	{
+		"ID"					"1336"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_basic_staff_lvl4"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"3000"
+	    "ItemQuality"			"common"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+	    "Modifiers"
+	    {
+	    	"modifier_basic_staff_lvl4"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+	    			"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"			"%int_bonus"
+	    			"MODIFIER_PROPERTY_MANA_BONUS"					"%mana_bonus"
+	    			"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_speed"
+	    		}
+	    	}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"bonus_damage"		"30"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"int_bonus"			"20"
+	    	}
+	    	"03"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"mana_bonus"		"400"
+	    	}
+	    	"04"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"attack_speed"		"15"
+	    	}
+	    }
+	}
+	"item_recipe_zs_basic_staff_lvl4"//1308
+	{
+		"ID"							"1337"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"1500"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_basic_staff_lvl4"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_basic_staff_lvl3"
+		}
+	}
+	"item_zs_basic_staff_lvl5"//1309
+	{
+		"ID"					"1338"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_basic_staff_lvl5"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"5000"
+	    "ItemQuality"			"common"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+	    "Modifiers"
+	    {
+	    	"modifier_basic_staff_lvl5"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
+	    			"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"			"%int_bonus"
+	    			"MODIFIER_PROPERTY_MANA_BONUS"					"%mana_bonus"
+	    			"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_speed"
+	    			"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE_POST_CRIT"	"%bonus_crit"
+	    		}
+	    	}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"bonus_damage"		"50"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"int_bonus"			"40"
+	    	}
+	    	"03"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"mana_bonus"		"800"
+	    	}
+	    	"04"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"attack_speed"		"30"
+	    	}
+	    	"05"
+	    	{
+	    		"var_type"			"FIELD_INTEGER"
+	    		"bonus_crit"		"10"
+	    	}
+	    }
+	}
+	"item_recipe_zs_basic_staff_lvl5"//1310
+	{
+		"ID"							"1339"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"2000"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_basic_staff_lvl5"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_basic_staff_lvl4"
+		}
+	}
+	// 结束区域：基础法杖
+
+	//高级斧子们 ID开始 1400
+	"item_zs_axe_huihuangzhanfu"//1400
+	{
+		//辉煌战斧
+		"ID"					"1400"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_axe_huihuangzhanfu"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityCooldown"		"10"
+	    "AbilityManaCost"		"20"
+
+	    "ItemCost"				"99999"
+	    "ItemPurchasable"		"0"
+	    "ItemQuality"			"rare"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+	    "OnSpellStart"
+	    {
+	    	"ApplyModifier"  //添加BUFF
+	    	{
+	    		"Target" 			"CASTER"
+	    		"ModifierName"		"modifier_item_zs_axe_huihuangzhanfu_buff"
+	    	}
+	    }
+	    "Modifiers"
+	    {
+	    	"item_zs_axe_huihuangzhanfu"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%str_bonus"
+	    		}
+	    	}
+	    	"modifier_item_zs_axe_huihuangzhanfu"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryForce"			"%for_bonus"//CategoryForce CategorySensitive CategoryCunning CategoryWisdom
+						"Function"				"OnAddItemCategory"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryForce"			"%for_bonus"
+						"Function"				"OnRemoveItemCategory"
+					}
+				}
+			}
+
+			"modifier_item_zs_axe_huihuangzhanfu_buff"
+			{
+				"Duration"		"%duration"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"%attack" //攻击力
+					"MODIFIER_PROPERTY_HEALTH_BONUS"			"%heal"   //生命值
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor"  //护甲
+				}
+			}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"06"  //持续时间
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"duration"		"6"
+	    	}
+	    	"03"  //攻击力
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"attack"		"40"
+	    	}
+	    	"04"  //生命值
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"heal"			"700"
+	    	}
+	    	"05"  //护甲
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"armor"			"30"
+	    	}
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"str_bonus"		"55"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"for_bonus"		"47"
+	    	}
+	    }
+	}
+	"item_recipe_zs_axe_huihuangzhanfu"//1401
+	{
+		"ID"							"1401"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"500"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_axe_huihuangzhanfu"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_steel_axe_lvl5;item_gem_manli"
+		}
+	}
+	"item_zs_axe_shenyuanzhanfu"//1402
+	{
+		//深渊战斧
+		"ID"					"1402"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_axe_shenyuanzhanfu"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityCooldown"		"10"
+	    "AbilityManaCost"		"20"
+
+	    "ItemCost"				"99999"
+	    "ItemPurchasable"		"0"
+	    "ItemQuality"			"rare"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+	    "OnSpellStart"
+	    {
+	    	"ApplyModifier"  //给予攻击速度和攻击带有混合伤害的BUFF
+	    	{
+	    		"Target" 			"CASTER"
+	    		"ModifierName"		"modifier_item_zs_axe_shenyuanzhanfu_buff"
+	    	}
+	    }
+
+	    "Modifiers"
+	    {
+	    	"item_zs_axe_shenyuanzhanfu"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%str_bonus"
+	    		}
+	    	}
+	    	"modifier_item_zs_axe_shenyuanzhanfu"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryForce"			"%for_bonus"//CategoryForce CategorySensitive CategoryCunning CategoryWisdom
+						"Function"				"OnAddItemCategory"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryForce"			"%for_bonus"
+						"Function"				"OnRemoveItemCategory"
+					}
+				}
+			}
+
+			"modifier_item_zs_axe_shenyuanzhanfu_buff"
+			{
+				"Duration"		"%duration"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_speed" //攻击速度
+				}
+
+				"OnAttackLanded"  //攻击带有混合伤害
+				{
+					"RunScript"
+					{
+						"ScriptFile" 	"scripts/vscripts/items/ItemAxe.lua"
+						"Target"		"UNIT"
+						"Function"		"OnAxeRandomDamageComposite"
+						"damage_min" 	"%damage_min"
+						"damage_max" 	"%damage_max"
+					}
+				}
+			}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"06"  //持续时间
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"duration"		"6"
+	    	}
+	    	"03"  //攻击速度加成
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"attack_speed"	"200"
+	    	}
+	    	"04"  //最低混合伤害
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"damage_min"	"30"
+	    	}
+	    	"05"  //最高混合伤害
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"damage_max"	"80"
+	    	}
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"str_bonus"		"55"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"for_bonus"		"47"
+	    	}
+	    }
+	}
+	"item_recipe_zs_axe_shenyuanzhanfu"//1403
+	{
+		"ID"							"1403"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"500"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_axe_shenyuanzhanfu"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_steel_axe_lvl5;item_gem_manli"
+		}
+	}
+	"item_zs_axe_tianshizhanfu"//1404
+	{
+		//天使战斧
+	    "ID"					"1404"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_axe_tianshizhanfu"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"99999"
+	    "ItemPurchasable"		"0"
+	    "ItemQuality"			"rare"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+	    "Modifiers"
+	    {
+	    	"item_zs_axe_tianshizhanfu"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%str_bonus"
+	    		}
+	    	}
+	    	"modifier_item_zs_axe_tianshizhanfu"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryForce"			"%for_bonus"//CategoryForce CategorySensitive CategoryCunning CategoryWisdom
+						"Function"				"OnAddItemCategory"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryForce"			"%for_bonus"
+						"Function"				"OnRemoveItemCategory"
+					}
+				}
+			}
+
+			"modifier_item_zs_axe_tianshizhanfu_buff"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+
+				"OnAttackLanded"
+				{
+					"RunScript"
+					{
+						"ScriptFile" 	"scripts/vscripts/items/ItemAxe.lua"
+						"Target"		"UNIT"
+						"Function"		"OnAxeTianShi"
+					}
+				}
+			}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"03"  //恢复的生命值百分比
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"heal_percent"	"10"
+	    	}
+	    	"03"  //最高恢复的生命值
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"heal_max"		"450"
+	    	}
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"str_bonus"		"83"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"for_bonus"		"79"
+	    	}
+	    }
+	}
+	"item_recipe_zs_axe_tianshizhanfu"//1405
+	{
+		"ID"							"1405"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"500"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_axe_tianshizhanfu"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_axe_huihuangzhanfu;item_gem_manli;item_cf_feather"
+		}
+	}
+
+	"item_zs_axe_emozhanfu"//1406
+	{
+		//恶魔战斧
+		"ID"					"1406"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_axe_emozhanfu"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"99999"
+	    "ItemPurchasable"		"0"
+	    "ItemQuality"			"rare"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+	    "Modifiers"
+	    {
+	    	"item_zs_axe_emozhanfu"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%str_bonus"
+	    		}
+	    	}
+	    	"modifier_item_zs_axe_emozhanfu"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryForce"			"%for_bonus"//CategoryForce CategorySensitive CategoryCunning CategoryWisdom
+						"Function"				"OnAddItemCategory"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryForce"			"%for_bonus"
+						"Function"				"OnRemoveItemCategory"
+					}
+				}
+			}
+
+			"modifier_item_zs_axe_emozhanfu_buff"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+
+				"OnAttack"
+				{
+					"Random"
+					{
+						"Chance"			"%chance"
+						"PseudeoRandom"		"DOTA_PSEUDO_RANDOM_JUGG_CRIT" 
+						"OnSuccess"
+						{
+							"FireEffect"
+							{
+								"EffectName"		"particles\units\heroes\hero_centaur\centaur_warstomp.vpcf"
+								"EffectAttachType"  "world_origin"
+								"Target"   			"TARGET"
+							}	
+
+							"RunScript"
+							{
+								"ScriptFile"		"scripts/vscripts/util/damage.lua"
+								"Function"			"DamageTarget"
+								"damage_increase"	"%increase"
+								"damage_type"		"DAMAGE_TYPE_COMPOSITE"
+								"damage_category"	"force"
+								"damage_str"		"%str_hurt"
+								"Target"
+								{
+									"Types"			"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+									"Teams"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+									"Flags"			"DOTA_UNIT_TARGET_FLAG_NONE"
+									"Center"		"TARGET"
+									"Radius"		"%radius"
+								}
+							}
+
+							"Stun"
+							{
+								"Duration"			"%duration"
+								"Target"
+								{
+									"Types"			"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+									"Teams"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+									"Flags"			"DOTA_UNIT_TARGET_FLAG_NONE"
+									"Center"		"TARGET"
+									"Radius"		"%radius"
+								}
+							}
+						}
+					}
+				}
+			}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"06"  //触发概率
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"chance"		"50"
+	    	}
+	    	"07"  //作用范围
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"radius"		"300"
+	    	}
+	    	"03"  //眩晕时间
+	    	{
+	    		"var_type"		"FIELD_FLOAT"
+	    		"duration"		"0.5"
+	    	}
+	    	"04"	//伤害系数
+			{
+				"var_type"			"FIELD_FLOAT"
+				"increase"			"1.2"
+			}
+			"05"	//伤害力量加成
+			{
+				"var_type"			"FIELD_FLOAT"
+				"str_hurt"			"1.4"
+			}
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"str_bonus"		"83"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"for_bonus"		"79"
+	    	}
+	    }
+	}
+	"item_recipe_zs_axe_emozhanfu"//1407
+	{
+		"ID"							"1407"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"500"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_axe_emozhanfu"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_axe_shenyuanzhanfu;item_gem_manli;item_cf_feather"
+		}
+	}
+
+	"item_zs_axe_jiushizhanfu"//1408
+	{
+		//救世战斧
+		"ID"					"1408"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_axe_jiushizhanfu"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityCooldown"		"15"
+	    "AbilityManaCost"		"75"
+		
+	    "ItemCost"				"99999"
+	    "ItemPurchasable"		"0"
+	    "ItemQuality"			"epic"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+	    "AbilityCooldown"		"0"
+
+	    "OnSpellStart"
+	    {
+	    	"ApplyModifier"
+	    	{
+	    		"Target" 		
+	    		{
+					"Types"		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+					"Teams"		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+					"Flags"		"DOTA_UNIT_TARGET_FLAG_NONE"
+					"Center"	"CASTER"
+					"Radius"	"%radius"
+				}
+	    		"ModifierName"		"modifier_item_zs_axe_jiushizhanfu_buff"
+	    	}	
+	    }
+
+	    "Modifiers"
+	    {
+	    	"item_zs_axe_jiushizhanfu"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%str_bonus"
+	    		}
+	    	}
+	    	"modifier_item_zs_axe_jiushizhanfu"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryForce"			"%for_bonus"//CategoryForce CategorySensitive CategoryCunning CategoryWisdom
+						"Function"				"OnAddItemCategory"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryForce"			"%for_bonus"
+						"Function"				"OnRemoveItemCategory"
+					}
+				}
+			}
+
+			"modifier_item_zs_axe_jiushizhanfu_buff"
+			{
+				"Duration"		"%duration"
+
+				"ThinkInterval"	"0.75"
+				"OnIntervalThink"
+				{
+					"Heal"
+					{
+						"HealAmount"	"%zy_heal"
+						"Target" 		
+			    		{
+							"Types"		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+							"Teams"		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+							"Flags"		"DOTA_UNIT_TARGET_FLAG_NONE"
+							"Center"	"TARGET"
+							"Radius"	"%zy_radius"
+						}
+					}
+				}	
+
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"		"particles\econ\items\windrunner\windrunner_cape_cascade\windrunner_windrun_cascade.vpcf"
+						"EffectAttachType"  "follow_origin"
+						"Target"   			"TARGET"
+					}
+				}	
+
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile" 	"scripts/vscripts/items/ItemAxe.lua"
+						"Target"		"UNIT"
+						"Function"		"OnAxeJiuShi"
+					}
+				}
+			}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"03"  //使用效果作用范围
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"radius"		"700"
+	    	}
+	    	"08"  //自愈种子持续时间
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"duration"		"5"
+	    	}
+	    	"04"  //自愈种子作用范围
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"zy_radius"		"250"
+	    	}
+	    	"07"  //自愈种子恢复的生命值
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"zy_heal"		"100"
+	    	}
+	    	"05"  //伤害中最大生命值的百分比
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"heal_percent"	"10"
+	    	}
+	    	"06"  //伤害作用范围
+	    	{
+	    		"var_type"		"FIELD_FLOAT"
+	    		"damage_radius" "500"
+	    	}
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"str_bonus"		"97"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"for_bonus"		"110"
+	    	}
+	    }
+	}
+	"item_recipe_zs_axe_jiushizhanfu"//1409
+	{
+		"ID"							"1409"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"500"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_axe_jiushizhanfu"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_axe_tianshizhanfu;item_cf_feather;item_cf_feather"
+		}
+	}
+
+	"item_zs_axe_huimiezhanfu"//1410
+	{
+		//毁灭战斧
+		"ID"					"1410"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_axe_huimiezhanfu"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityCooldown"		"15"
+	    "AbilityManaCost"		"75"
+		
+	    "ItemCost"				"99999"
+	    "ItemPurchasable"		"0"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+	    "ItemQuality"			"epic"
+
+	    "AbilityCooldown"		"2"
+
+	    "OnSpellStart"
+	    {
+	    	"AttachEffect"
+	    	{
+	    		"EffectName"		"particles\units\heroes\hero_undying\undying_tombstone_spawn.vpcf"
+	    		"EffectAttachType"  "follow_origin"
+	    		"Target"  			"CASTER"
+	    	}	
+	    	"AttachEffect"
+	    	{
+	    		"EffectName"		"particles\units\heroes\hero_nevermore\nevermore_wings.vpcf"
+	    		"EffectAttachType"  "follow_origin"
+	    		"Target"  			"CASTER"
+	    	}	
+	    	"FireSound"
+	    	{
+	    		"EffectName"		"Hero_Nevermore.RequiemOfSouls"
+	    		"Target"  			"CASTER"
+	    	}
+
+	    	"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/util/damage.lua"
+				"Function"			"DamageTarget"
+				"damage_increase"	"%increase"
+				"damage_type"		"DAMAGE_TYPE_COMPOSITE"
+				"damage_category"	"force"
+				"damage_str"		"%str_hurt"
+				"Target"
+				{
+					"Types"			"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+					"Teams"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Flags"			"DOTA_UNIT_TARGET_FLAG_NONE"
+					"Center"		"CASTER"
+					"Radius"		"%radius"
+				}
+			}
+	    }
+
+	    "Modifiers"
+	    {
+	    	"item_zs_axe_huimiezhanfu"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%str_bonus"
+	    		}
+
+	    		"Aura" 			"modifier_item_zs_axe_huimiezhanfu_debuff"
+				"Aura_Radius" 	"%p_radius"
+				"Aura_Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags" 	"DOTA_UNIT_TARGET_FLAG_NONE"
+	    	}
+	    	"modifier_item_zs_axe_huimiezhanfu"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryForce"			"%for_bonus"//CategoryForce CategorySensitive CategoryCunning CategoryWisdom
+						"Function"				"OnAddItemCategory"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryForce"			"%for_bonus"
+						"Function"				"OnRemoveItemCategory"
+					}
+				}
+			}
+
+			"modifier_item_zs_axe_huimiezhanfu_debuff"
+			{
+				"IsDebuff"		"1"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"%attack" //攻击力
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%armor"  //护甲
+				}
+
+				"OnCreated"  //减少生命值
+				{
+					"RunScript"
+					{
+						"ScriptFile" 	"scripts/vscripts/items/ItemAxe.lua"
+						"Target"		"UNIT"
+						"Function"		"OnAxeHuiMieCreated"
+					}
+				}
+
+				"OnDestroy"  //增加减少的生命值
+				{
+					"RunScript"
+					{
+						"ScriptFile" 	"scripts/vscripts/items/ItemAxe.lua"
+						"Target"		"UNIT"
+						"Function"		"OnAxeHuiMieDestroy"
+					}
+				}
+			}
+
+			"modifier_item_zs_axe_huimiezhanfu_debuff_heal" //减少生命值
+			{
+				"IsHidden"		"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_BONUS"	"%heal" //生命值
+				}
+			}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"03"	//使用效果作用范围
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"700"
+			}
+	    	"06"	//被动效果作用范围
+			{
+				"var_type"			"FIELD_INTEGER"
+				"p_radius"			"300"
+			}
+			"07"	//攻击力降低百分比
+			{
+				"var_type"			"FIELD_INTEGER"
+				"attack"			"-25"
+			}
+			"08"	//护甲降低
+			{
+				"var_type"			"FIELD_INTEGER"
+				"armor"				"-30"
+			}
+			"09"	//生命值降低
+			{
+				"var_type"			"FIELD_INTEGER"
+				"heal"				"-600"
+			}
+	    	"04"	//伤害系数
+			{
+				"var_type"			"FIELD_FLOAT"
+				"increase"			"2.0"
+			}
+			"05"	//伤害力量加成
+			{
+				"var_type"			"FIELD_FLOAT"
+				"str_hurt"			"2.0"
+			}
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"str_bonus"		"97"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"for_bonus"		"110"
+	    	}
+	    }
+	}
+	"item_recipe_zs_axe_huimiezhanfu"//1411
+	{
+		"ID"							"1411"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"500"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_axe_huimiezhanfu"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_axe_emozhanfu;item_cf_feather;item_cf_feather"
+		}
+	}
+
+	"item_zs_axe_tianshenzhifu"//1412
+	{
+		//天神战斧
+		"ID"					"1412"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_axe_tianshenzhifu"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCooldown"		"15"
+	    "AbilityManaCost"		"150"
+		
+	    "ItemCost"				"99999"
+	    "ItemPurchasable"		"0"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+	    "ItemQuality"			"artifact"
+
+	    "OnSpellStart"
+	    {
+	    	"AttachEffect"
+	    	{
+	    		"EffectName"		"particles\units\unit_greevil\loot_greevil_death.vpcf"
+	    		"EffectAttachType"  "follow_origin"
+	    		"Target" 			"CASTER"
+	    	}
+	    	"FireSound"
+	    	{
+	    		"EffectName"		"Hero_SkywrathMage.MysticFlare.Cast"
+	    		"Target" 			"CASTER"
+	    	}
+
+	    	"RunScript"
+	    	{
+	    		"ScriptFile" 	"scripts/vscripts/items/ItemAxe.lua"
+	    		"Target"		"CASTER"
+	    		"Function"		"OnAxeTianShen"
+	    	}
+	    }	
+
+	    "Modifiers"
+	    {
+	    	"item_zs_axe_tianshenzhifu"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%str_bonus"
+	    		}
+	    	}
+	    	"modifier_item_zs_axe_tianshenzhifu"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryForce"			"%for_bonus"//CategoryForce CategorySensitive CategoryCunning CategoryWisdom
+						"Function"				"OnAddItemCategory"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryForce"			"%for_bonus"
+						"Function"				"OnRemoveItemCategory"
+					}
+				}
+			}
+
+			"modifier_item_zs_axe_tianshenzhifu_buff_main"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+
+				"Aura" 			"modifier_item_zs_axe_tianshenzhifu_buff"
+				"Aura_Radius" 	"%p_radius"
+				"Aura_Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags" 	"DOTA_UNIT_TARGET_FLAG_NONE"
+			}
+
+			"modifier_item_zs_axe_tianshenzhifu_buff"
+			{
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor" //护甲
+					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"%mag" //魔抗
+					"MODIFIER_PROPERTY_PHYSICAL_CONSTANT_BLOCK"	"%phy" //物理格挡
+				}
+
+				"OnAttackLanded"
+				{
+					"Heal"
+					{
+						"Target"   		"ATTACKER"
+						"HealAmount"	"%heal"
+					}
+				}	
+			}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"03"  //召唤时间
+	    	{
+	    		"var_type"		"FIELD_FLOAT"
+	    		"time"			"2.5"
+	    	}
+	    	"04"  //持续时间
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"duration"		"5"
+	    	}
+	    	"05"  //使用效果作用范围
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"radius"		"800"
+	    	}
+	    	"12"  //被动效果作用范围
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"p_radius"		"500"
+	    	}
+	    	"08"  //护甲
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"armor"			"50"
+	    	}
+	    	"09"  //魔抗
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"mag"			"40"
+	    	}
+	    	"10"  //物理格挡
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"phy"			"50"
+	    	}
+	    	"11"  //攻击恢复的生命值
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"heal"			"100"
+	    	}
+	    	"06"	//伤害系数
+			{
+				"var_type"			"FIELD_FLOAT"
+				"increase"			"2.3"
+			}
+			"07"	//伤害力量加成
+			{
+				"var_type"			"FIELD_FLOAT"
+				"str_hurt"			"2.3"
+			}
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"str_bonus"		"220"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"for_bonus"		"250"
+	    	}
+	    }
+	}
+	"item_recipe_zs_axe_tianshenzhifu"//1413
+	{
+		"ID"							"1413"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_axe_tianshenzhifu"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_axe_jiushizhanfu;item_cf_feather;item_cf_feather;item_cf_feather"
+		}
+	}
+
+	"item_zs_axe_diyuzhanfu"//1414
+	{
+		//地狱战斧
+		"ID"					"1414"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_axe_diyuzhanfu"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityCooldown"		"15"
+	    "AbilityManaCost"		"150"
+		
+	    "ItemCost"				"99999"
+	    "ItemPurchasable"		"0"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+	    "ItemQuality"			"artifact"
+
+	    "OnSpellStart"
+	    {
+	    	"FireSound"
+	    	{
+	    		"EffectName"		"Hero_ElderTitan.EarthSplitter.Projectile"
+	    		"Target"      		"CASTER"
+	    	}	
+	    	"RunScript"
+	    	{
+	    		"ScriptFile" 	"scripts/vscripts/items/ItemAxe.lua"
+	    		"Target"		"CASTER"
+	    		"Function"		"OnAxeDiYu"
+	    	}
+	    }
+
+	    "Modifiers"
+	    {
+	    	"item_zs_axe_diyuzhanfu"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%str_bonus"
+	    		}
+	    	}
+	    	"modifier_item_zs_axe_diyuzhanfu"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryForce"			"%for_bonus"//CategoryForce CategorySensitive CategoryCunning CategoryWisdom
+						"Function"				"OnAddItemCategory"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryForce"			"%for_bonus"
+						"Function"				"OnRemoveItemCategory"
+					}
+				}
+			}
+
+			"modifier_item_zs_axe_diyuzhanfu_buff"
+			{
+				"Passive"		"1"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"%attack" //攻击力
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_speed" //攻击速度
+				}
+
+				"OnTakeDamage"
+				{
+					"Random"  //受到伤害有一定几率免受魔法伤害
+					{
+						"Chance"			"%chance"
+						"PseudeoRandom"		"DOTA_PSEUDO_RANDOM_JUGG_CRIT"
+						"OnSuccess"
+						{
+							"ApplyModifier"
+							{
+								"Target" 			"CASTER"
+								"ModifierName"		"modifier_item_zs_axe_diyuzhanfu_buff_mag"
+							}
+						}
+					}
+				}	
+			}
+
+			"modifier_item_zs_axe_diyuzhanfu_buff_mag"
+			{
+				"Duration"		"%mag_duration"
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ABSOLUTE_NO_DAMAGE_MAGICAL"	"1" //免受魔法伤害
+				}
+			}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"03"  //地面碎裂时间
+	    	{
+	    		"var_type"		"FIELD_FLOAT"
+	    		"time"			"3.5"
+	    	}
+	    	"04"  //地狱火持续时间
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"duration"		"5"
+	    	}
+	    	"05"  //使用效果作用范围
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"radius"		"800"
+	    	}
+	    	"09"  //攻击力
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"attack"		"25"
+	    	}
+	    	"10"  //攻击速度
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"attack_speed"	"50"
+	    	}
+	    	"11"  //触发概率
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"chance"		"8"
+	    	}
+	    	"12"  //免受魔法伤害持续时间
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"mag_duration"	"3"
+	    	}
+	    	"07"	//伤害系数
+			{
+				"var_type"			"FIELD_FLOAT"
+				"increase"			"2.3"
+			}
+			"08"	//伤害力量加成
+			{
+				"var_type"			"FIELD_FLOAT"
+				"str_hurt"			"2.3"
+			}
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"str_bonus"		"220"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"for_bonus"		"250"
+	    	}
+	    }
+	}
+	"item_recipe_zs_axe_diyuzhanfu"//1415
+	{
+		"ID"							"1415"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-------------------------------------------------------------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_axe_diyuzhanfu"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_axe_huimiezhanfu;item_cf_feather;item_cf_feather;item_cf_feather"
+		}
+	}
+	//高级剑们   ID开始 1450
+	//高级暗器们 ID开始 1500
+	"item_zs_dagger_zhiming"//1500
+	{
+		//致命之刃
+		"ID"					"1500"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_dagger_zhiming"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+	    "ItemCost"				"99999"
+	    "ItemDroppable"			"1"
+	    "ItemSellable"			"1"
+	    "ItemQuality"			"rare"
+	    "ItemPurchasable"		"1"
+	    "ItemPermanent"			"1"
+	    "ItemStackable"			"0"
+	    "ItemKillable"			"1"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+
+	    "Modifiers"
+	    {
+	    	"modifier_item_zs_dagger_zhiming"
+	    	{
+	    		"IsHidden"		"1"
+	    		"Passive"		"1"
+
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%agi_bonus"
+	    		}
+	    	}
+
+	    	"modifier_item_zs_dagger_zhiming_cunning"
+	    	{
+	    		"Passive"   "1"
+		        "IsHidden"  "1"
+		        "OnCreated"
+		        {
+		            "RunScript"
+		            {
+		                "ScriptFile"        "scripts/vscripts/items/item_core.lua"
+		                "Function"          "OnAddItemCategory"
+		                "CategoryCunning"    "%cun_bonus"
+		            }
+		        }
+		        "OnDestroy"
+		        {
+		            "RunScript"
+		            {
+		                "ScriptFile"        "scripts/vscripts/items/item_core.lua"
+		                "Function"          "OnRemoveItemCategory"
+		                "CategoryCunning"    "%cun_bonus"
+		            }
+		        }
+	    	}
+
+	    	"modifier_item_zs_dagger_zhiming_buff" //被动效果
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+
+	    		"OnAttackLanded"
+	    		{
+	    			"Random"
+	    			{
+	    				"Chance"			"%chance"
+	    				"PseudeoRandom"		"DOTA_PSEUDO_RANDOM_JUGG_CRIT" 
+	    				"OnSuccess"
+	    				{
+	    					"RunScript"
+	    					{
+	    						"ScriptFile" 	"scripts/vscripts/items/ItemDagger.lua"
+	    						"Target"		"UNIT"
+	    						"Function"		"OnDaggerZhiMing"
+	    					}
+	    				}
+	    			}
+	    		}
+	    	}
+	    }
+
+	    "AbilitySpecial"
+	    {
+	    	"06"  //触发概率
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"chance"		"25"
+	    	}
+	    	"03"  //基于攻击力倍数
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"attack"		"150"
+	    	}
+	    	"04"  //最大物理伤害
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"attack_max"	"100"
+	    	}
+	    	"05"  //最小物理伤害
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"attack_min"	"50"
+	    	}
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"agi_bonus"		"55"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"cun_bonus"		"47"
+	    	}
+	    }
+	}
+	"item_recipe_zs_dagger_zhiming"//1501
+	{
+		"ID"							"1501"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"500"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-----------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_dagger_zhiming"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_steel_shuriken_lvl5;item_gem_manli"
+		}
+	}
+
+	"item_zs_dagger_gangli"//1502
+	{
+		//钢力之刃
+		"ID"					"1502"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_dagger_gangli"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+	    "ItemCost"				"99999"
+	    "ItemDroppable"			"1"
+	    "ItemSellable"			"1"
+	    "ItemQuality"			"rare"
+	    "ItemPurchasable"		"1"
+	    "ItemPermanent"			"1"
+	    "ItemStackable"			"0"
+	    "ItemKillable"			"1"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+
+	    "Modifiers"
+	    {
+	    	"modifier_item_zs_dagger_gangli"
+	    	{
+	    		"IsHidden"		"1"
+	    		"Passive"		"1"
+
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%agi_bonus"
+	    		}
+	    	}
+
+	    	"modifier_item_zs_dagger_gangli_cunning"
+	    	{
+	    		"Passive"   "1"
+		        "IsHidden"  "1"
+		        "OnCreated"
+		        {
+		            "RunScript"
+		            {
+		                "ScriptFile"        "scripts/vscripts/items/item_core.lua"
+		                "Function"          "OnAddItemCategory"
+		                "CategoryCunning"    "%cun_bonus"
+		            }
+		        }
+		        "OnDestroy"
+		        {
+		            "RunScript"
+		            {
+		                "ScriptFile"        "scripts/vscripts/items/item_core.lua"
+		                "Function"          "OnRemoveItemCategory"
+		                "CategoryCunning"    "%cun_bonus"
+		            }
+		        }
+	    	}
+
+	    	"modifier_item_zs_dagger_gangli_buff" //被动效果
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+
+	    		"OnAttackLanded"
+	    		{
+	    			"Random"
+	    			{
+	    				"Chance"			"%chance"
+	    				"PseudeoRandom"		"DOTA_PSEUDO_RANDOM_JUGG_CRIT" 
+	    				"OnSuccess"
+	    				{
+	    					"RunScript"
+	    					{
+	    						"ScriptFile" 	"scripts/vscripts/items/ItemDagger.lua"
+	    						"Target"		"UNIT"
+	    						"Function"		"OnDaggerZhiMing"
+	    					}
+
+	    					"ApplyModifier"
+	    					{
+	    						"Target" 			"TARGET"
+	    						"ModifierName"		"modifier_item_zs_dagger_gangli_debuff"
+	    					}
+
+	    					"Stun"
+	    					{
+	    						"Duration"		"%duration"
+	    						"Target"		"TARGET"
+	    					}
+	    				}
+	    			}
+	    		}
+	    	}
+
+	    	"modifier_item_zs_dagger_gangli_debuff"
+	    	{
+	    		"Duration"		"%duration"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor"
+	    		}
+	    	}
+	    }
+
+	    "AbilitySpecial"
+	    {
+	    	"06"  //触发概率
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"chance"		"30"
+	    	}
+	    	"03"  //基于攻击力倍数
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"attack"		"170"
+	    	}
+	    	"04"  //最大物理伤害
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"attack_max"	"125"
+	    	}
+	    	"05"  //最小物理伤害
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"attack_min"	"75"
+	    	}
+	    	"07"  //眩晕时间
+	    	{
+	    		"var_type"		"FIELD_FLOAT"
+	    		"duration"		"3"
+	    	}
+	    	"08"  //护甲降低
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"armor"			"-30"
+	    	}
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"agi_bonus"		"83"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"cun_bonus"		"79"
+	    	}
+	    }
+	}
+	"item_recipe_zs_dagger_gangli"//1503
+	{
+		"ID"							"1503"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"500"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-----------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_dagger_gangli"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_dagger_zhiming;item_gem_manli;item_cf_feather"
+		}
+	}
+
+	"item_zs_dagger_menglong"//1504
+	{
+		//猛龙之刃
+		"ID"					"1504"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_dagger_menglong"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+	    "ItemCost"				"99999"
+	    "ItemDroppable"			"1"
+	    "ItemSellable"			"1"
+	    "ItemQuality"			"epic"
+	    "ItemPurchasable"		"1"
+	    "ItemPermanent"			"1"
+	    "ItemStackable"			"0"
+	    "ItemKillable"			"1"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+
+	    "Modifiers"
+	    {
+	    	"modifier_item_zs_dagger_menglong"
+	    	{
+	    		"IsHidden"		"1"
+	    		"Passive"		"1"
+
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%agi_bonus"
+	    		}
+	    	}
+
+	    	"modifier_item_zs_dagger_menglong_cunning"
+	    	{
+	    		"Passive"   "1"
+		        "IsHidden"  "1"
+		        "OnCreated"
+		        {
+		            "RunScript"
+		            {
+		                "ScriptFile"        "scripts/vscripts/items/item_core.lua"
+		                "Function"          "OnAddItemCategory"
+		                "CategoryCunning"    "%cun_bonus"
+		            }
+		        }
+		        "OnDestroy"
+		        {
+		            "RunScript"
+		            {
+		                "ScriptFile"        "scripts/vscripts/items/item_core.lua"
+		                "Function"          "OnRemoveItemCategory"
+		                "CategoryCunning"    "%cun_bonus"
+		            }
+		        }
+	    	}
+
+	    	"modifier_item_zs_dagger_menglong_buff" //被动效果
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+
+	    		"OnAttackLanded"
+	    		{
+	    			"Random"
+	    			{
+	    				"Chance"			"%chance"
+	    				"PseudeoRandom"		"DOTA_PSEUDO_RANDOM_JUGG_CRIT" 
+	    				"OnSuccess"
+	    				{
+	    					"ApplyModifier"
+	    					{
+	    						"Target" 			"TARGET"
+	    						"ModifierName"		"modifier_item_zs_dagger_menglong_debuff"
+	    					}
+
+	    					"RunScript"
+	    					{
+	    						"ScriptFile" 	"scripts/vscripts/items/ItemDagger.lua"
+	    						"Target"		"UNIT"
+	    						"Function"		"OnDaggerZhiMing"
+	    					}
+	    				}
+	    			}
+	    		}
+	    	}
+
+	    	"modifier_item_zs_dagger_menglong_debuff"
+	    	{
+	    		"Duration"		"%duration"
+	    		"IsHidden"		"1"
+
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"		"%damage" //伤害加深
+	    		}
+	    	}
+	    }
+
+	    "AbilitySpecial"
+	    {
+	    	"06"  //触发概率
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"chance"		"35"
+	    	}
+	    	"03"  //基于攻击力倍数
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"attack"		"180"
+	    	}
+	    	"04"  //最大物理伤害
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"attack_max"	"175"
+	    	}
+	    	"05"  //最小物理伤害
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"attack_min"	"125"
+	    	}
+	    	"07"  //眩晕时间
+	    	{
+	    		"var_type"		"FIELD_FLOAT"
+	    		"duration"		"5"
+	    	}
+	    	"08"  //伤害加深
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"damage"		"300"
+	    	}
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"agi_bonus"		"97"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"cun_bonus"		"110"
+	    	}
+	    }
+	}
+	"item_recipe_zs_dagger_menglong"//1505
+	{
+		"ID"							"1505"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"500"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-----------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_dagger_menglong"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_dagger_gangli;item_cf_feather;item_cf_feather"
+		}
+	}
+
+	"item_zs_dagger_tiantang"//1506
+	{
+		//天堂之刃
+		"ID"					"1506"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_dagger_tiantang"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+	    "ItemCost"				"99999"
+	    "ItemDroppable"			"1"
+	    "ItemSellable"			"1"
+	    "ItemQuality"			"artifact"
+	    "ItemPurchasable"		"1"
+	    "ItemPermanent"			"1"
+	    "ItemStackable"			"0"
+	    "ItemKillable"			"1"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+
+	    "OnProjectileHitUnit"
+	    {
+	    	"RunScript"
+			{
+				"ScriptFile"		"scripts/vscripts/util/damage.lua"
+				"Function"			"DamageTarget"
+				"damage_increase"	"%increase"
+				"damage_type"		"DAMAGE_TYPE_MAGICAL"
+				"damage_category"	"cunning"
+				"damage_str"		"%agi_hurt"
+				"Target"			"TARGET"
+			}
+	    }
+
+	    "Modifiers"
+	    {
+	    	"modifier_item_zs_dagger_tiantang"
+	    	{
+	    		"IsHidden"		"1"
+	    		"Passive"		"1"
+
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%agi_bonus"
+	    		}
+	    	}
+
+	    	"modifier_item_zs_dagger_tiantang_cunning"
+	    	{
+	    		"Passive"   "1"
+		        "IsHidden"  "1"
+		        "OnCreated"
+		        {
+		            "RunScript"
+		            {
+		                "ScriptFile"        "scripts/vscripts/items/item_core.lua"
+		                "Function"          "OnAddItemCategory"
+		                "CategoryCunning"    "%cun_bonus"
+		            }
+		        }
+		        "OnDestroy"
+		        {
+		            "RunScript"
+		            {
+		                "ScriptFile"        "scripts/vscripts/items/item_core.lua"
+		                "Function"          "OnRemoveItemCategory"
+		                "CategoryCunning"    "%cun_bonus"
+		            }
+		        }
+	    	}
+
+	    	"modifier_item_zs_dagger_tiantang_buff" //被动效果
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+
+	    		"OnAttackLanded"
+	    		{
+	    			"Random"
+	    			{
+	    				"Chance"			"%chance"
+	    				"PseudeoRandom"		"DOTA_PSEUDO_RANDOM_JUGG_CRIT" 
+	    				"OnSuccess"
+	    				{
+	    					"ApplyModifier"
+	    					{
+	    						"Target" 			"TARGET"
+	    						"ModifierName"		"modifier_item_zs_dagger_tiantang_debuff"
+	    					}
+
+	    					"RunScript"
+	    					{
+	    						"ScriptFile" 	"scripts/vscripts/items/ItemDagger.lua"
+	    						"Target"		"UNIT"
+	    						"Function"		"OnDaggerZhiMing"
+	    					}
+	    				}
+	    				"OnFailure"
+	    				{
+	    					"TrackingProjectile"
+	    					{
+	    						"Target"
+	    						{
+									"Types"		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+									"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+									"Flags"		"DOTA_UNIT_TARGET_FLAG_NONE"
+									"Center"	"CASTER"
+									"Radius"	"%radius"
+								}
+								"EffectName"	"particles\econ\items\bounty_hunter\bounty_hunter_shuriken_creeper\bounty_hunter_suriken_toss_creepers_cruel.vpcf"
+								"Dodgeable"		"0"
+								"ProvidesVision"	"1"
+								"VisionRadius"		"300"
+								"MoveSpeed"			"1000"
+								"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+	    					}
+	    				}
+	    			}
+	    		}
+	    	}
+	    	"modifier_item_zs_dagger_tiantang_debuff"
+	    	{
+	    		"Duration"		"%duration"
+	    		"IsHidden"		"1"
+
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"		"%damage" //伤害加深
+	    		}
+	    	}
+	    }
+
+	    "AbilitySpecial"
+	    {
+	    	"06"  //被动效果1触发概率
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"chance"		"40"
+	    	}
+	    	"13"  //被动效果2作用范围
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"radius"		"600"
+	    	}
+	    	"03"  //基于攻击力倍数
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"attack"		"180"
+	    	}
+	    	"04"  //最大物理伤害
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"attack_max"	"250"
+	    	}
+	    	"05"  //最小物理伤害
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"attack_min"	"200"
+	    	}
+	    	"07"  //眩晕时间
+	    	{
+	    		"var_type"		"FIELD_FLOAT"
+	    		"duration"		"5"
+	    	}
+	    	"08"  //伤害加深
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"damage"			"200"
+	    	}
+	    	"10"	//伤害系数
+			{
+				"var_type"			"FIELD_FLOAT"
+				"increase"			"2.0"
+			}
+			"11"	//伤害敏捷加成
+			{
+				"var_type"			"FIELD_FLOAT"
+				"agi_hurt"			"2.0"
+			}
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"agi_bonus"		"220"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"cun_bonus"		"250"
+	    	}
+	    }
+	}
+	"item_recipe_zs_dagger_tiantang"//1507
+	{
+		"ID"							"1507"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-----------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_dagger_tiantang"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_dagger_menglong;item_cf_feather;item_cf_feather;item_cf_feather"
+		}
+	}
+
+	"item_zs_dagger_liming"//1508
+	{
+		//黎明之刃
+		"ID"					"1508"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_dagger_liming"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityCooldown"		"15"
+	    "AbilityManaCost"		"20"
+
+	    "ItemCost"				"99999"
+	    "ItemDroppable"			"1"
+	    "ItemSellable"			"1"
+	    "ItemQuality"			"rare"
+	    "ItemPurchasable"		"1"
+	    "ItemPermanent"			"1"
+	    "ItemStackable"			"0"
+	    "ItemKillable"			"1"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+
+	    "OnSpellStart"
+	    {
+	    	"RunScript"
+	    	{
+	    		"ScriptFile" 	"scripts/vscripts/items/ItemDagger.lua"
+	    		"Target"		"CASTER"
+	    		"Function"		"OnDaggerInvisible"
+	    	}
+	    	"ApplyModifier"
+	    	{
+	    		"Target" 			"CASTER"
+	    		"ModifierName"		"modifier_item_zs_dagger_liming_invisible_remove"
+	    	}
+	    	"AttachEffect"
+	    	{
+	    		"EffectName"		"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf"
+	    		"EffectAttachType"  "follow_origin"
+	    		"Target"  			"CASTER"
+	    	}
+	    	"FireSound"
+	    	{
+	    		"EffectName"		"Hero_TemplarAssassin.Meld"
+	    		"Target"  			"CASTER"
+	    	}	
+	    }
+
+	    "OnProjectileHitUnit"
+	    {
+	    	"RunScript"
+			{
+				"ScriptFile" 	"scripts/vscripts/items/ItemDagger.lua"
+				"Target"		"TARGET"
+				"Function"		"OnDaggerZhiMing"
+			}
+	    }
+
+	    "Modifiers"
+	    {
+	    	"modifier_item_zs_dagger_liming"
+	    	{
+	    		"IsHidden"		"1"
+	    		"Passive"		"1"
+
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%agi_bonus"
+	    		}
+	    	}
+
+	    	"modifier_item_zs_dagger_liming_cunning"
+	    	{
+	    		"Passive"   "1"
+		        "IsHidden"  "1"
+		        "OnCreated"
+		        {
+		            "RunScript"
+		            {
+		                "ScriptFile"        "scripts/vscripts/items/item_core.lua"
+		                "Function"          "OnAddItemCategory"
+		                "CategoryCunning"    "%cun_bonus"
+		            }
+		        }
+		        "OnDestroy"
+		        {
+		            "RunScript"
+		            {
+		                "ScriptFile"        "scripts/vscripts/items/item_core.lua"
+		                "Function"          "OnRemoveItemCategory"
+		                "CategoryCunning"    "%cun_bonus"
+		            }
+		        }
+	    	}
+
+	    	"modifier_item_zs_dagger_liming_invisible_remove"
+	    	{
+	    		"Duration"			"%duration"
+	    		"IsHidden"			"1"
+
+	    		"OnAttack"
+	    		{
+	    			"RunScript"
+	    			{
+	    				"ScriptFile" 	"scripts/vscripts/items/ItemDagger.lua"
+	    				"Target"		"UNIT"
+	    				"Function"		"OnDaggerInvisibleRemove"
+	    			}
+
+	    			"TrackingProjectile"
+			        {
+			            "Target"			"TARGET"
+			            "EffectName"        "particles/dagger_blue_tp/dagger_blue_tp_attack.vpcf"
+			            "Dodgeable"         "0"
+			            "ProvidesVision"    "1"
+			            "VisionRadius"      "300"
+			            "MoveSpeed"         "1100"
+			            "SourceAttachment"  "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+			        }
+	    		}
+
+	    		"OnAbilityExecuted"
+	    		{
+	    			"RunScript"
+	    			{
+	    				"ScriptFile" 	"scripts/vscripts/items/ItemDagger.lua"
+	    				"Target"		"CASTER"
+	    				"Function"		"OnDaggerInvisibleRemove"
+	    			}
+	    		}
+	    	}
+	    }
+
+	    "AbilitySpecial"
+	    {
+	    	"03"  //隐身持续时间
+	    	{
+	    		"var_type"		"FIELD_FLOAT"
+	    		"duration"		"10"
+	    	}
+	    	"04"  //最大物理伤害
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"attack_max"	"150"
+	    	}
+	    	"05"  //最小物理伤害
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"attack_min"	"100"
+	    	}
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"agi_bonus"		"55"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"cun_bonus"		"47"
+	    	}
+	    }
+	}
+	"item_recipe_zs_dagger_liming"//1509
+	{
+		"ID"							"1509"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"500"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-----------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_dagger_liming"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_steel_shuriken_lvl5;item_gem_manli"
+		}
+	}
+
+	"item_zs_dagger_anying"//1510
+	{
+		//暗影之刃
+		"ID"					"1510"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_dagger_anying"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityCooldown"		"15"
+	    "AbilityManaCost"		"20"
+
+	    "ItemCost"				"99999"
+	    "ItemDroppable"			"1"
+	    "ItemSellable"			"1"
+	    "ItemQuality"			"rare"
+	    "ItemPurchasable"		"1"
+	    "ItemPermanent"			"1"
+	    "ItemStackable"			"0"
+	    "ItemKillable"			"1"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+
+	    "OnSpellStart"
+	    {
+	    	"RunScript"
+	    	{
+	    		"ScriptFile" 	"scripts/vscripts/items/ItemDagger.lua"
+	    		"Target"		"CASTER"
+	    		"Function"		"OnDaggerInvisible"
+	    	}
+	    	"ApplyModifier"
+	    	{
+	    		"Target" 			"CASTER"
+	    		"ModifierName"		"modifier_item_zs_dagger_anying_invisible_remove"
+	    	}
+	    	"AttachEffect"
+	    	{
+	    		"EffectName"		"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf"
+	    		"EffectAttachType"  "follow_origin"
+	    		"Target"  			"CASTER"
+	    	}
+	    	"FireSound"
+	    	{
+	    		"EffectName"		"Hero_TemplarAssassin.Meld"
+	    		"Target"  			"CASTER"
+	    	}	
+	    }
+
+	    "OnProjectileHitUnit"
+	    {
+	    	"RunScript"
+			{
+				"ScriptFile" 	"scripts/vscripts/items/ItemDagger.lua"
+				"Target"		"TARGET"
+				"Function"		"OnDaggerZhiMing"
+			}
+	    }
+
+	    "Modifiers"
+	    {
+	    	"modifier_item_zs_dagger_anying"
+	    	{
+	    		"IsHidden"		"1"
+	    		"Passive"		"1"
+
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%agi_bonus"
+	    		}
+	    	}
+
+	    	"modifier_item_zs_dagger_anying_cunning"
+	    	{
+	    		"Passive"   "1"
+		        "IsHidden"  "1"
+		        "OnCreated"
+		        {
+		            "RunScript"
+		            {
+		                "ScriptFile"        "scripts/vscripts/items/item_core.lua"
+		                "Function"          "OnAddItemCategory"
+		                "CategoryCunning"    "%cun_bonus"
+		            }
+		        }
+		        "OnDestroy"
+		        {
+		            "RunScript"
+		            {
+		                "ScriptFile"        "scripts/vscripts/items/item_core.lua"
+		                "Function"          "OnRemoveItemCategory"
+		                "CategoryCunning"    "%cun_bonus"
+		            }
+		        }
+	    	}
+
+	    	"modifier_item_zs_dagger_anying_invisible_remove"
+	    	{
+	    		"Duration"			"%duration"
+	    		"IsHidden"			"1"
+
+	    		"OnAttack"
+	    		{
+	    			"RunScript"
+	    			{
+	    				"ScriptFile" 	"scripts/vscripts/items/ItemDagger.lua"
+	    				"Target"		"UNIT"
+	    				"Function"		"OnDaggerInvisibleRemove"
+	    			}
+
+	    			"ActOnTargets"
+	    			{
+	    				"Target"
+	    			 	{
+				            "Types"     "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+				            "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+				            "Flags"     "DOTA_UNIT_TARGET_FLAG_NONE"
+				            "Center"    "ATTACKER"
+				            "Radius"    "%radius"
+				        }
+
+	    				"Action"
+	    				{
+	    					"TrackingProjectile"
+					        {
+					            "Target"			"TARGET"
+					            "EffectName"        "particles/dagger_blue_tp/dagger_blue_tp_attack.vpcf"
+					            "Dodgeable"         "0"
+					            "ProvidesVision"    "1"
+					            "VisionRadius"      "300"
+					            "MoveSpeed"         "1100"
+					            "SourceAttachment"  "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+					        }
+	    				}
+	    			}
+	    		}
+
+	    		"OnAbilityExecuted"
+	    		{
+	    			"RunScript"
+	    			{
+	    				"ScriptFile" 	"scripts/vscripts/items/ItemDagger.lua"
+	    				"Target"		"CASTER"
+	    				"Function"		"OnDaggerInvisibleRemove"
+	    			}
+	    		}
+	    	}
+	    }
+
+	    "AbilitySpecial"
+	    {
+	    	"03"  //隐身持续时间
+	    	{
+	    		"var_type"		"FIELD_FLOAT"
+	    		"duration"		"10"
+	    	}
+	    	"06"  //作用范围
+	    	{
+	    		"var_type"		"FIELD_FLOAT"
+	    		"radius"		"600"
+	    	}
+	    	"04"  //最大物理伤害
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"attack_max"	"175"
+	    	}
+	    	"05"  //最小物理伤害
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"attack_min"	"125"
+	    	}
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"agi_bonus"		"83"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"cun_bonus"		"79"
+	    	}
+	    }
+	}
+	"item_recipe_zs_dagger_anying"//1511
+	{
+		"ID"							"1511"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"500"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-----------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_dagger_anying"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_dagger_liming;item_gem_manli;item_cf_feather"
+		}
+	}
+
+	"item_zs_dagger_linghun"//1512
+	{
+		//灵魂之刃
+		"ID"					"1512"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_dagger_linghun"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityCooldown"		"15"
+	    "AbilityManaCost"		"20"
+
+	    "ItemCost"				"99999"
+	    "ItemDroppable"			"1"
+	    "ItemSellable"			"1"
+	    "ItemQuality"			"rare"
+	    "ItemPurchasable"		"1"
+	    "ItemPermanent"			"1"
+	    "ItemStackable"			"0"
+	    "ItemKillable"			"1"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+
+	    "OnSpellStart"
+	    {
+	    	"RunScript"
+	    	{
+	    		"ScriptFile" 	"scripts/vscripts/items/ItemDagger.lua"
+	    		"Target"		"CASTER"
+	    		"Function"		"OnDaggerInvisible"
+	    	}
+	    	"ApplyModifier"
+	    	{
+	    		"Target" 			"CASTER"
+	    		"ModifierName"		"modifier_item_zs_dagger_linghun_invisible_remove"
+	    	}
+	    	"AttachEffect"
+	    	{
+	    		"EffectName"		"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf"
+	    		"EffectAttachType"  "follow_origin"
+	    		"Target"  			"CASTER"
+	    	}
+	    	"FireSound"
+	    	{
+	    		"EffectName"		"Hero_TemplarAssassin.Meld"
+	    		"Target"  			"CASTER"
+	    	}	
+	    }
+
+	    "OnProjectileHitUnit"
+	    {
+	    	"RunScript"
+			{
+				"ScriptFile" 	"scripts/vscripts/items/ItemDagger.lua"
+				"Target"		"TARGET"
+				"Function"		"OnDaggerZhiMing"
+			}
+	    }
+
+	    "Modifiers"
+	    {
+	    	"modifier_item_zs_dagger_linghun"
+	    	{
+	    		"IsHidden"		"1"
+	    		"Passive"		"1"
+
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%agi_bonus"
+	    		}
+	    	}
+
+	    	"modifier_item_zs_dagger_linghun_cunning"
+	    	{
+	    		"Passive"   "1"
+		        "IsHidden"  "1"
+		        "OnCreated"
+		        {
+		            "RunScript"
+		            {
+		                "ScriptFile"        "scripts/vscripts/items/item_core.lua"
+		                "Function"          "OnAddItemCategory"
+		                "CategoryCunning"    "%cun_bonus"
+		            }
+		        }
+		        "OnDestroy"
+		        {
+		            "RunScript"
+		            {
+		                "ScriptFile"        "scripts/vscripts/items/item_core.lua"
+		                "Function"          "OnRemoveItemCategory"
+		                "CategoryCunning"    "%cun_bonus"
+		            }
+		        }
+	    	}
+
+	    	"modifier_item_zs_dagger_linghun_invisible_remove"
+	    	{
+	    		"Duration"			"%duration"
+	    		"IsHidden"			"1"
+
+	    		"OnAttack"
+	    		{
+	    			"RunScript"
+	    			{
+	    				"ScriptFile" 	"scripts/vscripts/items/ItemDagger.lua"
+	    				"Target"		"UNIT"
+	    				"Function"		"OnDaggerInvisibleRemove"
+	    			}
+
+	    			"ActOnTargets"
+	    			{
+	    				"Target"
+	    			 	{
+				            "Types"     "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+				            "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+				            "Flags"     "DOTA_UNIT_TARGET_FLAG_NONE"
+				            "Center"    "ATTACKER"
+				            "Radius"    "%radius"
+				        }
+
+	    				"Action"
+	    				{
+	    					"TrackingProjectile"
+					        {
+					            "Target"			"TARGET"
+					            "EffectName"        "particles/dagger_blue_tp/dagger_blue_tp_attack.vpcf"
+					            "Dodgeable"         "0"
+					            "ProvidesVision"    "1"
+					            "VisionRadius"      "300"
+					            "MoveSpeed"         "1100"
+					            "SourceAttachment"  "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+					        }
+	    				}
+	    			}
+	    		}
+
+	    		"OnAbilityExecuted"
+	    		{
+	    			"RunScript"
+	    			{
+	    				"ScriptFile" 	"scripts/vscripts/items/ItemDagger.lua"
+	    				"Target"		"CASTER"
+	    				"Function"		"OnDaggerInvisibleRemove"
+	    			}
+	    		}
+
+	    		"OnDestroy"
+	    		{
+	    			"ApplyModifier"
+	    			{
+	    				"Target" 			"TARGET"
+	    				"ModifierName"		"modifier_item_zs_dagger_linghun_buff"
+	    			}
+	    		}
+	    	}
+
+	    	"modifier_item_zs_dagger_linghun_buff"
+	    	{
+	    		"IsHidden"		"1"
+	    		"Duration"		"%duration_buff"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_spped" //攻击速度
+	    			"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"%damage"
+	    		}
+	    	}
+	    }
+
+	    "AbilitySpecial"
+	    {
+	    	"03"  //隐身持续时间
+	    	{
+	    		"var_type"		"FIELD_FLOAT"
+	    		"duration"		"10"
+	    	}
+	    	"07"  //BUFF持续时间
+	    	{
+	    		"var_type"		"FIELD_FLOAT"
+	    		"duration_buff"	"5"
+	    	}
+	    	"08"  //攻击速度
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"attack_spped"	"150"
+	    	}
+	    	"09"  //伤害降低
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"damage"		"-40"
+	    	}
+	    	"06"  //作用范围
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"radius"		"600"
+	    	}
+	    	"04"  //最大物理伤害
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"attack_max"	"200"
+	    	}
+	    	"05"  //最小物理伤害
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"attack_min"	"150"
+	    	}
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"agi_bonus"		"97"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"cun_bonus"		"110"
+	    	}
+	    }
+	}
+	"item_recipe_zs_dagger_linghun"//1513
+	{
+		"ID"							"1513"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"500"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-----------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_dagger_linghun"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_dagger_anying;item_cf_feather;item_cf_feather"
+		}
+	}
+
+	"item_zs_dagger_yinhe"//1514
+	{
+		//银河之刃
+		"ID"					"1514"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_dagger_yinhe"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityCooldown"		"15"
+	    "AbilityManaCost"		"20"
+
+	    "ItemCost"				"99999"
+	    "ItemDroppable"			"1"
+	    "ItemSellable"			"1"
+	    "ItemQuality"			"rare"
+	    "ItemPurchasable"		"1"
+	    "ItemPermanent"			"1"
+	    "ItemStackable"			"0"
+	    "ItemKillable"			"1"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+
+	    "OnSpellStart"
+	    {
+	    	"RunScript"
+	    	{
+	    		"ScriptFile" 	"scripts/vscripts/items/ItemDagger.lua"
+	    		"Target"		"CASTER"
+	    		"Function"		"OnDaggerInvisible"
+	    	}
+	    	"ApplyModifier"
+	    	{
+	    		"Target" 			"CASTER"
+	    		"ModifierName"		"modifier_item_zs_dagger_yinhe_invisible_remove"
+	    	}
+	    	"AttachEffect"
+	    	{
+	    		"EffectName"		"particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf"
+	    		"EffectAttachType"  "follow_origin"
+	    		"Target"  			"CASTER"
+	    	}
+	    	"FireSound"
+	    	{
+	    		"EffectName"		"Hero_TemplarAssassin.Meld"
+	    		"Target"  			"CASTER"
+	    	}	
+	    }
+
+	    "OnProjectileHitUnit"
+	    {
+	    	"RunScript"
+			{
+				"ScriptFile" 	"scripts/vscripts/items/ItemDagger.lua"
+				"Target"		"TARGET"
+				"Function"		"OnDaggerZhiMing"
+			}
+	    }
+
+	    "Modifiers"
+	    {
+	    	"modifier_item_zs_dagger_yinhe"
+	    	{
+	    		"IsHidden"		"1"
+	    		"Passive"		"1"
+
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%agi_bonus"
+	    		}
+	    	}
+
+	    	"modifier_item_zs_dagger_yinhe_cunning"
+	    	{
+	    		"Passive"   "1"
+		        "IsHidden"  "1"
+		        "OnCreated"
+		        {
+		            "RunScript"
+		            {
+		                "ScriptFile"        "scripts/vscripts/items/item_core.lua"
+		                "Function"          "OnAddItemCategory"
+		                "CategoryCunning"    "%cun_bonus"
+		            }
+		        }
+		        "OnDestroy"
+		        {
+		            "RunScript"
+		            {
+		                "ScriptFile"        "scripts/vscripts/items/item_core.lua"
+		                "Function"          "OnRemoveItemCategory"
+		                "CategoryCunning"    "%cun_bonus"
+		            }
+		        }
+	    	}
+
+	    	"modifier_item_zs_dagger_yinhe_invisible_remove"
+	    	{
+	    		"Duration"			"%duration"
+	    		"IsHidden"			"1"
+
+	    		"OnAttack"
+	    		{
+	    			"RunScript"
+	    			{
+	    				"ScriptFile" 	"scripts/vscripts/items/ItemDagger.lua"
+	    				"Target"		"UNIT"
+	    				"Function"		"OnDaggerInvisibleRemove"
+	    			}
+
+	    			"ActOnTargets"
+	    			{
+	    				"Target"
+	    			 	{
+				            "Types"     "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+				            "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+				            "Flags"     "DOTA_UNIT_TARGET_FLAG_NONE"
+				            "Center"    "ATTACKER"
+				            "Radius"    "%radius"
+				        }
+	    				"Action"
+	    				{
+	    					"TrackingProjectile"
+					        {
+					            "Target"			"TARGET"
+					            "EffectName"        "particles/dagger_blue_tp/dagger_blue_tp_attack.vpcf"
+					            "Dodgeable"         "0"
+					            "ProvidesVision"    "1"
+					            "VisionRadius"      "300"
+					            "MoveSpeed"         "1100"
+					            "SourceAttachment"  "DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"
+					        }
+	    				}
+	    			}
+	    		}
+
+	    		"OnAbilityExecuted"
+	    		{
+	    			"RunScript"
+	    			{
+	    				"ScriptFile" 	"scripts/vscripts/items/ItemDagger.lua"
+	    				"Target"		"CASTER"
+	    				"Function"		"OnDaggerInvisibleRemove"
+	    			}
+	    		}
+
+	    		"OnDestroy"
+	    		{
+	    			"ApplyModifier"
+	    			{
+	    				"Target" 			"TARGET"
+	    				"ModifierName"		"modifier_item_zs_dagger_yinhe_buff"
+	    			}
+
+	    			"RunScript"
+	    			{
+	    				"ScriptFile" 	"scripts/vscripts/items/ItemDagger.lua"
+	    				"Target"		"TARGET"
+	    				"Function"		"OnDaggerYinHe"
+	    			}
+	    		}
+	    	}
+
+	    	"modifier_item_zs_dagger_yinhe_buff"
+	    	{
+	    		"IsHidden"		"1"
+	    		"Duration"		"%duration_buff"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"%damage"
+	    		}
+	    	}
+	    }
+
+	    "AbilitySpecial"
+	    {
+	    	"03"  //隐身持续时间
+	    	{
+	    		"var_type"		"FIELD_FLOAT"
+	    		"duration"		"10"
+	    	}
+	    	"06"  //作用范围
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"radius"		"600"
+	    	}
+	    	"07"  //BUFF持续时间
+	    	{
+	    		"var_type"		"FIELD_FLOAT"
+	    		"duration_buff"	"5"
+	    	}
+	    	"09"  //伤害降低
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"damage"		"-60"
+	    	}
+	    	"04"  //最大物理伤害
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"attack_max"	"250"
+	    	}
+	    	"05"  //最小物理伤害
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"attack_min"	"200"
+	    	}
+	    	"10"	//伤害系数
+			{
+				"var_type"			"FIELD_FLOAT"
+				"increase"			"2.0"
+			}
+			"11"	//伤害敏捷加成
+			{
+				"var_type"			"FIELD_FLOAT"
+				"agi_hurt"			"2.0"
+			}
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"agi_bonus"		"220"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"cun_bonus"		"250"
+	    	}
+	    }
+	}
+	"item_recipe_zs_dagger_yinhe"//1515
+	{
+		"ID"							"1515"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-----------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_dagger_yinhe"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_dagger_linghun;item_cf_feather;item_cf_feather;item_cf_feather"
+		}
+	}
+
+
+	//高级法杖们 ID开始 1550
+	"item_zs_staff_zhiyuan"//1550
+	{
+		//智源法杖
+		"ID"					"1550"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_staff_zhiyuan"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityCooldown"		"13"
+	    "AbilityManaCost"		"100"
+
+	    "ItemCost"				"99999"
+	    "ItemDroppable"			"1"
+	    "ItemSellable"			"1"
+	    "ItemQuality"			"rare"
+	    "ItemPurchasable"		"1"
+	    "ItemPermanent"			"1"
+	    "ItemStackable"			"0"
+	    "ItemKillable"			"1"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+
+	    "OnSpellStart"
+	    {
+	    	"ApplyModifier"
+	    	{
+	    		"ModifierName"	"modifier_item_zs_staff_zhiyuan_buff"
+	    		"Target"		"CASTER"
+	    	}
+	    }
+
+	    "Modifiers"
+	    {
+	    	"modifier_item_zs_staff_zhiyuan"
+	    	{
+	    		"IsHidden"		"1"
+	    		"Passive"		"1"
+
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%int_bonus"
+	    		}
+	    	}
+
+	    	"modifier_item_zs_staff_zhiyuan_wisdom"
+	    	{
+	    		"Passive"   "1"
+		        "IsHidden"  "1"
+		        "OnCreated"
+		        {
+		            "RunScript"
+		            {
+		                "ScriptFile"        "scripts/vscripts/items/item_core.lua"
+		                "Function"          "OnAddItemCategory"
+		                "CategoryWisdom"    "%wis_bonus"
+		            }
+		        }
+		        "OnDestroy"
+		        {
+		            "RunScript"
+		            {
+		                "ScriptFile"        "scripts/vscripts/items/item_core.lua"
+		                "Function"          "OnRemoveItemCategory"
+		                "CategoryWisdom"    "%wis_bonus"
+		            }
+		        }
+	    	}
+
+	    	"modifier_item_zs_staff_zhiyuan_buff"
+	    	{
+	    		"Duration"	"10"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"120"
+	    		}
+	    	}
+	    }
+
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"int_bonus"		"55"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"wis_bonus"		"47"
+	    	}
+	    }
+	}
+	"item_recipe_zs_staff_zhiyuan"//1551
+	{
+		"ID"							"1551"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"500"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-----------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_staff_zhiyuan"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_basic_staff_lvl5;item_gem_manli"
+		}
+	}
+
+	"item_zs_staff_longtou"//1552
+	{
+		//龙头法杖
+		"ID"					"1552"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_staff_longtou"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityCooldown"		"13"
+	    "AbilityManaCost"		"100"
+
+	    "ItemCost"				"99999"
+	    "ItemDroppable"			"1"
+	    "ItemSellable"			"1"
+	    "ItemQuality"			"rare"
+	    "ItemPurchasable"		"1"
+	    "ItemPermanent"			"1"
+	    "ItemStackable"			"0"
+	    "ItemKillable"			"1"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+
+	    "OnSpellStart"
+	    {
+	    	"ApplyModifier"
+	    	{
+	    		"ModifierName"	"modifier_item_zs_staff_longtou_buff"
+	    		"Target"		"CASTER"
+	    	}
+
+	    	"FireSound"
+	    	{
+	    		"EffectName"	"Hero_Huskar.Inner_Vitality"
+	    		"Target" 		"CASTER"
+	    	}	
+	    }
+
+	    "Modifiers"
+	    {
+	    	"modifier_item_zs_staff_longtou"
+	    	{
+	    		"IsHidden"		"1"
+	    		"Passive"		"1"
+
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%int_bonus"
+	    		}
+	    	}
+
+	    	"modifier_item_zs_staff_longtou_wisdom"
+	    	{
+	    		"Passive"   "1"
+		        "IsHidden"  "1"
+		        "OnCreated"
+		        {
+		            "RunScript"
+		            {
+		                "ScriptFile"        "scripts/vscripts/items/item_core.lua"
+		                "Function"          "OnAddItemCategory"
+		                "CategoryWisdom"    "%wis_bonus"
+		            }
+		        }
+		        "OnDestroy"
+		        {
+		            "RunScript"
+		            {
+		                "ScriptFile"        "scripts/vscripts/items/item_core.lua"
+		                "Function"          "OnRemoveItemCategory"
+		                "CategoryWisdom"    "%wis_bonus"
+		            }
+		        }
+	    	}
+
+	    	"modifier_item_zs_staff_longtou_buff"
+	    	{
+	    		"Duration"		"10"
+	    		"EffectName"	"particles\units\heroes\hero_huskar\huskar_inner_vitality.vpcf"
+	    		"EffectAttachType"	"follow_chest"
+	    		"ThinkInterval"	"1"
+	    		"OnIntervalThink"
+	    		{
+	    			"RunScript"  //通过运行函数来恢复魔法
+	    			{
+	    				"ScriptFile"	"scripts/vscripts/items/ItemStaff.lua"
+	    				"Function"		"OnStaffLongTou"
+	    				"Target"		"TARGET"
+	    			}
+	    		}
+	    	}
+	    }
+
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"int_bonus"		"55"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"wis_bonus"		"47"
+	    	}
+	    	"03"  //生命值和魔法值恢复的大小
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"heal_mana"		"120"
+	    	}
+	    }
+	}
+	"item_recipe_zs_staff_longtou"//1553
+	{
+		"ID"							"1553"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"500"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-----------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_staff_longtou"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_basic_staff_lvl5;item_gem_manli"
+		}
+	}
+
+	"item_zs_staff_conglin"//1554
+	{
+		//森林之源
+		"ID"					"1554"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_staff_conglin"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+	    "ItemCost"				"99999"
+	    "ItemDroppable"			"1"
+	    "ItemSellable"			"1"
+	    "ItemQuality"			"rare"
+	    "ItemPurchasable"		"1"
+	    "ItemPermanent"			"1"
+	    "ItemStackable"			"0"
+	    "ItemKillable"			"1"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+
+	    "Modifiers"
+	    {
+	    	"modifier_item_zs_staff_conglin"
+	    	{
+	    		"IsHidden"		"1"
+	    		"Passive"		"1"
+
+	    		"Aura" 			"modifier_item_zs_staff_conglin_buff"
+				"Aura_Radius" 	"%radius"
+				"Aura_Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags" 	"DOTA_UNIT_TARGET_FLAG_NONE"
+	    	}
+
+	    	"modifier_item_zs_staff_conglin_buff"
+	    	{
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"%heal"
+	    			"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"		"%mana"
+	    		}
+	    	}
+
+	    	"modifier_item_zs_staff_conglin_wisdom"
+	    	{
+	    		"Passive"   "1"
+		        "IsHidden"  "1"
+		        "OnCreated"
+		        {
+		            "RunScript"
+		            {
+		                "ScriptFile"        "scripts/vscripts/items/item_core.lua"
+		                "Function"          "OnAddItemCategory"
+		                "CategoryWisdom"    "%wis_bonus"
+		            }
+		        }
+		        "OnDestroy"
+		        {
+		            "RunScript"
+		            {
+		                "ScriptFile"        "scripts/vscripts/items/item_core.lua"
+		                "Function"          "OnRemoveItemCategory"
+		                "CategoryWisdom"    "%wis_bonus"
+		            }
+		        }
+	    	}
+
+	    	//攻击效果
+	    	"modifier_item_zs_staff_conglin_attack"
+	    	{
+	    		"IsHidden"	"1"
+	    		"Passive"	"1"
+	    		"OnAttack"
+	    		{
+	    			"Random"
+	    			{
+	    				"Chance"	"%chance"
+	    				"OnSuccess"
+	    				{
+	    					"ApplyModifier"
+	    					{
+	    						"ModifierName"	"modifier_item_zs_staff_conglin_attack_buff"
+	    						"Target"	
+	    						{
+									"Types"		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+									"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+									"Flags"		"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+									"Center"	"TARGET"
+									"Radius"	"%state_radius"
+								}
+	    					}
+	    				}
+	    			}
+	    		}
+	    	}
+
+	    	"modifier_item_zs_staff_conglin_attack_buff"
+	    	{
+	    		"IsHidden"	"1"
+	    		"Duration"	"1"
+	    		"EffectName"	"particles\units\heroes\hero_treant\treant_overgrowth_vines.vpcf"
+	    		"EffectAttachType"	"follow_chest"
+	    		"States"
+	    		{
+	    			"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"	//禁止移动
+	    			"MODIFIER_STATE_DISARMED"	"MODIFIER_STATE_VALUE_ENABLED"	//无法攻击
+	    			"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"	//沉默
+	    		}
+	    	}
+	    }
+
+	    "AbilitySpecial"
+	    {
+	    	"03"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"radius"		"600"
+	    	}
+	    	"04"	//生命恢复速度
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"heal"			"10"
+	    	}
+	    	"04"	//魔法恢复速度
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"mana"			"10"
+	    	}
+	    	"05"	//触发概率
+	    	{
+	    		"var_type"		"FIELD_FLOAT"
+	    		"chance"		"25"
+	    	}
+	    	"06"	//缠绕作用范围
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"state_radius"	"300"
+	    	}
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"int_bonus"		"83"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"wis_bonus"		"79"
+	    	}
+	    }
+	}
+	"item_recipe_zs_staff_conglin"//1555
+	{
+		"ID"							"1555"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"500"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-----------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_staff_conglin"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_staff_longtou;item_gem_manli;item_cf_feather"
+		}
+	}
+
+	"item_zs_staff_bingfeng"//1556
+	{
+		//冰清渊洁
+		"ID"					"1556"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_staff_bingfeng"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+
+	    "ItemCost"				"1"
+	    "ItemDroppable"			"1"
+	    "ItemSellable"			"1"
+	    "ItemQuality"			"rare"
+	    "ItemPurchasable"		"1"
+	    "ItemPermanent"			"1"
+	    "ItemStackable"			"0"
+	    "ItemKillable"			"1"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+
+	    "Modifiers"
+	    {
+	    	"modifier_item_zs_staff_bingfeng"
+	    	{
+	    		"IsHidden"		"1"
+	    		"Passive"		"1"
+
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%int_bonus"
+	    		}
+
+	    		//攻击事件
+	    		"OnAttack"
+	    		{
+	    			"ApplyModifier"
+	    			{
+	    				"ModifierName"	"modifier_item_zs_staff_bingfeng_buff"
+	    				"Target"		"CASTER"
+	    			}
+
+	    			"ApplyModifier"
+	    			{
+	    				"ModifierName"	"modifier_item_zs_staff_bingfeng_buff_texture"
+	    				"Target"		"CASTER"
+	    			}
+	    		}
+
+	    		"OnAttackLanded"
+	    		{
+	    			"Random"
+	    			{
+	    				"Chance"	"%chance"
+	    				"OnSuccess"
+	    				{
+	    					"ApplyModifier"
+			    			{
+			    				"ModifierName"	"modifier_item_zs_staff_bingfeng_buff_ice"
+			    				"Target"		"TARGET"
+			    			}
+	    				}
+	    			}
+	    		}
+	    	}
+
+	    	"modifier_item_zs_staff_bingfeng_buff"
+	    	{
+	    		"Duration"		"10"
+	    		"IsHidden"		"1"
+	    		"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%int"
+	    		}
+	    	}
+	    	"modifier_item_zs_staff_bingfeng_buff_texture"
+	    	{
+	    		"Duration"		"10"
+	    	}
+
+	    	"modifier_item_zs_staff_bingfeng_buff_ice"
+	    	{
+	    		"IsHidden"		"1"
+	    		"Duration"		"2"
+	    		"EffectName"	"particles\units\heroes\hero_crystalmaiden\maiden_frostbite_buff.vpcf"
+	    		"EffectAttachType"	"follow_chest"
+	    		"States"
+	    		{
+	    			"MODIFIER_STATE_FROZEN"		"MODIFIER_STATE_VALUE_ENABLED"	//冰冻
+	    			"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"	//禁止移动
+	    			"MODIFIER_STATE_DISARMED"	"MODIFIER_STATE_VALUE_ENABLED"	//禁止攻击
+	    			"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"	//禁止施法
+	    		}
+
+	    		"ThinkInterval"		"0.5"
+	    		"OnIntervalThink"
+	    		{
+	    			"RunScript"
+					{
+						"ScriptFile"		"scripts/vscripts/util/damage.lua"
+						"Function"			"DamageTarget"
+						"damage_increase"	"%increase"
+						"damage_type"		"DAMAGE_TYPE_MAGICAL"
+						"damage_category"	"wisdom"
+						"damage_str"		"%int_hurt"
+						"Target"			"TARGET"
+					}
+	    		}
+	    	}
+
+	    	"modifier_item_zs_staff_bingfeng_wisdom"
+	    	{
+	    		"Passive"   "1"
+		        "IsHidden"  "1"
+		        "OnCreated"
+		        {
+		            "RunScript"
+		            {
+		                "ScriptFile"        "scripts/vscripts/items/item_core.lua"
+		                "Function"          "OnAddItemCategory"
+		                "CategoryWisdom"    "%wis_bonus"
+		            }
+		        }
+		        "OnDestroy"
+		        {
+		            "RunScript"
+		            {
+		                "ScriptFile"        "scripts/vscripts/items/item_core.lua"
+		                "Function"          "OnRemoveItemCategory"
+		                "CategoryWisdom"    "%wis_bonus"
+		            }
+		        }
+	    	}
+	    }
+
+	    "AbilitySpecial"
+	    {
+	    	"03"	//攻击所获得智力
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"int"			"10"
+	    	}
+	    	"04"	//触发概率
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"chance"		"25"
+	    	}
+	    	"05"	//伤害系数
+			{
+				"var_type"			"FIELD_FLOAT"
+				"increase"			"1.2"
+			}
+			"06"	//伤害智力加成
+			{
+				"var_type"			"FIELD_FLOAT"
+				"int_hurt"			"1.5"
+			}
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"int_bonus"		"83"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"wis_bonus"		"79"
+	    	}
+	    }
+	}
+	"item_recipe_zs_staff_bingfeng"//1557
+	{
+		"ID"							"1557"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"500"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-----------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_staff_bingfeng"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_staff_zhiyuan;item_gem_manli;item_cf_feather"
+		}
+	}
+
+	"item_zs_staff_guangming"//1558
+	{
+		//光明守护
+		"ID"					"1558"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_staff_guangming"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityCooldown"		"10"
+
+	    "ItemCost"				"99999"
+	    "ItemDroppable"			"1"
+	    "ItemSellable"			"1"
+	    "ItemQuality"			"epic"
+	    "ItemPurchasable"		"1"
+	    "ItemPermanent"			"1"
+	    "ItemStackable"			"0"
+	    "ItemKillable"			"1"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+
+	    "OnSpellStart"
+	    {
+	    	"ApplyModifier"  //给予攻击造成纯粹伤害的BUFF
+	    	{
+	    		"Target" 			"CASTER"
+	    		"ModifierName"		"modifier_item_zs_staff_guangming_damage"
+	    	}
+	    }
+
+	    "Modifiers"
+	    {
+	    	"modifier_item_zs_staff_guangming"
+	    	{
+	    		"IsHidden"		"1"
+	    		"Passive"		"1"
+
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%int_bonus"
+	    		}
+	    	}
+
+	    	"modifier_item_zs_staff_guangming_wisdom"
+	    	{
+	    		"Passive"   "1"
+		        "IsHidden"  "1"
+		        "OnCreated"
+		        {
+		            "RunScript"
+		            {
+		                "ScriptFile"        "scripts/vscripts/items/item_core.lua"
+		                "Function"          "OnAddItemCategory"
+		                "CategoryWisdom"    "%wis_bonus"
+		            }
+		        }
+		        "OnDestroy"
+		        {
+		            "RunScript"
+		            {
+		                "ScriptFile"        "scripts/vscripts/items/item_core.lua"
+		                "Function"          "OnRemoveItemCategory"
+		                "CategoryWisdom"    "%wis_bonus"
+		            }
+		        }
+	    	}
+
+	    	"modifier_item_zs_staff_guangming_damage"
+	    	{
+	    		"Duration"		"%duration"
+
+	    		"OnAttackLanded"  //攻击伴随纯粹伤害
+	    		{
+	    			"RunScript"
+					{
+						"ScriptFile"		"scripts/vscripts/util/damage.lua"
+						"Function"			"DamageTarget"
+						"damage_increase"	"%increase"
+						"damage_type"		"DAMAGE_TYPE_PURE"
+						"damage_category"	"wisdom"
+						"damage_str"		"%int_hurt"
+						"Target"			"TARGET"
+					}
+
+					"Random"  //触发成功给予被攻击者百分百Miss
+					{
+						"Chance"	"%chance"
+						"PseudeoRandom"		"DOTA_PSEUDO_RANDOM_JUGG_CRIT"
+						"OnSuccess"
+						{
+							"ApplyModifier"
+							{
+								"Target" 			"TARGET"
+								"ModifierName"		"modifier_item_zs_staff_guangming_miss"
+							}
+						}
+					}
+	    		}
+	    	}
+
+	    	"modifier_item_zs_staff_guangming_attack"
+	    	{
+	    		"IsHidden"		"1"
+	    		"Passive"		"1"
+	    		"OnAttackLanded"
+	    		{
+					"Random"  //触发成功给予被攻击者百分百Miss
+					{
+						"Chance"	"%chance"
+						"PseudeoRandom"		"DOTA_PSEUDO_RANDOM_JUGG_CRIT"
+						"OnSuccess"
+						{
+							"ApplyModifier"
+							{
+								"Target" 			"TARGET"
+								"ModifierName"		"modifier_item_zs_staff_guangming_miss"
+							}
+						}
+					}
+	    		}
+	    	}
+
+	    	"modifier_item_zs_staff_guangming_miss"
+	    	{
+	    		"IsHidden"		"1"
+	    		"Duration"		"%miss_duration"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_MISS_PERCENTAGE"		"100"
+	    		}
+	    	}
+	    }
+
+	    "AbilitySpecial"
+	    {
+	    	"03"	//使用效果持续时间
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"duration"		"10"
+	    	}
+	    	"04"	//触发概率
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"chance"		"35"
+	    	}
+	    	"03"	//Miss持续时间
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"miss_duration"	"5"
+	    	}
+	    	"05"	//伤害系数
+			{
+				"var_type"			"FIELD_FLOAT"
+				"increase"			"1.4"
+			}
+			"06"	//伤害智力加成
+			{
+				"var_type"			"FIELD_FLOAT"
+				"int_hurt"			"1.8"
+			}
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"int_bonus"		"97"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"wis_bonus"		"110"
+	    	}
+	    }
+	}
+	"item_recipe_zs_staff_guangming"//1559
+	{
+		"ID"							"1559"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"500"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-----------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_staff_guangming"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_staff_conglin;item_cf_feather;item_cf_feather"
+		}
+	}
+
+	"item_zs_staff_fengxue"//1560
+	{
+		//风雪之语
+		"ID"					"1560"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_staff_fengxue"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityCooldown"		"14"
+	    "AbilityManaCost"		"150"
+
+	    "ItemCost"				"1"
+	    "ItemDroppable"			"1"
+	    "ItemSellable"			"1"
+	    "ItemQuality"			"epic"
+	    "ItemPurchasable"		"1"
+	    "ItemPermanent"			"1"
+	    "ItemStackable"			"0"
+	    "ItemKillable"			"1"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+
+	    "OnSpellStart"
+	    {
+	    	"RunScript"
+	    	{
+	    		"ScriptFile" 	"scripts/vscripts/items/ItemStaff.lua"
+	    		"Target"		"CASTER"
+	    		"Function"		"OnStaffFengXue"
+	    	}
+	    	"ApplyModifier"
+	    	{
+	    		"Target"
+	    		{
+					"Types"		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_MECHANICAL"
+					"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Flags"		"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+					"Center"	"CASTER"
+					"Radius"	"%radius"
+				}
+	    		"ModifierName"	"modifier_item_zs_staff_fengxue_buff"
+	    	}
+
+	    	"FireSound"
+	    	{
+	    		"EffectName"		"Hero_Crystal.CrystalNova"
+	    		"Target" 			"CASTER"
+	    	}	
+	    }
+
+	    "Modifiers"
+	    {
+	    	"modifier_item_zs_staff_fengxue"
+	    	{
+	    		"IsHidden"		"1"
+	    		"Passive"		"1"
+
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%int_bonus"
+	    		}
+	    	}
+
+	    	"modifier_item_zs_staff_fengxue"
+	    	{
+	    		"Passive"   "1"
+		        "IsHidden"  "1"
+		        "OnCreated"
+		        {
+		            "RunScript"
+		            {
+		                "ScriptFile"        "scripts/vscripts/items/item_core.lua"
+		                "Function"          "OnAddItemCategory"
+		                "CategoryWisdom"    "%wis_bonus"
+		            }
+		        }
+		        "OnDestroy"
+		        {
+		            "RunScript"
+		            {
+		                "ScriptFile"        "scripts/vscripts/items/item_core.lua"
+		                "Function"          "OnRemoveItemCategory"
+		                "CategoryWisdom"    "%wis_bonus"
+		            }
+		        }
+	    	}
+
+	    	"modifier_item_zs_staff_fengxue_buff"
+	    	{
+	    		"IsHidden"		"1"
+	    		"Duration"		"%duration"
+	    		"EffectName"	"particles\units\heroes\hero_crystalmaiden\maiden_frostbite_buff.vpcf"
+	    		"EffectAttachType"	"follow_chest"
+	    		"States"
+	    		{
+	    			"MODIFIER_STATE_FROZEN"		"MODIFIER_STATE_VALUE_ENABLED"	//冰冻
+	    			"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"	//禁止移动
+	    			"MODIFIER_STATE_DISARMED"	"MODIFIER_STATE_VALUE_ENABLED"	//禁止攻击
+	    			"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"	//禁止施法
+	    		}
+
+	    		"ThinkInterval"		"0.5"
+	    		"OnIntervalThink"
+	    		{
+	    			"RunScript"
+					{
+						"ScriptFile"		"scripts/vscripts/util/damage.lua"
+						"Function"			"DamageTarget"
+						"damage_increase"	"%increase"
+						"damage_type"		"DAMAGE_TYPE_MAGICAL"
+						"damage_category"	"wisdom"
+						"damage_str"		"%int_hurt"
+						"Target"			"TARGET"
+					}
+	    		}
+	    	}
+	    }
+
+	    "AbilitySpecial"
+	    {
+	    	"03"	//作用范围
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"radius"		"800"
+	    	}
+	    	"07"	//持续时间
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"duration"		"4"
+	    	}
+	    	"05"	//伤害系数
+			{
+				"var_type"			"FIELD_FLOAT"
+				"increase"			"2.0"
+			}
+			"06"	//伤害智力加成
+			{
+				"var_type"			"FIELD_FLOAT"
+				"int_hurt"			"2.0"
+			}
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"int_bonus"		"97"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"wis_bonus"		"110"
+	    	}
+	    }
+	}
+	"item_recipe_zs_staff_fengxue"//1561
+	{
+		"ID"							"1561"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"500"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-----------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_staff_fengxue"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_staff_bingfeng;item_cf_feather;item_cf_feather"
+		}
+	}
+
+	"item_zs_staff_ningjing"//1562
+	{
+		//宁静之力
+		"ID"					"1562"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_staff_ningjing"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityCooldown"		"20"
+	    "AbilityManaCost"		"200"
+	    "AbilityCastRange"		"700"
+
+	    "ItemCost"				"99999"
+	    "ItemDroppable"			"1"
+	    "ItemSellable"			"1"
+	    "ItemQuality"			"artifact"
+	    "ItemPurchasable"		"1"
+	    "ItemPermanent"			"1"
+	    "ItemStackable"			"0"
+	    "ItemKillable"			"1"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+
+	    "OnSpellStart"
+	    {
+	    	"ApplyModifier"  //每秒降低周围敌人的生命值的一定百分比
+	    	{
+	    		"Target" 			"CASTER"
+	    		"ModifierName"		"modifier_item_zs_staff_ningjing_buff"
+	    	}
+	    }
+
+	    "Modifiers"
+	    {
+	    	"modifier_item_zs_staff_ningjing"
+	    	{
+	    		"IsHidden"		"1"
+	    		"Passive"		"1"
+
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%int_bonus"
+	    		}
+	    	}
+
+	    	"modifier_item_zs_staff_ningjing"
+	    	{
+	    		"Passive"   "1"
+		        "IsHidden"  "1"
+		        "OnCreated"
+		        {
+		            "RunScript"
+		            {
+		                "ScriptFile"        "scripts/vscripts/items/item_core.lua"
+		                "Function"          "OnAddItemCategory"
+		                "CategoryWisdom"    "%wis_bonus"
+		            }
+		        }
+		        "OnDestroy"
+		        {
+		            "RunScript"
+		            {
+		                "ScriptFile"        "scripts/vscripts/items/item_core.lua"
+		                "Function"          "OnRemoveItemCategory"
+		                "CategoryWisdom"    "%wis_bonus"
+		            }
+		        }
+	    	}
+
+	    	"modifier_item_zs_staff_ningjing_buff"
+	    	{
+	    		"Duration"		"%duration"
+	    		"IsHidden"		"1"
+	    		"ThinkInterval"	"1"
+	    		"OnIntervalThink"
+	    		{
+	    			"RunScript"  //每秒传递周围的敌人到函数里面
+	    			{
+	    				"ScriptFile" 	"scripts/vscripts/items/ItemStaff.lua"
+	    				"Function"		"OnStaffNingJing"
+	    				"Target"
+	    				{
+	    					"Types"		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+							"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+							"Flags"		"DOTA_UNIT_TARGET_FLAG_NONE"
+							"Center"	"TARGET"
+							"Radius"	"%radius"
+	    				}
+	    			}
+	    		}
+
+	    		"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"	"particles\units\heroes\hero_juggernaut\juggernaut_healing_ward_variation01.vpcf"
+	    				"EffectAttachType"	"start_at_customorigin"
+						"Target" 		"TARGET"
+						"ControlPointEntities"
+						{
+							"TARGET"	"attach_hitloc"
+							"TARGET"	"attach_hitloc"
+							"TARGET"	"attach_hitloc"
+						}
+					}
+				}		
+	    	}
+
+	    	"modifier_item_zs_staff_ningjing_aura"
+	    	{
+	    		//光环
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+
+	    		"Aura" 			"modifier_item_zs_staff_ningjing_aura_buff"
+				"Aura_Radius" 	"%radius"
+				"Aura_Teams" 	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+				"Aura_Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+				"Aura_Flags" 	"DOTA_UNIT_TARGET_FLAG_NONE"
+	    	}
+	    	"modifier_item_zs_staff_ningjing_aura_buff"
+	    	{
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"%attack"
+	    			"MODIFIER_PROPERTY_HEALTH_BONUS"				"%heal"
+	    		}
+
+	    		"OnAttackLanded"  //攻击将造成纯粹伤害
+	    		{
+	    			"RunScript"
+	    			{
+	    				"ScriptFile" 	"scripts/vscripts/items/ItemStaff.lua"
+	    				"Target"		"UNIT"
+	    				"Function"		"OnStaffNingJingAttack"
+	    			}
+	    		}
+	    	}
+	    }
+
+	    "AbilitySpecial"
+	    {
+	    	"03"  //持续时间
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"duration"		"10"
+	    	}
+	    	"09"  //作用范围
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"radius"		"700"
+	    	}
+	    	"04"  //生命值百分比
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"heal_percent"	"2"
+	    	}
+	    	"05"  //攻击力百分比加成
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"attack"		"25"
+	    	}
+	    	"06"  //生命值加成
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"heal"			"1000"
+	    	}
+	    	"07"  //最低纯粹伤害
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"pure_min"		"50"
+	    	}
+	    	"08"  //最高纯粹伤害
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"pure_max"		"500"
+	    	}
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"int_bonus"		"220"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"wis_bonus"		"250"
+	    	}
+	    }
+	}
+	"item_recipe_zs_staff_ningjing"//1563
+	{
+		"ID"							"1563"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-----------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_staff_ningjing"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_staff_guangming;item_cf_feather;item_cf_feather;item_cf_feather"
+		}
+	}
+
+	"item_zs_staff_dongjie"//1564
+	{
+		//冻结之力
+		"ID"					"1564"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_zs_staff_dongjie"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+	    "AbilityCooldown"		"20"
+	    "AbilityManaCost"		"200"
+	    "AbilityCastRange"		"500"
+
+	    "ItemCost"				"99999"
+	    "ItemDroppable"			"1"
+	    "ItemSellable"			"1"
+	    "ItemQuality"			"artifact"
+	    "ItemPurchasable"		"1"
+	    "ItemPermanent"			"1"
+	    "ItemStackable"			"0"
+	    "ItemKillable"			"1"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+
+	    "OnSpellStart"
+	    {
+	    	"ActOnTargets"
+	    	{
+	    		"Target"
+	    		{
+	    			"Types"		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+					"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Flags"		"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+					"Center"	"CASTER"
+					"Radius"	"%sd_radius"
+	    		}
+
+	    		"Action"
+	    		{
+	    			"TrackingProjectile"
+			    	{
+			    		"Dodgeable"			"false"
+			    		"ProvidesVision"	"true"
+			    		"VisionRadius"		"300"
+			    		"EffectName"		"particles\units\heroes\hero_lich\lich_chain_frost.vpcf"
+			    		"MoveSpeed"			"1000"
+			    		"SourceAttachment"	"DOTA_PROJECTILE_ATTACHMENT_ATTACK_1"  
+			    		"Target"			"TARGET"
+			    	}
+	    		}
+	    	}
+
+	    	"FireSound"
+	    	{
+	    		"EffectName"		"Hero_Lich.ChainFrost"
+	    		"Target"  			"CASTER"
+	    	}
+	    }	
+
+	    "OnProjectileHitUnit"
+	    {
+	    	"RunScript"  //伤害
+			{
+				"ScriptFile"		"scripts/vscripts/util/damage.lua"
+				"Function"			"DamageTarget"
+				"damage_increase"	"%increase"
+				"damage_type"		"DAMAGE_TYPE_MAGICAL"
+				"damage_category"	"wisdom"
+				"damage_str"		"%int_hurt"
+				"Target"			"TARGET"
+			}
+
+			"ActOnTargets"  //AOE魔法伤害
+			{
+				"Target"
+	    		{
+	    			"Types"		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+					"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Flags"		"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+					"Center"	"TARGET"
+					"Radius"	"%radius"
+	    		}
+	    		"Action"
+	    		{
+	    			"RunScript"  //随机魔法伤害
+					{
+						"ScriptFile" 	"scripts/vscripts/items/ItemStaff.lua"
+						"Function"		"OnStaffDongJieDamage"
+						"Target"		"TARGET"
+					}
+	    		}
+			}
+
+			"FireSound"
+	    	{
+	    		"EffectName"		"Hero_Lich.ChainFrostImpact.Hero"
+	    		"Target"  			"CASTER"
+	    	}
+
+	    	"ApplyModifier"  //减速
+	    	{
+	    		"ModifierName"		"modifier_item_zs_staff_dongjie_buff"
+	    		"Target"
+	    		{
+	    			"Types"		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+					"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+					"Flags"		"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+					"Center"	"TARGET"
+					"Radius"	"%radius"
+	    		}
+	    	}
+	    }
+
+	    "Modifiers"
+	    {
+	    	"modifier_item_zs_staff_ningjing"
+	    	{
+	    		"IsHidden"		"1"
+	    		"Passive"		"1"
+
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%int_bonus"
+	    		}
+	    	}
+
+	    	"modifier_item_zs_staff_ningjing"
+	    	{
+	    		"Passive"   "1"
+		        "IsHidden"  "1"
+		        "OnCreated"
+		        {
+		            "RunScript"
+		            {
+		                "ScriptFile"        "scripts/vscripts/items/item_core.lua"
+		                "Function"          "OnAddItemCategory"
+		                "CategoryWisdom"    "%wis_bonus"
+		            }
+		        }
+		        "OnDestroy"
+		        {
+		            "RunScript"
+		            {
+		                "ScriptFile"        "scripts/vscripts/items/item_core.lua"
+		                "Function"          "OnRemoveItemCategory"
+		                "CategoryWisdom"    "%wis_bonus"
+		            }
+		        }
+	    	}
+
+	    	"modifier_item_zs_staff_dongjie_buff"
+	    	{
+	    		//降低移动速度
+	    		"IsHidden"		"1"
+	    		"Duration"		"%duration"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE"	"%move_speed"
+	    		}
+	    	}
+
+	    	"modifier_item_zs_staff_dongjie_aura"
+	    	{
+	    		"Passive"		"1"
+
+	    		"Aura" 			"modifier_item_zs_staff_dongjie_aura_buff"
+				"Aura_Radius" 	"%sd_radius"
+				"Aura_Teams" 	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+				"Aura_Types" 	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
+				"Aura_Flags" 	"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+	    	}
+
+	    	"modifier_item_zs_staff_dongjie_aura_buff"
+	    	{
+	    		"IsDebuff"		"1"
+	    		"OnCreated"  //进入光环范围
+	    		{
+	    			"ApplyModifier"
+	    			{
+	    				"Target" 			"TARGET"
+	    				"ModifierName"		"modifier_item_zs_staff_dongjie_aura_buff_ice"
+	    			}
+
+	    			"RunScript"  //随机魔法伤害
+					{
+						"ScriptFile" 	"scripts/vscripts/items/ItemStaff.lua"
+						"Function"		"OnStaffDongJieDamage"
+						"Target"		"TARGET"
+					}
+	    		}
+	    		"OnDestroy"  //离开光环范围
+	    		{
+	    			"ApplyModifier"
+	    			{
+	    				"Target" 			"TARGET"
+	    				"ModifierName"		"modifier_item_zs_staff_dongjie_aura_buff_ice"
+	    			}
+
+	    			"RunScript"  //随机魔法伤害
+					{
+						"ScriptFile" 	"scripts/vscripts/items/ItemStaff.lua"
+						"Function"		"OnStaffDongJieDamage"
+						"Target"		"TARGET"
+					}
+	    		}
+	    	}
+
+	    	"modifier_item_zs_staff_dongjie_aura_buff_ice"
+	    	{
+	    		"IsHidden"		"1"
+	    		"Duration"		"%duration"
+	    		"EffectName"	"particles\units\heroes\hero_crystalmaiden\maiden_frostbite_buff.vpcf"
+	    		"EffectAttachType"	"follow_chest"
+	    		"States"
+	    		{
+	    			"MODIFIER_STATE_FROZEN"		"MODIFIER_STATE_VALUE_ENABLED"	//冰冻
+	    			"MODIFIER_STATE_ROOTED"		"MODIFIER_STATE_VALUE_ENABLED"	//禁止移动
+	    			"MODIFIER_STATE_DISARMED"	"MODIFIER_STATE_VALUE_ENABLED"	//禁止攻击
+	    			"MODIFIER_STATE_SILENCED"	"MODIFIER_STATE_VALUE_ENABLED"	//禁止施法
+	    		}
+	    	}
+	    }
+
+	    "AbilitySpecial"
+	    {
+	    	"03"  //霜冻炮作用范围
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"radius"		"200"
+	    	}
+	    	"04"  //冻结领域作用范围
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"sd_radius"		"500"
+	    	}
+	    	"11"  //减速和冻结时间
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"duration"		"5"
+	    	}
+	    	"08"  //移动速度降低
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"move_speed"	"-20"
+	    	}
+	    	"09"  //最低魔法伤害
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"mag_min"		"50"
+	    	}
+	    	"10"  //最高魔法伤害
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"mag_max"		"500"
+	    	}
+	    	"05"	//伤害系数
+			{
+				"var_type"			"FIELD_FLOAT"
+				"increase"			"2.0"
+			}
+			"06"	//伤害智力加成
+			{
+				"var_type"			"FIELD_FLOAT"
+				"int_hurt"			"2.0"
+			}
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"int_bonus"		"220"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"wis_bonus"		"250"
+	    	}
+	    }
+	}
+	"item_recipe_zs_staff_dongjie"//1565
+	{
+		"ID"							"1565"
+		"BaseClass"						"item_recipe_arcane_boots"
+		"ItemCost"						"0"	
+		"ItemShopTags"					""
+		
+		// Recipe
+		//-----------------------------------------------------------
+		"ItemRecipe"					"1"
+		"ItemResult"					"item_zs_staff_dongjie"
+		"ItemRequirements"
+		{
+			"01"						"item_zs_staff_fengxue;item_cf_feather;item_cf_feather;item_cf_feather"
+		}
+	}
+
+	//===============================
+	//衣服 区域 开始ID 1600
+	//===============================
+	"item_yf_ruizhi"
+	{
+		"ID"					"1600"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_yf_ruizhi"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"3000"
+	    "ItemQuality"			"rare"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+	    "Modifiers"
+	    {
+	    	"item_yf_ruizhi"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor_bonus"
+	    		}
+	    	}
+	    	"modifier_item_yf_ruizhi_applier"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryWisdom"			"%wis_bonus"//CategoryForce CategorySensitive CategoryCunning CategoryWisdom
+						"Function"				"OnAddItemCategory"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryWisdom"			"%wis_bonus"
+						"Function"				"OnRemoveItemCategory"
+					}
+				}
+			}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"armor_bonus"	"5"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"wis_bonus"		"30"
+	    	}
+	    }
+	}
+	"item_yf_lingmin"
+	{
+		"ID"					"1601"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_yf_lingmin"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"3000"
+	    "ItemQuality"			"rare"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+		"Modifiers"
+	    {
+	    	"item_yf_lingmin"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor_bonus"
+	    		}
+	    	}
+	    	"modifier_item_yf_lingmin_applier"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategorySensitive"			"%sen_bonus"//CategoryForce CategorySensitive CategoryCunning CategoryWisdom
+						"Function"				"OnAddItemCategory"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategorySensitive"			"%sen_bonus"
+						"Function"				"OnRemoveItemCategory"
+					}
+				}
+			}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"armor_bonus"	"7"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"sen_bonus"		"30"
+	    	}
+	    }
+	}
+	"item_yf_jiaozha"
+	{
+		"ID"					"1602"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_yf_jiaozha"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"3000"
+	    "ItemQuality"			"rare"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+	    "Modifiers"
+	    {
+	    	"item_yf_jiaozha"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor_bonus"
+	    		}
+	    	}
+	    	"modifier_item_yf_jiaozha_applier"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryCunning"			"%cun_bonus"//CategoryForce CategorySensitive CategoryCunning CategoryWisdom
+						"Function"				"OnAddItemCategory"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryCunning"			"%cun_bonus"
+						"Function"				"OnRemoveItemCategory"
+					}
+				}
+			}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"armor_bonus"	"3"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"cun_bonus"		"30"
+	    	}
+	    }
+	}
+	"item_yf_manli"
+	{
+		"ID"					"1603"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_yf_manli"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"3000"
+	    "ItemQuality"			"rare"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+	    "Modifiers"
+	    {
+	    	"item_yf_manli"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor_bonus"
+	    		}
+	    	}
+	    	"modifier_item_yf_manli_applier"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryForce"			"%for_bonus"//CategoryForce CategorySensitive CategoryCunning CategoryWisdom
+						"Function"				"OnAddItemCategory"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryForce"			"%for_bonus"
+						"Function"				"OnRemoveItemCategory"
+					}
+				}
+			}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"armor_bonus"	"13"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"for_bonus"		"30"
+	    	}
+	    }
+	}
+	//======================================
+	//护手 区域 开始ID 1700
+	//======================================
+	"item_hs_ruizhi"
+	{
+		"ID"					"1700"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_hs_ruizhi"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"2500"
+	    "ItemQuality"			"rare"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+	    "Modifiers"
+	    {
+	    	"item_hs_ruizhi"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_speed"
+	    		}
+	    	}
+	    	"modifier_item_hs_ruizhi_applier"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryWisdom"			"%wis_bonus"//CategoryForce CategorySensitive CategoryCunning CategoryWisdom
+						"Function"				"OnAddItemCategory"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryWisdom"			"%wis_bonus"
+						"Function"				"OnRemoveItemCategory"
+					}
+				}
+			}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"attack_speed"	"30"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"wis_bonus"		"30"
+	    	}
+	    }
+	}
+	"item_hs_lingmin"
+	{
+		"ID"					"1701"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_hs_lingmin"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"2500"
+	    "ItemQuality"			"rare"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+		"Modifiers"
+	    {
+	    	"item_hs_lingmin"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_speed"
+	    		}
+	    	}
+	    	"modifier_item_hs_lingmin_applier"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategorySensitive"			"%sen_bonus"//CategoryForce CategorySensitive CategoryCunning CategoryWisdom
+						"Function"				"OnAddItemCategory"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategorySensitive"			"%sen_bonus"
+						"Function"				"OnRemoveItemCategory"
+					}
+				}
+			}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"attack_speed"	"7"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"sen_bonus"		"30"
+	    	}
+	    }
+	}
+	"item_hs_jiaozha"
+	{
+		"ID"					"1702"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_hs_jiaozha"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"2500"
+	    "ItemQuality"			"rare"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+	    "Modifiers"
+	    {
+	    	"item_hs_jiaozha"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_speed"
+	    		}
+	    	}
+	    	"modifier_item_hs_jiaozha_applier"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryCunning"			"%cun_bonus"//CategoryForce CategorySensitive CategoryCunning CategoryWisdom
+						"Function"				"OnAddItemCategory"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryCunning"			"%cun_bonus"
+						"Function"				"OnRemoveItemCategory"
+					}
+				}
+			}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"attack_speed"	"3"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"cun_bonus"		"30"
+	    	}
+	    }
+	}
+	"item_hs_manli"
+	{
+		"ID"					"1703"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_hs_manli"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"2500"
+	    "ItemQuality"			"rare"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+	    "Modifiers"
+	    {
+	    	"item_hs_manli"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_speed"
+	    		}
+	    	}
+	    	"modifier_item_hs_manli_applier"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryForce"			"%for_bonus"//CategoryForce CategorySensitive CategoryCunning CategoryWisdom
+						"Function"				"OnAddItemCategory"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryForce"			"%for_bonus"
+						"Function"				"OnRemoveItemCategory"
+					}
+				}
+			}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"attack_speed"	"13"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"for_bonus"		"30"
+	    	}
+	    }
+	}
+	//======================================
+	//腰带 区域 开始ID 1800
+	//======================================
+	"item_yd_ruizhi"
+	{
+		"ID"					"1800"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_yd_ruizhi"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"2000"
+	    "ItemQuality"			"rare"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+	    "Modifiers"
+	    {
+	    	"item_yd_ruizhi"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"%health_regen"
+	    		}
+	    	}
+	    	"modifier_item_yd_ruizhi_applier"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryWisdom"			"%wis_bonus"//CategoryForce CategorySensitive CategoryCunning CategoryWisdom
+						"Function"				"OnAddItemCategory"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryWisdom"			"%wis_bonus"
+						"Function"				"OnRemoveItemCategory"
+					}
+				}
+			}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"health_regen"	"30"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"wis_bonus"		"30"
+	    	}
+	    }
+	}
+	"item_yd_lingmin"
+	{
+		"ID"					"1801"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_yd_lingmin"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"2000"
+	    "ItemQuality"			"rare"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+		"Modifiers"
+	    {
+	    	"item_yd_lingmin"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"%health_regen"
+	    		}
+	    	}
+	    	"modifier_item_yd_lingmin_applier"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategorySensitive"			"%sen_bonus"//CategoryForce CategorySensitive CategoryCunning CategoryWisdom
+						"Function"				"OnAddItemCategory"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategorySensitive"			"%sen_bonus"
+						"Function"				"OnRemoveItemCategory"
+					}
+				}
+			}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"health_regen"	"7"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"sen_bonus"		"30"
+	    	}
+	    }
+	}
+	"item_yd_jiaozha"
+	{
+		"ID"					"1802"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_yd_jiaozha"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"2000"
+	    "ItemQuality"			"rare"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+	    "Modifiers"
+	    {
+	    	"item_yd_jiaozha"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"%health_regen"
+	    		}
+	    	}
+	    	"modifier_item_yd_jiaozha_applier"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryCunning"			"%cun_bonus"//CategoryForce CategorySensitive CategoryCunning CategoryWisdom
+						"Function"				"OnAddItemCategory"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryCunning"			"%cun_bonus"
+						"Function"				"OnRemoveItemCategory"
+					}
+				}
+			}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"health_regen"	"7"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"cun_bonus"		"30"
+	    	}
+	    }
+	}
+	"item_yd_manli"
+	{
+		"ID"					"1803"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_yd_manli"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"2000"
+	    "ItemQuality"			"rare"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+	    "Modifiers"
+	    {
+	    	"item_yd_manli"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"%health_regen"
+	    		}
+	    	}
+	    	"modifier_item_yd_manli_applier"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryForce"			"%for_bonus"//CategoryForce CategorySensitive CategoryCunning CategoryWisdom
+						"Function"				"OnAddItemCategory"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryForce"			"%for_bonus"
+						"Function"				"OnRemoveItemCategory"
+					}
+				}
+			}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"health_regen"	"13"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"for_bonus"		"30"
+	    	}
+	    }
+	}
+
+	//======================================
+	//首饰 区域 开始ID 1900
+	//======================================
+	"item_xl_ruizhi"
+	{
+		"ID"					"1900"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_xl_ruizhi"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"5000"
+	    "ItemQuality"			"rare"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+	    "Modifiers"
+	    {
+	    	"item_xl_ruizhi"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%int_bonus"
+	    		}
+	    	}
+	    	"modifier_item_xl_ruizhi_applier"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryWisdom"			"%wis_bonus"//CategoryForce CategorySensitive CategoryCunning CategoryWisdom
+						"Function"				"OnAddItemCategory"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryWisdom"			"%wis_bonus"
+						"Function"				"OnRemoveItemCategory"
+					}
+				}
+			}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"int_bonus"		"15"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"wis_bonus"		"30"
+	    	}
+	    }
+	}
+	"item_xl_lingmin"
+	{
+		"ID"					"1901"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_xl_lingmin"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"5000"
+	    "ItemQuality"			"rare"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+		"Modifiers"
+	    {
+	    	"item_xl_lingmin"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%agi_bonus"
+	    		}
+	    	}
+	    	"modifier_item_xl_lingmin_applier"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategorySensitive"			"%sen_bonus"//CategoryForce CategorySensitive CategoryCunning CategoryWisdom
+						"Function"				"OnAddItemCategory"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategorySensitive"			"%sen_bonus"
+						"Function"				"OnRemoveItemCategory"
+					}
+				}
+			}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"agi_bonus"	"7"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"sen_bonus"		"30"
+	    	}
+	    }
+	}
+	"item_xl_jiaozha"
+	{
+		"ID"					"1902"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_xl_jiaozha"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"5000"
+	    "ItemQuality"			"rare"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+	    "Modifiers"
+	    {
+	    	"item_xl_jiaozha"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"	"%agi_bonus"
+	    		}
+	    	}
+	    	"modifier_item_xl_jiaozha_applier"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryCunning"			"%cun_bonus"//CategoryForce CategorySensitive CategoryCunning CategoryWisdom
+						"Function"				"OnAddItemCategory"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryCunning"			"%cun_bonus"
+						"Function"				"OnRemoveItemCategory"
+					}
+				}
+			}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"agi_bonus"		"8"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"cun_bonus"		"30"
+	    	}
+	    }
+	}
+	"item_xl_manli"
+	{
+		"ID"					"1903"
+		"BaseClass"				"item_datadriven"
+	    "AbilityTextureName"	"item_xl_manli"
+	    "AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		
+	    "ItemCost"				"5000"
+	    "ItemQuality"			"rare"
+	    "ItemStackable"			"0"
+	    "ItemShareability"		"ITEM_FULLY_SHAREABLE"
+	    "ItemPermanent"			"0"
+	    "ItemKillable"			"1"
+
+	    "Modifiers"
+	    {
+	    	"item_xl_manli"
+	    	{
+	    		"Passive"		"1"
+	    		"IsHidden"		"1"
+	    		"Properties"
+	    		{
+	    			"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%str_bonus"
+	    		}
+	    	}
+	    	"modifier_item_xl_manli_applier"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryForce"			"%for_bonus"//CategoryForce CategorySensitive CategoryCunning CategoryWisdom
+						"Function"				"OnAddItemCategory"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"CategoryForce"			"%for_bonus"
+						"Function"				"OnRemoveItemCategory"
+					}
+				}
+			}
+	    }
+	    "AbilitySpecial"
+	    {
+	    	"01"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"str_bonus"		"13"
+	    	}
+	    	"02"
+	    	{
+	    		"var_type"		"FIELD_INTEGER"
+	    		"for_bonus"		"30"
+	    	}
+	    }
+	}
+
+	//精通等级的测试物品
+	"item_test_attribute"
+	{
+		"ID"					"999"
+		"BaseClass"				"item_datadriven"
+		"ItemCost"						"2450"
+		"ItemShopTags"					"test"
+		"ItemQuality"					"rare"
+		"ItemDeclarations"				"DECLARE_PURCHASES_TO_SPECTATORS"
+		"ItemDisassembleRule"			"0"
+		"ItemAlertable"					"0"
+		"ItemAliases"					"test"
+		"Modifiers"
+		{
+			"modifier_item_test_auto_applier"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"AttributeType"			"strength_level"
+						"AttributeValue"		"%strength_bonus_value"
+						"Function"				"OnItemAdded"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"			"scripts/vscripts/items/item_core.lua"
+						"AttributeType"			"strength_level"
+						"AttributeValue"		"%strength_bonus_value"
+						"Function"				"OnItemTakenAway"
+					}
+				}
+			}
+		}
+		"AbilitySpecial"
+		{
+			"01"
+			{
+				"var_type"			"FIELD_INTEGER"
+				"strength_bonus_value"	"20"
+			}
+		}
+	}
+}

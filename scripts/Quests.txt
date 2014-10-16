@@ -1,0 +1,17 @@
+"Quests"
+{
+  "01"//任务：寻找无双
+  {
+    "QuestType"               "Touch"//到达目标区域的任务类型
+    "QuestBaseValue"          "0"
+    "QuestTargetValue"        "1"
+    "QuestTargetEntityName"   "wushuang_position_trigger"
+  }
+  "02"//任务：杀死五个果子狸
+  {
+    "QuestType"               "Slain"//杀死XX个怪物的任务类型
+    "QuestBaseValue"          "0"
+    "QuestTargetValue"        "5"
+    "QuestTargetEntityName"   "npc_cf_quest_guozili"
+  }
+}

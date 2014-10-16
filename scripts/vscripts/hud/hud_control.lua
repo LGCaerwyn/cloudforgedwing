@@ -1,0 +1,1 @@
+CFHUD = CFHUD or class({})
