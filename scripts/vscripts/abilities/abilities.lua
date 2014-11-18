@@ -1,6 +1,7 @@
 
 
---红雾死神 3技能 隐藏被动
+
+--[[红雾死神 3技能 隐藏被动
 function axe_war_will_hidden( keys )
 	local caster=EntIndexToHScript(keys.caster_entindex) 
 	local target={}
@@ -505,5 +506,48 @@ function rubick_defend_ability_2( keys )
 	ApplyDamage(damageTable)
 
 	print(num)
-end
+end]]
 
+--隐修议员技能
+RubickAbility={
+	ability1={
+		"rubick_q2",
+		"rubick_w2",
+		"rubick_e2",
+		"rubick_r2"
+	},
+	ability3={
+		"rubick_q3",
+		"rubick_w3",
+		"rubick_e3",
+		"rubick_r3"
+	},
+	ability4={
+		"rubick_q1",
+		"rubick_w1",
+		"rubick_e1",
+		"rubick_r1"
+	}
+}
+
+function learn_abilities( keys )
+	local caster = keys.caster
+
+	--获取技能路线
+	local abilityName = string.format("ability%d",keys.num)
+
+	if caster:GetUnitName()=="npc_dota_hero_rubick" then
+		local k = 1
+
+		--删除技能，并且添加新技能
+		for i,v in pairs(GameRules.HeroLevelOneAbility) do
+			local ability = caster:FindAbilityByName(v)
+			if ability then
+				caster:RemoveAbility(v)
+				caster:AddAbility(RubickAbility[abilityName][k])
+				k = k + 1
+			end
+		end
+		return 
+	end
+end

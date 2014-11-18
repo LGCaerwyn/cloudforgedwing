@@ -58,14 +58,12 @@
 
 	--造成伤害主函数(技能)
 	function DamageTarget(damage)
-		
-		--获取技能
 		local targets	= damage.target_entities or {damage.victim}	--技能施放目标(数组)
 		
 		--print('damage called for '..#targets)
 		
 		if #targets == 0 then
-			print(debug.traceback '无伤害目标')
+			print("not damage unit")
 		end
 
 		--添加默认值
@@ -110,6 +108,12 @@
 
 					local damage_dealt = ApplyDamage(damage)
 					print('damage dealt[]:'..damage_dealt)
+
+					--下面是某些技能需要记录伤害-------------------------------------------
+					--隐修议员
+					victim.RubickE2Damage=damage_dealt
+
+					-----------------------------------------------------------------------
 				end
 		end
 

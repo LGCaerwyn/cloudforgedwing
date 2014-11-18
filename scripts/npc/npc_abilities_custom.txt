@@ -2,570 +2,801 @@
 "DOTAAbilities"
 {
 	"Version"		"1"
-	"crystal_maiden_ability_01"
+
+	"majia"  //马甲的基本技能
 	{
-		"ID"						"2000"
-		"BaseClass"				 	"ability_datadriven"
-		"AbilityBehavior"		   	"DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityTextureName"		"ability_crystal_maiden_ability_01"
-		"AbilityCastAnimation"	  	"ACT_DOTA_CAST_ABILITY_1"
-		"MaxLevel"				  	"4"
-
-		// Stats
-		//----------------------------------------------------------------
-		"AbilityCastRange"			"500"
-		"AbilityManaCost"		 	"75"
-		"AbilityCastPoint"			"0.3"
-		"AbilityCooldown"		 	"15"
-		"AbilityUnitDamageType"   	"DAMAGE_TYPE_PURE"
-
-		"OnSpellStart"
-		{
-			"ApplyModifier"
-			{
-				"Target"			"TARGET"
-				"ModifierName"		"modifier_cm_ice_blast"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_cm_ice_blast"
-			{
-				"Duration"				"0.6"
-				"IsDebuff"				"1"
-				"ThinkInterval"			"0.2"
-				"OnIntervalThink"
-				{
-				    "FireSound"
-					{
-						"EffectName"	"sounds/vo/invoker/invo_ability_icewall_04.vsnd"
-						"Target"		"CASTER"
-					}
-			
-					"RunScript"					//造成计算后的单体伤害
-					{
-					  	"Target"
-					  	{
-					  		"Center"			"TARGET"
-					  		"Radius"			"%ability_radius"
-					  		"Teams" 			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Types" 			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL | DOTA_UNIT_TARGET_OTHER"
-					  	}
-					  	"AbilityMulti"			"%ability_multi"			//加成
-					  	"AbilityDepenis"		"wisdom_level"	            //睿智等级加成
-					  	"ScriptFile"			"scripts/vscripts/abilities/crystalmaiden.lua"
-					  	"Function"		  		"OnCrystalMaiden01Start"
-					}
-				}
-			}
-		}
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"ability_radius"		"400"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"ability_multi"			"2.0"
-			}
-		}
-	}
-	
-	"crystal_maiden_ability_02"
-	{
-		"ID"						"2001"
-		"BaseClass"				 	"ability_datadriven"
-		"AbilityBehavior"		   	"DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName"		"ability_crystal_maiden_ability_02"
-		"AbilityCastAnimation"	  	"ACT_DOTA_CAST_ABILITY_2"
-		"MaxLevel"				  	"4"
-		
-		// Stats
-		//----------------------------------------------------------------
-		"AbilityManaCost"		 	"75"
-		"AbilityCastPoint"			"0.3"
-		"AbilityCooldown"		 	"15"
-
-		"OnSpellStart"
-		{
-			"RunScript"					
-			{
-				"Radius"			    "%ability_radius"
-				"AbilityMulti"			"%ability_multi"			//加成
-				"AbilityDepenis"		"wisdom_level"	            //睿智等级加成
-				"ScriptFile"			"scripts/vscripts/abilities/crystalmaiden.lua"
-				"Function"		  		"OnCrystalMaiden02Start"
-			}
-		}
-		
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"ability_radius"		"700"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"ability_multi"			"1.0"
-			}
-		}
-	}
-	
-	"crystal_maiden_ability_03"
-	{
-		"ID"						"2002"
-		"BaseClass"				 	"ability_datadriven"
-		"AbilityTextureName"		"ability_crystal_maiden_ability_03"
-		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"MaxLevel"				  	"4"
-		
-		// Stats
-		//----------------------------------------------------------------
-		"AbilityUnitDamageType"   	"DAMAGE_TYPE_PURE"
-		
-		"Modifiers"
-	    {
-	    	"passive_mana_regen"
-            {
-                "Passive"                                     "1"
-                "IsHidden"                                    "1"    
-                "Properties"
-				{
-                    "MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"   "%ability_mana_regen"
-                }
-            }
-			
-			"passive_aoe_damage"
-            {
-			    "Passive"                                     "1"
-                "OnAttackLanded"
-		        {
-		            "Random"
-			        {
-			            "Chance"        "%ability_chance_base"
-				        "PseudoRandom"  "DOTA_PSEUDO_RANDOM_ITEM_MKB"
-				        "OnSuccess"
-				        {
-		                	"RunScript"					
-	    	            	{
-			                	"Target"
-		                 		{
-			                		"Center"		    "TARGET"
-			                  		"Radius"		    "%ability_radius"
-			                 		"Teams" 			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-			                 		"Types" 			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP | DOTA_UNIT_TARGET_MECHANICAL | DOTA_UNIT_TARGET_OTHER"
-			                 	}
-		            	        "AbilityMulti"			"%ability_multi"			//加成
-		                 		"AbilityDepenis"		"wisdom_level"	            //睿智等级加成
-		    	            	"AbilityChance"		    "%ability_chance_base"
-		    	            	"ScriptFile"			"scripts/vscripts/abilities/crystalmaiden.lua"
-			                	"Function"		  		"OnCrystalMaiden03Start"
-		                 	}
-				        }
-			        }
-	        	}
-            }
-		}
-		
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"ability_radius"		"300"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"ability_multi"			"2.0"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"ability_chance_base"	"10 15 20 25"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"ability_mana_regen"	"2.5 5 7.5 10"
-			}
-		}
-	}
-	
-	"crystal_maiden_ability_04"
-	{
-		"ID"						"2003"
-		"BaseClass"				 	"ability_datadriven"
-		"AbilityBehavior"		   	"DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"AbilityUnitTargetType"		"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityTextureName"		"ability_crystal_maiden_ability_01"
-		"AbilityCastAnimation"	  	"ACT_DOTA_CAST_ABILITY_4"
-		"MaxLevel"				  	"4"
-
-		// Stats
-		//----------------------------------------------------------------
-		"AbilityCastRange"			"500"
-		"AbilityManaCost"		 	"75"
-		"AbilityCastPoint"			"0.3"
-		"AbilityCooldown"		 	"60"
-		"AbilityUnitDamageType"   	"DAMAGE_TYPE_PURE"
-
-		"OnSpellStart"
-		{
-		    "RunScript"					
-		    {
-		        "Target"                "TARGET"
-		        "ScriptFile"			"scripts/vscripts/abilities/crystalmaiden.lua"
-		        "Function"		  		"OnCrystalMaidenSpell04Init"
-		    }
-		 	"Stun"
-		    {
-			    "Target"		"TARGET"
-			    "Duration"		"4.0"
-	    	}
-			"ApplyModifier"
-			{
-				"Target"			"TARGET"
-				"ModifierName"		"modifier_cm_ice_start"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_cm_ice_start"
-			{
-				"Duration"				"3"
-				"IsDebuff"				"1"
-				"ThinkInterval"			"0.03"
-				"OnIntervalThink"
-				{
-					"RunScript"					//造成计算后的单体伤害
-					{
-					  	"Target"                "TARGET"
-					  	"AbilityMulti"			"%ability_multi"			//加成
-					  	"AbilityDepenis"		"wisdom_level"	            //睿智等级加成
-					  	"ScriptFile"			"scripts/vscripts/abilities/crystalmaiden.lua"
-					  	"Function"		  		"OnCrystalMaidenSpell04Start"
-					}
-				}
-			}
-		}
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"ability_radius"		"400"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"ability_multi"			"2.0"
-			}
-		}
-	}
-
-	
-	"ability_dummy_unit"
-    {
-		"BaseClass" 					"ability_datadriven"
-		"AbilityTextureName"            "rubick_empty1"
-    
-        "Modifiers"
-	    {
-	    	"dummy_unit"
-            {
-                "Passive"                        "1"
-                "IsHidden"                        "1"    
-                "States"
-                {
-                    "MODIFIER_STATE_UNSELECTABLE"         "MODIFIER_STATE_VALUE_ENABLED"
-                    "MODIFIER_STATE_INVULNERABLE"         "MODIFIER_STATE_VALUE_ENABLED"
-                    "MODIFIER_STATE_NOT_ON_MINIMAP"       "MODIFIER_STATE_VALUE_ENABLED"
-                    "MODIFIER_STATE_NO_HEALTH_BAR"        "MODIFIER_STATE_VALUE_ENABLED"
-                    "MODIFIER_STATE_NO_UNIT_COLLISION"    "MODIFIER_STATE_VALUE_ENABLED"
-                }
-            }
-		}
-    }
-
-
-
-	//红雾死神 1技能 主动
-	//技能名字 地狱咆哮
-	//-------------------------------------------------------------------------------------------
-	"axe_hell_roar"
-	{
-		// General
-		//---------------------------------------------------------------------------------------
-		"AbilityName"					"axe_hell_roar"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_AOE" 
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_COMPOSITE"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"BaseClass"						"ability_datadriven"  
-		"AbilityTextureName"			"axe_berserkers_call"
-
-		// Casting
-		//---------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.3" 
-		"AbilityCastRange"				"500"
-
-		//Time
-		//---------------------------------------------------------------------------------------
-		"AbilityCooldown"		 		"13 12 11 10"
-
-		// Cost
-		//---------------------------------------------------------------------------------------
-		"AbilityManaCost"				"45"
-
-		//OnSpellStart
-		//---------------------------------------------------------------------------------------
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"		"scripts/vscripts/util/damage.lua"
-				"Function"			"DamageTarget"
-				"damage_increase"	"%increase"
-				"damage_type"		"DAMAGE_TYPE_PHYSICAL"
-				"damage_category"	"force"
-				"damage_str"		"%str"
-				"Target"
-				{
-					"Types"		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
-					"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Flags"		"DOTA_UNIT_TARGET_FLAG_NONE"
-					"Radius"	"%range"
-					"Center"	"CASTER"
-					"Target"	"TARGET"
-				}
-			}
-
-			"Stun"		//眩晕
-			{
-				"Target"
-				{
-					"Types"		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
-					"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Flags"		"DOTA_UNIT_TARGET_FLAG_NONE"
-					"Radius"	"%range"
-					"Center"	"CASTER"
-					"Target"	"TARGET"
-				}
-				"Duration"		"1"
-			}
-
-			"FireEffect"
-			{
-				"EffectName"		"particles\econ\items\abaddon\abaddon_feathers_mace\abaddon_aphotic_shield_explosion_ref.vpcf"
-				"EffectAttachType"	"follow_chest"
-			}
-
-			"FireSound"
-			{
-				"EffectName"	"Hero_Beastmaster.Primal_Roar"
-				"Target"		"CASTER"
-			}
-		}
-
-		// Special
-		//-----------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"	//作用范围
-			{
-				"var_type"		"FIELD_INTEGER"
-				"range"			"500"				
-			}
-			"02"	//伤害系数
-			{
-				"var_type"			"FIELD_FLOAT"
-				"increase"			"1.1"
-			}
-			"03"	//伤害力量加成
-			{
-				"var_type"			"FIELD_FLOAT"
-				"str"				"1.1 1.2 1.3 1.4"
-			}
-		}
-
-	}
-
-
-	//红雾死神 2技能 主动
-	//技能名字 螺旋飞斧
-	//-------------------------------------------------------------------------------------------
-	"axe_spiral_axe"
-	{
-		// General
-		//---------------------------------------------------------------------------------------
-		"AbilityName"					"axe_spiral_axe"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE" 
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_PHYSICAL"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"BaseClass"						"ability_datadriven"  
-		"AbilityTextureName"			"axe_counter_helix"
-
-		// Casting
-		//---------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.0" 
-		"AbilityCastRange"				"300 350 400 450"
-
-		//Time
-		//---------------------------------------------------------------------------------------
-		"AbilityCooldown"		 		"1.0 0.8 0.6 0.4"
-
-		// Cost
-		//---------------------------------------------------------------------------------------
-		"AbilityManaCost"				"5 10 15 20"
-
-		//OnSpellStart
-		//---------------------------------------------------------------------------------------
-		"OnSpellStart"
-		{
-			"ApplyModifier"
-			{
-				"ModifierName"	"create_spiral_axe_act"
-				"Target"		"CASTER"
-			}
-
-			"FireEffect"	
-			{
-				"EffectName" 			"particles\econ\items\axe\axe_weapon_bloodchaser\axe_attack_blur_counterhelix_bloodchaser_b.vpcf"
-				"EffectAttachType"		"follow_chest"
-			}
-
-			"RunScript"
-			{
-				"ScriptFile"		"scripts/vscripts/util/damage.lua"
-				"Function"			"DamageTarget"
-				"damage_increase"	"%increase"
-				"damage_type"		"DAMAGE_TYPE_PHYSICAL"
-				"damage_category"	"force"
-				"damage_str"		"%str"
-				"Target"
-				{
-					"Types"		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
-					"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Flags"		"DOTA_UNIT_TARGET_FLAG_NONE"
-					"Radius"	"%radius"
-					"Center"	"CASTER"
-					"Target"	"TARGET"
-				}
-			}
-
-			"FireSound"
-			{
-				"EffectName"	"Hero_Axe.CounterHelix"
-				"Target"		"CASTER"
-			}
-		}
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"MaxLevel"				"1"
 
 		"Modifiers"
 		{
-			"create_spiral_axe_act"
-			{
-				"Duration"	"0.2"
-				"OverrideAnimation"		"ACT_DOTA_CAST_ABILITY_3"
-			}
-		}
-
-		// Special
-		//-----------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"	//作用范围
-			{
-				"var_type"		"FIELD_INTEGER"
-				"radius"		"300 350 400 450"
-			}
-			"02"	//伤害系数
-			{
-				"var_type"			"FIELD_FLOAT"
-				"increase"			"1.1 1.1 1.2 1.2"
-			}
-			"03"	//伤害力量加成
-			{
-				"var_type"			"FIELD_FLOAT"
-				"str"				"0.5 0.45 0.4 0.35"
-			}
-		}
-
-
-	}
-
-	//红雾死神 3技能 被动
-	//技能名字 战争意志
-	//-------------------------------------------------------------------------------------------
-	"axe_war_will"
-	{
-		// General
-		//---------------------------------------------------------------------------------------
-		"AbilityName"					"axe_war_will"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE" 
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_MAGICAL"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"BaseClass"						"ability_datadriven"  
-		"AbilityTextureName"			"axe_battle_hunger"
-
-		// Casting
-		//---------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.0 0.0 0.0 0.0" 
-		"AbilityCastRange"				"300"
-
-		//Modifiers
-		//----------------------------------------------------------------------------------------
-		"Modifiers"
-		{
-			"create_ability_3"
+			"modifier_majia"
 			{
 				"Passive"		"1"
-				"OnAttacked"
+				"IsHidden"		"1"
+
+				"States"
 				{
+					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED" //隐藏血条
+					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED" //魔法免疫
+					"MODIFIER_STATE_ATTACK_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED" //攻击免疫
+					"MODIFIER_STATE_UNSELECTABLE"	"MODIFIER_STATE_VALUE_ENABLED" //不可选择
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED" //无碰撞
+					"MODIFIER_STATE_DISARMED"		"MODIFIER_STATE_VALUE_ENABLED" //无法攻击
+				}
+			}
+		}
+	}
+
+	"majia2"  //马甲技能
+	{
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"MaxLevel"				"1"
+
+		"Modifiers"
+		{
+			"modifier_majia2"
+			{
+				"Passive"		"1"
+				"IsHidden"		"1"
+
+				"States"
+				{
+					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED" //魔法免疫
+					"MODIFIER_STATE_ATTACK_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED" //攻击免疫
+					"MODIFIER_STATE_UNSELECTABLE"	"MODIFIER_STATE_VALUE_ENABLED" //不可选择
+					"MODIFIER_STATE_DISARMED"		"MODIFIER_STATE_VALUE_ENABLED" //无法攻击
+				}
+			}
+		}
+	}
+
+	"add_attack_damage"
+	{
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"MaxLevel"				"1"
+
+		"Modifiers"
+		{
+			"modifier_add_attack_damage_1"  //十万位
+			{
+				"IsHidden"		"1"
+				"Duration"		"%duration"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"100000"
+				}
+			}
+			"modifier_add_attack_damage_2"  //万位
+			{
+				"IsHidden"		"1"
+				"Duration"		"%duration"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"10000"
+				}
+			}
+			"modifier_add_attack_damage_3"  //千位
+			{
+				"IsHidden"		"1"
+				"Duration"		"%duration"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"1000"
+				}
+			}
+			"modifier_add_attack_damage_4"  //百位
+			{
+				"IsHidden"		"1"
+				"Duration"		"%duration"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"100"
+				}
+			}
+			"modifier_add_attack_damage_5"  //十位
+			{
+				"IsHidden"		"1"
+				"Duration"		"%duration"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"10"
+				}
+			}
+			"modifier_add_attack_damage_6"  //个位
+			{
+				"IsHidden"		"1"
+				"Duration"		"%duration"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"	"1"
+				}
+			}
+		}
+	}
+
+	"add_armor"
+	{
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"MaxLevel"				"1"
+
+		"Modifiers"
+		{
+			"modifier_add_armor_1"  //十万位
+			{
+				"IsHidden"		"1"
+				"Duration"		"%duration"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"100000"
+				}
+			}
+			"modifier_add_armor_2"  //万位
+			{
+				"IsHidden"		"1"
+				"Duration"		"%duration"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"10000"
+				}
+			}
+			"modifier_add_armor_3"  //千位
+			{
+				"IsHidden"		"1"
+				"Duration"		"%duration"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"1000"
+				}
+			}
+			"modifier_add_armor_4"  //百位
+			{
+				"IsHidden"		"1"
+				"Duration"		"%duration"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"100"
+				}
+			}
+			"modifier_add_armor_5"  //十位
+			{
+				"IsHidden"		"1"
+				"Duration"		"%duration"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"10"
+				}
+			}
+			"modifier_add_armor_6"  //个位
+			{
+				"IsHidden"		"1"
+				"Duration"		"%duration"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"1"
+				}
+			}
+		}
+	}
+
+	"ability_null_4"
+	{
+		"BaseClass"					"ability_datadriven"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName"		"rubick_empty1"
+		"MaxLevel"					"1"
+	}
+
+	//选择技能路线 输出
+	"learn_ability_shuchu"
+	{
+		"BaseClass"					"ability_datadriven"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityCastRange"			"0"
+		"AbilityCooldown"			"1"
+		"AbilitySharedCooldown"     "1"
+		"AbilityManaCost"			"0"
+		"AbilityTextureName"		"learn_ability_shuchu"
+		"MaxLevel"					"1"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile" 	"scripts/vscripts/abilities/abilities.lua"
+				"Target"		"CASTER"
+				"Function"		"learn_abilities"
+				"num"			"1"
+			}
+		}
+	}
+
+	//选择技能路线 肉盾
+	"learn_ability_roudun"
+	{
+		"BaseClass"					"ability_datadriven"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityCastRange"			"0"
+		"AbilityCooldown"			"1"
+		"AbilitySharedCooldown"     "1"
+		"AbilityManaCost"			"0"
+		"AbilityTextureName"		"learn_ability_roudun"
+		"MaxLevel"					"1"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile" 	"scripts/vscripts/abilities/abilities.lua"
+				"Target"		"CASTER"
+				"Function"		"learn_abilities"
+				"num"			"2"
+			}
+		}
+	}
+
+	//选择技能路线 辅助
+	"learn_ability_fuzhu"
+	{
+		"BaseClass"					"ability_datadriven"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityCastRange"			"0"
+		"AbilityCooldown"			"1"
+		"AbilitySharedCooldown"     "1"
+		"AbilityManaCost"			"0"
+		"AbilityTextureName"		"learn_ability_fuzhu"
+		"MaxLevel"					"1"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile" 	"scripts/vscripts/abilities/abilities.lua"
+				"Target"		"CASTER"
+				"Function"		"learn_abilities"
+				"num"			"3"
+			}
+		}
+	}
+
+	//选择技能路线 控制
+	"learn_ability_kongzhi"
+	{
+		"BaseClass"					"ability_datadriven"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityCastRange"			"0"
+		"AbilityCooldown"			"1"
+		"AbilitySharedCooldown"     "1"
+		"AbilityManaCost"			"0"
+		"AbilityTextureName"		"learn_ability_kongzhi"
+		"MaxLevel"					"1"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile" 	"scripts/vscripts/abilities/abilities.lua"
+				"Target"		"CASTER"
+				"Function"		"learn_abilities"
+				"num"			"4"
+			}
+		}
+	}
+	
+	//隐修议员 Q1 隔空取物
+	"rubick_q1"
+	{
+		"BaseClass"					"ability_datadriven"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitTargetType"		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_3"
+		"MaxLevel"					"3"
+
+		"AOERadius"					"300"
+		"AbilityCastRange"			"700"
+		"AbilityCooldown"			"10"
+		"AbilityManaCost"			"50"
+		"AbilityTextureName"		"rubick_spell_steal"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile" 	"scripts/vscripts/abilities/abilityRubick.lua"
+				"Function"		"RubickQ1"
+				"dura"			"%duration"  	//浮空时间
+				"radius"		"%radius"		//作用范围
+				"Target"		"TARGET"		
+			}
+
+			"FireSound"
+			{
+				"EffectName"		"Hero_Rubick.Telekinesis.Target"
+				"Target"  			"CASTER"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_rubick_q1"
+			{
+				"IsDebuff"				"1"
+				"Duration"				"%duration"
+				"OverrideAnimation"		"ACT_DOTA_FLAIL"
+
+				"States"
+				{
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+				}
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile" 	"scripts/vscripts/abilities/abilityRubick.lua"
+						"Target"		"TARGET"
+						"Function"		"rubick_q1_fly"
+						"height"		"%height"
+						"speed"			"%speed"
+					}
+				}
+			}
+
+			"modifier_rubick_q1_destroy"
+			{
+				"Duration"				"%duration2"
+				"IsHidden"				"1"
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile" 	"scripts/vscripts/abilities/abilityRubick.lua"
+						"Target"		"TARGET"
+						"Function"		"RubickQ1FlyDestroy"
+					}
+
 					"RunScript"
 					{
 						"ScriptFile"		"scripts/vscripts/util/damage.lua"
 						"Function"			"DamageTarget"
-						"damage_increase"	"%increase"
-						"damage_type"		"DAMAGE_TYPE_PHYSICAL"
-						"damage_category"	"force"
-						"damage_str"		"%str"
-						"Target"			"ATTACKER"
+						"damage_increase"	"%increase"				//伤害系数
+						"damage_type"		"DAMAGE_TYPE_MAGICAL"	//伤害类型
+						"damage_category"	"wisdom"				//精通类型
+						"damage_int"		"%int"					//智力加成
+						"Target"			"TARGET"
+					}
+
+					"FireSound"
+					{
+						"EffectName"		"Hero_Rubick.Telekinesis.Target.Land"
+						"Target"  			"CASTER"
 					}
 				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"  //作用范围
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"300"
+			}
+			"02"  //浮空时间
+			{
+				"var_type"			"FIELD_INTEGER"
+				"duration"			"2 3 4 "
+			}
+			"06"  //降落
+			{
+				"var_type"			"FIELD_FLOAT"
+				"duration2"			"1.9"
+			}
+			"03"  //浮空高度
+			{
+				"var_type"			"FIELD_INTEGER"
+				"height"			"200"
+			}
+			"04"  //浮空速率
+			{
+				"var_type"			"FIELD_INTEGER"
+				"speed"				"30"
+			}
+			"04"  //伤害系数
+			{
+				"var_type"			"FIELD_FLOAT"
+				"increase"			"1.5"
+			}
+			"05"  //伤害智力加成
+			{
+				"var_type"			"FIELD_FLOAT"
+				"int"				"1.0 1.2 1.4"
+			}
+		}
+	}
+
+	//隐修议员 Q2 奥术电流
+	"rubick_q2"
+	{
+		"BaseClass"					"ability_datadriven"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_MAGICAL"
+		"MaxLevel"					"3"
+
+		"AbilityCastPoint"			"0"
+		"AbilityCastRange"			"800"
+		"AbilityCooldown"			"10"
+		"AbilityManaCost"			"50"
+		"AbilityTextureName"		"rubick_fade_bolt"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile" 	"scripts/vscripts/abilities/abilityRubick.lua"
+				"Target"		"UNIT"
+				"Function"		"RubickQ2"
+				"bounce_num"	"%bounce_num"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_rubick_q2_effect"
+			{
+				"IsHidden"		"1"
+				"Duration"		"1"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
 				
+				"OnCreated"
+				{
+					"AttachEffect"
+					{
+						"EffectName"		"particles/units/heroes/hero_rubick/rubick_fade_bolt_head.vpcf"
+						"EffectAttachType"  "start_at_customorigin"
+						"Target" 			"TARGET"
+						"ControlPointEntities"
+						{
+							"CASTER"		"attach_hitloc"
+							"TARGET"		"attach_hitloc"
+						}
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"  //弹跳到下一目标的获取范围
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"600"
+			}
+			"02"  //弹跳次数
+			{
+				"var_type"			"FIELD_INTEGER"
+				"bounce_num"		"5"
+			}
+			"03"  //增加的攻击力
+			{
+				"var_type"			"FIELD_INTEGER"
+				"attack_damage"		"2 4 6"
+			}
+			"04"  //BUFF持续时间
+			{
+				"var_type"			"FIELD_INTEGER"
+				"duration"			"11 12 13"
+			}
+			"05"  //伤害系数
+			{
+				"var_type"			"FIELD_FLOAT"
+				"increase"			"1.5"
+			}
+			"06"  //伤害智力加成
+			{
+				"var_type"			"FIELD_FLOAT"
+				"int"				"1.0"
+			}
+			"07"  //跳跃间隔
+			{
+				"var_type"			"FIELD_FLOAT"
+				"time"				"0.10"
+			}
+		}
+	}
+
+	//隐修议员 Q3 失效力场
+	"rubick_q3"
+	{
+		"BaseClass"					"ability_datadriven"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_PHYSICAL"
+		"MaxLevel"					"3"
+
+		"AbilityCastRange"			"600"
+		"AbilityCooldown"			"10"
+		"AbilityManaCost"			"50"
+		"AbilityTextureName"		"ancient_apparition_ice_vortex"
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target" 			
+				{
+		            "Types"     "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		            "Teams"     "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		            "Flags"     "DOTA_UNIT_TARGET_FLAG_NONE"
+		            "Center"    "CASTER"
+		            "Radius"    "%radius"
+		        }
+				"ModifierName"		"modifier_rubick_q3_fridenly"
+			}
+			"ApplyModifier"
+			{
+				"Target" 			
+				{
+		            "Types"     "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		            "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+		            "Flags"     "DOTA_UNIT_TARGET_FLAG_NONE"
+		            "Center"    "CASTER"
+		            "Radius"    "%radius"
+		        }
+				"ModifierName"		"modifier_rubick_q3_enemy"
+			}
+			"AttachEffect"
+			{
+				"EffectName"		"particles\items2_fx\mekanism.vpcf"
+				"EffectAttachType"  "follow_origin"
+				"Target"
+				{
+		            "Types"     "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		            "Teams"     "DOTA_UNIT_TARGET_TEAM_BOTH"
+		            "Flags"     "DOTA_UNIT_TARGET_FLAG_NONE"
+		            "Center"    "CASTER"
+		            "Radius"    "%radius"
+		        }
+			}	
+		}
+
+		"Modifiers"
+		{
+			"modifier_rubick_q3_fridenly"
+			{
+				"Duration"		"0.1"
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile" 	"scripts/vscripts/abilities/abilityRubick.lua"
+						"Function"		"RubickQ3"
+						"damage_percent"	"%rebound"
+					}
+				}
 			}
 
-			"create_ability_3_hidden"
+			"modifier_rubick_q3_enemy"
 			{
-				"Passive"	"1"
-				"IsHidden"	"1"
-				"OnAttackStart"
+				"IsDebuff"		"1"
+				"Duration"		"%duration"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"%incoming_damage"
+				}
+			}
+
+			"modifier_rubick_q3_take_damage"
+			{
+				"Duration"		"%duration"
+
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile" 		"scripts/vscripts/abilities/abilityRubick.lua"
+						"Function"			"RubickQ3TakeDamage"
+					}
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"  //作用范围
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"600"
+			}
+			"03"  //持续时间
+			{
+				"var_type"			"FIELD_INTEGER"
+				"duration"			"5"
+			}
+			"02"  //伤害加深
+			{
+				"var_type"			"FIELD_INTEGER"
+				"incoming_damage"	"120 140 160"
+			}
+			"04"  //反弹伤害百分比
+			{
+				"var_type"			"FIELD_INTEGER"
+				"rebound"			"100"
+			}
+		}
+	}
+
+	//隐修议员 W1 替身傀儡
+	"rubick_w1"
+	{
+		"BaseClass"					"ability_datadriven"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_MAGICAL"
+		"AbilityCastAnimation"		"ACT_DOTA_CAST_ABILITY_6"
+		"MaxLevel"					"3"
+
+		"AbilityCastRange"			"0"
+		"AbilityCooldown"			"10"
+		"AbilityManaCost"			"50"
+		"AbilityTextureName"		"rubick_w1"
+
+		"OnSpellStart"
+		{
+			"RunScript"
+			{
+				"ScriptFile" 	"scripts/vscripts/abilities/abilityRubick.lua"
+				"Target"		"POINT"
+				"Function"		"RubickW1"
+				"dura"			"%duration"
+			}
+
+			"ApplyModifier"
+			{
+				"Target" 			"CASTER"
+				"ModifierName"		"modifier_rubick_w1"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_rubick_w1"
+			{
+				"Duration"		"%duration"
+
+				"Aura"          "modifier_rubick_w1_buff_null"
+                "Aura_Radius"   "%radius"
+                "Aura_Teams"    "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+                "Aura_Types"    "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                "Aura_Flags"    "DOTA_UNIT_TARGET_FLAG_NONE"
+			}
+
+			"modifier_rubick_w1_buff_null" //用于给予和移除伤害转移buff
+			{
+				"IsHidden"		"1"
+
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile" 	"scripts/vscripts/abilities/abilityRubick.lua"
+						"Function"		"RubickW1OnCreated"
+					}
+				}
+
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile" 	"scripts/vscripts/abilities/abilityRubick.lua"
+						"Function"		"RubickW1OnDestroy"
+					}
+				}
+			}
+
+			"modifier_rubick_w1_buff"  //伤害转移buff
+			{
+				"IsHidden"		"1"
+
+				"OnTakeDamage"
+				{
+					"RunScript"
+					{
+						"ScriptFile" 		"scripts/vscripts/abilities/abilityRubick.lua"
+						"Function"			"RubickW1TakeDamage"
+						"incoming_damage"	"%incoming_damage"
+					}
+				}
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"300"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"  //作用范围
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"800"
+			}
+			"02"  //幻象持续时间
+			{
+				"var_type"			"FIELD_INTEGER"
+				"duration"			"6 7 8"
+			}
+			"03"  //幻象受到的伤害
+			{
+				"var_type"			"FIELD_INTEGER"
+				"incoming_damage"	"100"
+			}
+		}
+	}
+
+	//隐修议员 W2 奥术精通
+	"rubick_w2"
+	{
+		"BaseClass"					"ability_datadriven"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"3"
+
+		"AbilityTextureName"		"dark_seer_surge"
+
+		"Modifiers"
+		{
+			"modifier_rubick_w2"
+			{
+				"Passive"			"1"
+				"IsHidden"			"1"
+
+				"OnAttack"
 				{
 					"Random"
 					{
-						"Chance"	"35"
+						"Chance"			"%chance"
+						"PseudeoRandom"		"DOTA_PSEUDO_RANDOM_JUGG_CRIT"
 						"OnSuccess"
 						{
 							"RunScript"
 							{
-								"ScriptFile"	"scripts/vscripts/abilities/abilities.lua"
-								"Function"		"axe_war_will_hidden"
-								"Target"
-								{
-									"Types"		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_MECHANICAL"
-									"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-									"Flags"		"DOTA_UNIT_TARGET_FLAG_NONE"
-									"Radius"	"300"
-									"Center"	"CASTER"
-								}
+								"ScriptFile" 	"scripts/vscripts/abilities/abilityRubick.lua"
+								"Target"		"UNIT"
+								"Function"		"RubickW2"
 							}
 						}
 					}
@@ -573,457 +804,26 @@
 			}
 		}
 
-		// Special
-		//-----------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-			"01"	//嘲讽触发概率
-			{
-				"var_type"			"FIELD_FLOAT"
-				"chance"			"35"
-			}
-			"02"	//作用范围
+			"01"  //触发概率
 			{
 				"var_type"			"FIELD_INTEGER"
-				"range"				"300"
-			}
-			"03"	//伤害系数
-			{
-				"var_type"			"FIELD_FLOAT"
-				"increase"			"1.1 1.1 1.2 1.2"
-			}
-			"04"	//伤害力量加成
-			{
-				"var_type"			"FIELD_FLOAT"
-				"str"				"0.5 0.6 0.7 0.8"
+				"chance"			"10 20 30"
 			}
 		}
 	}
 
-
-	//斧王大招
-	//技能名字 泰坦之力
-	//-------------------------------------------------------------------------------------------
-	"axe_titan_force"
+	//隐修议员 W3 得道多助
+	"rubick_w3"
 	{
-		// General
-		//---------------------------------------------------------------------------------------
-		"AbilityName"					"axe_titan_force"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE" 
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityUnitDamageType"			"DAMAGE_TYPE_COMPOSITE"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_ENEMY"
-		"BaseClass"						"ability_datadriven"  
-		"AbilityTextureName"			"axe_culling_blade"
-		"AOERadius"						"500"
+		"BaseClass"					"ability_datadriven"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"MaxLevel"					"3"
 
-		// Casting
-		//---------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.0" 
-		"AbilityCastRange"				"500"
-
-		//Time
-		//---------------------------------------------------------------------------------------
-		"AbilityCooldown"		 		"30"
-
-		// Cost
-		//---------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100"
-
-		//OnSpellStart
-		//---------------------------------------------------------------------------------------
-		"OnSpellStart"
-		{
-			"FireEffect"
-			{
-				"TargetPoint"		"POINT"
-				"EffectName"		"particles\hw_fx\hw_roshan_death_e.vpcf"
-				"EffectAttachType"	"world_origin"
-			}
-
-			"CreateThinker"
-			{
-				"Target"		"POINT"
-				"ModifierName"	"create_titan"
-			}
-
-			"FireSound"
-			{
-				"EffectName"	"Dire.ancient.Destruction"
-				"Target"		"CASTER"
-			}
-		}
-
-		"Modifiers"
-		{
-			"create_titan"
-			{
-				"Duration"		"%timeover"
-				"ThinkInterval"	"%time"
-				"OnIntervalThink"
-				{
-					"RunScript"
-					{
-						"ScriptFile"		"scripts/vscripts/util/damage.lua"
-						"Function"			"DamageTarget"
-						"damage_increase"	"%increase"
-						"damage_type"		"DAMAGE_TYPE_COMPOSITE"
-						"damage_category"	"force"
-						"damage_str"		"%str"
-						"Target"
-						{
-							"Types"		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
-							"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Flags"		"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
-							"Radius"	"%radius"
-							"Center"	"TARGET"
-						}
-					}
-				}
-			}
-		}
-
-		// Special
-		//-----------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{	
-			"01"	//作用范围
-			{
-				"var_type"		"FIELD_INTEGER"
-				"radius"		"400"
-			}
-			"02"	//伤害间隔
-			{
-				"var_type"		"FIELD_FLOAT"
-				"time"			"0.75"
-			}
-			"03"	//持续时间
-			{
-				"var_type"		"FIELD_FLOAT"
-				"timeover"		"15"
-			}
-			"04"	//伤害系数
-			{
-				"var_type"		"FIELD_FLOAT"
-				"increase"		"1.2 1.3 1.4"
-			}
-			"05"	//伤害力量加成
-			{
-				"var_type"		"FIELD_FLOAT"
-				"str"			"0.4 0.5 0.6"
-			}
-		}
-
-	}
-
-
-	//隐修议员 拉比克 1技能 主动
-	//技能名字 牺牲
-	//=====================================================================================
-	"rubick_sacrifice"
-	{
-		// General
-		//---------------------------------------------------------------------------------------
-		"AbilityName"					"rubick_sacrifice"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_TOGGLE" 
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-		"BaseClass"						"ability_datadriven"  
-		"AbilityTextureName"			"enchantress_natures_attendants"
-
-		// Casting
-		//---------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.0" 
-		"AbilityCastRange"				"1000"
-
-		//Time
-		//---------------------------------------------------------------------------------------
-		"AbilityCooldown"		 		"0"
-
-		// Cost
-		//---------------------------------------------------------------------------------------
-		"AbilityManaCost"				"5"
-
-		//----------------------------------------------------------------------------------------
-		"OnToggleOn"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/abilities/abilities.lua"
-				"Function"		"rubick_sacrifice_on"
-				"Target"		"CASTER"
-			}
-
-			"ApplyModifier"
-			{
-				"ModifierName"		"create_rubick_sacrifice_effect"
-				"Target"			"CASTER"
-			}
-		}
-
-		"OnToggleOff"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/abilities/abilities.lua"
-				"Function"		"rubick_sacrifice_off"
-				"Target"		"CASTER"
-			}
-
-		}
-
-		"Modifiers"
-		{
-			"create_rubick_sacrifice_effect"
-			{
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"EffectName"		"particles/econ/courier/courier_trail_orbit/courier_trail_orbit.vpcf"
-						"EffectAttachType"	"follow_origin"
-						"Target"			"TARGET"
-					}
-				}
-			}
-		}
-		// Special
-		//-----------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{	
-			"01"	//作用范围
-			{
-				"var_type"		"FIELD_INTEGER"
-				"radius"		"1000"
-			}
-			"02"	//时间间隔
-			{
-				"var_type"		"FIELD_FLOAT"
-				"time"			"1.0 0.9 0.8 0.7"
-			}
-			"03"	//消耗的生命百分比
-			{
-				"var_type"		"FIELD_FLOAT"
-				"percentage"	"1 2 4 6"
-			}
-		}
-	}
-
-	//隐修议员 拉比克 2技能 主动
-	//技能名字 祝福
-	//=====================================================================================
-	"rubick_Bless"
-	{
-		// General
-		//---------------------------------------------------------------------------------------
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
-		"AbilityUnitTargetTeam"			"DOTA_UNIT_TARGET_TEAM_BOTH"
-		"AbilityUnitTargetType"			"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-		"AbilityUnitTargetFlags"		"DOTA_UNIT_TARGET_FLAG_NONE"
-		"BaseClass"						"ability_datadriven"  
-		"AbilityTextureName"			"rubick_spell_steal"
-
-		// Casting
-		//---------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.0" 
-		"AbilityCastRange"				"800"
-
-		//Time
-		//---------------------------------------------------------------------------------------
-		"AbilityCooldown"		 		"10"
-
-		// Cost
-		//---------------------------------------------------------------------------------------
-		"AbilityManaCost"				"50 75 100 125"
-
-		//OnSpellStart
-		//---------------------------------------------------------------------------------------
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/abilities/abilities.lua"
-				"Function"		"rubick_Bless"
-				"Target"		"TARGET"
-			}
-		}
-
-		"AbilitySpecial"
-		{	
-			"01"	//友军BUFF持续时间
-			{
-				"var_type"		"FIELD_INTEGER"
-				"time_friendly"	"5"
-			}
-			"02"	//增加的攻击力
-			{
-				"var_type"		"FIELD_INTEGER"
-				"attack"		"1 2 4 8"
-			}
-			"03"	//增加的护甲
-			{
-				"var_type"		"FIELD_INTEGER"
-				"armor"			"1 2 3 4"
-			}
-			"04"	//魔法恢复速度增加
-			{
-				"var_type"		"FIELD_INTEGER"
-				"mana"			"1 2 4 8"
-			}
-			"05"	//敌人BUFF持续时间
-			{
-				"var_type"		"FIELD_FLOAT"
-				"time_enemy"	"5"
-			}
-			"06"	//魔抗降低
-			{
-				"var_type"		"FIELD_INTEGER"
-				"mag"			"-1 -2 -3 -4"
-			}
-			"07"	//攻击力降低
-			{
-				"var_type"		"FIELD_INTEGER"
-				"attack_2"		"-1 -2 -4 -8"
-			}
-			"08"	//护甲降低
-			{
-				"var_type"		"FIELD_INTEGER"
-				"armor_2"			"-1 -2 -3 -4"
-			}
-		}
-	}
-
-	//祝福 隐藏被动 友军
-	"rubick_Bless_friendly_hidden"
-	{
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		"BaseClass"						"ability_datadriven"
-		"AbilityCastPoint"				"0.0" 
-		"AbilityCooldown"		 		"0"
-		"AbilityManaCost"				"0"
-		"MaxLevel"						"4"
-		"AbilityTextureName"			"rubick_spell_steal"
-
-		"Modifiers"
-		{
-			"create_Bless_friendly"
-			{
-				"Passive"		"1"
-				"OnTakeDamage"
-				{
-					"ApplyModifier"
-					{
-						"ModifierName"	"create_Bless_friendly_buff"
-						"Target"		"CASTER"
-					}
-				}
-			}
-
-			"create_Bless_friendly_buff"
-			{
-				"IsHidden"		"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Duration"		"5"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%armor"
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%attack"
-					"MODIFIER_PROPERTY_MANA_REGEN_CONSTANT"			"%mana"
-				}
-			}
-		}
-
-		"AbilitySpecial"
-		{	
-			"01"	//魔法恢复速度增加
-			{
-				"var_type"		"FIELD_INTEGER"
-				"mana"			"1 2 4 8"
-			}
-			"02"	//攻击力增加
-			{
-				"var_type"		"FIELD_INTEGER"
-				"attack"		"1 2 4 8"
-			}
-			"03"	//护甲增加
-			{
-				"var_type"		"FIELD_INTEGER"
-				"armor"			"1 2 3 4"
-			}
-		}
-	}
-
-	//祝福 隐藏被动 敌人
-	"rubick_Bless_enemy_hidden"
-	{
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
-		"BaseClass"						"ability_datadriven"
-		"AbilityCastPoint"				"0.0" 
-		"AbilityCooldown"		 		"0"
-		"AbilityManaCost"				"0"
-		"MaxLevel"						"4"
-		"AbilityTextureName"			"rubick_spell_steal"
-
-		"Modifiers"
-		{
-			"create_Bless_enemy"
-			{
-				"Passive"		"1"
-				"IsDebuff"		"1"
-				"OnTakeDamage"
-				{
-					"ApplyModifier"
-					{
-						"ModifierName"	"create_Bless_enemy_buff"
-						"Target"		"CASTER"
-					}
-				}
-			}
-
-			"create_Bless_enemy_buff"
-			{
-				"IsHidden"		"1"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Duration"		"5"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%armor"
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%attack"
-					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"%mag"
-				}
-			}
-		}
-
-		"AbilitySpecial"
-		{	
-			"01"	//魔抗降低
-			{
-				"var_type"		"FIELD_INTEGER"
-				"mag"			"-1 -2 -3 -4"
-			}
-			"02"	//攻击力降低
-			{
-				"var_type"		"FIELD_INTEGER"
-				"attack"		"-1 -2 -4 -8"
-			}
-			"03"	//护甲降低
-			{
-				"var_type"		"FIELD_INTEGER"
-				"armor"			"-1 -2 -3 -4"
-			}
-		}
-	}
-
-	//隐修议员 3技能
-	//技能名字 守护
-	//=====================================================================================
-	"rubick_defend"
-	{
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"BaseClass"						"ability_datadriven"
-		"AbilityTextureName"			"rubick_defend"
-		"AbilityCastPoint"				"0.3" 
-		"AbilityCooldown"		 		"15"
-		"AbilityManaCost"				"150"
+		"AbilityCooldown"			"10"
+		"AbilityManaCost"			"50"
+		"AbilityTextureName"		"rubick_defend"
 
 		"OnSpellStart"
 		{
@@ -1033,83 +833,13 @@
 				"Target" 				"CASTER"
 				"Duration"				"0"
 				"UnitCount"				"1"
-				"SpawnRadius"			"200"
 				"OnSpawn"
 				{
 					"RunScript"
 					{
-						"ScriptFile"	"scripts/vscripts/abilities/abilities.lua"
-						"Function"		"rubick_defend"
-						"Target"		"UNIT"
-					}
-				}
-			}
-		}
-
-		// Special
-		//-----------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"	//智力加成
-			{
-				"var_type"		"FIELD_FLOAT"
-				"int"			"0.5 0.6 0.7 0.8"
-			}
-			"02"	//敏捷加成
-			{
-				"var_type"		"FIELD_FLOAT"
-				"agi"			"0.1 0.2 0.3 0.4"
-			}
-			"03"	//力量加成
-			{
-				"var_type"		"FIELD_FLOAT"
-				"str"			"100 150 200 250"
-			}
-		}
-	}
-
-	//隐修议员 守护 
-	//大兵被动 正气
-	//=====================================================================================
-	"rubick_defend_ability_1"
-	{
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"BaseClass"						"ability_datadriven"
-		"AbilityTextureName"			"magnataur_reverse_polarity"
-		"AbilityCastPoint"				"0.0" 
-		"AbilityCastRange"				"250"
-		"AbilityCooldown"		 		"0"
-		"AbilityManaCost"				"0"
-		"MaxLevel"						"4"
-
-		"Modifiers"
-		{
-			"modifier_rubick_defend_ability_1"
-			{
-				"Passive"		"1"
-				"IsHidden"		"1"
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"ControlPointEntities"
-						{
-							"CASTER"	"attach_hitloc"
-						}
-						"EffectName"	"particles\items2_fx\refresher.vpcf"
-						"EffectAttachType"	"start_at_customorigin"
-						"Target"			"CASTER"
-					}
-
-					"AttachEffect"
-					{
-						"ControlPointEntities"
-						{
-							"CASTER"	"attach_hitloc"
-						}
-						"EffectName"	"particles\generic_gameplay\dropped_tango.vpcf"
-						"EffectAttachType"	"start_at_customorigin"
-						"Target"			"CASTER"
+						"ScriptFile" 	"scripts/vscripts/abilities/abilityRubick.lua"
+						"Function"		"RubickW3"
+						"heal_bonus"	"%heal_bonus"
 					}
 				}
 			}
@@ -1117,1062 +847,573 @@
 
 		"AbilitySpecial"
 		{
-			"01"	//召唤者智力加成
-			{
-				"var_type"		"FIELD_FLOAT"
-				"int"			"0.5 0.7 0.9 1.1"
-			}
-		}
-	}
-
-	//隐修议员 守护 
-	//大兵被动 正义之剑
-	//=====================================================================================
-	"rubick_defend_ability_2"
-	{
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"BaseClass"						"ability_datadriven"
-		"AbilityTextureName"			"legion_commander_moment_of_courage"
-		"AbilityCastPoint"				"0.0" 
-		"AbilityCooldown"		 		"0"
-		"AbilityManaCost"				"0"
-		"MaxLevel"						"4"
-
-		"Modifiers"
-		{
-			"modifier_rubick_defend_ability_2"
-			{
-				"IsHidden"		"1"
-				"Passive"		"1"
-
-				"OnAttackLanded"
-				{
-					"Random"
-					{
-						"Chance"	"%chance"
-						"OnSuccess"
-						{
-							"RunScript"
-							{
-								"ScriptFile"	"scripts/vscripts/abilities/abilities.lua"
-								"Function"		"rubick_defend_ability_2"
-								"Target"		"UNIT"
-							}
-						}
-					}
-				}
-			}
-		}
-
-		"AbilitySpecial"
-		{
-			"01"	//触发概率
-			{
-				"var_type"		"FIELD_FLOAT"
-				"chance"		"40"
-			}
-			"02"	//生命值百分比
-			{
-				"var_type"		"FIELD_FLOAT"
-				"heal"			"5 9 14 18"
-			}
-		}
-	}
-
-	//隐修议员 4技能 被动
-	//技能名字 明智
-	//=====================================================================================
-	"rubick_wise"
-	{
-		// General
-		//---------------------------------------------------------------------------------------
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE" 
-		"BaseClass"						"ability_datadriven"  
-		"AbilityTextureName"			"rubick_null_field"
-
-		// Casting
-		//---------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.0" 
-		"AbilityCastRange"				"600"
-
-		//Modifiers
-		//---------------------------------------------------------------------------------------
-		"Modifiers"
-		{
-			"create_wise"
-			{
-				"Passive"		"1"
-				"OnCreated"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/abilities/abilities.lua"
-						"Function"		"rubick_wise"
-						"Target"		"CASTER"
-					}
-				}
-
-				"Aura" 			"create_wise_hidden"
-				"Aura_Radius" 	"%radius"
-				"Aura_Teams" "DOTA_UNIT_TARGET_TEAM_ENEMY"
-				"Aura_Types" "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_MECHANICAL"
-				"Aura_Flags" "DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
-			}
-
-			"modifier_learn_defend"
-			{
-				"Passive"		"1"
-				"IsHidden"		"1"
-				"Duration"		"0.1"
-				"OnCreated"
-				{
-					"RunScript"
-					{
-						"ScriptFile"	"scripts/vscripts/abilities/abilities.lua"
-						"Function"		"rubick_learn_defend"
-						"Target"		"CASTER"
-					}
-				}
-			}
-
-			"create_wise_hidden"
-			{
-				"IsDebuff"	"1"
-				"IsPurgable"	"0"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS"	"%magical"
-					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"		"%armor"
-				}
-			
-			}
-		}
-
-		// Special
-		//-----------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"	//智力加成
-			{
-				"var_type"		"FIELD_FLOAT"
-				"int"			"1.2 1.5 1.8 2.1"
-			}	
-			"02"	//作用范围
-			{
-				"var_type"		"FIELD_INTEGER"
-				"radius"		"600"
-			}
-			"03"	//敌人魔抗降低
-			{
-				"var_type"		"FIELD_FLOAT"
-				"magical"		"-10 -15 -20 -25"
-			}
-			"04"	//敌人护甲降低
-			{
-				"var_type"		"FIELD_FLOAT"
-				"armor"			"-5 -10 -15 -20"
-			}
-		}
-	}
-
-	//隐修议员 大招
-	//技能名字 自然的庇护
-	//=====================================================================================
-	"rubick_natural_shelter"
-	{
-		// General
-		//---------------------------------------------------------------------------------------
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED" 
-		"BaseClass"						"ability_datadriven"  
-		"AbilityTextureName"			"rubick_telekinesis"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
-
-		// Casting
-		//---------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.0" 
-		"AbilityCastRange"				"800"
-		"AbilityChannelTime"			"10"
-
-		//Time
-		//---------------------------------------------------------------------------------------
-		"AbilityCooldown"		 		"40 50 60"
-
-		// Cost
-		//---------------------------------------------------------------------------------------
-		"AbilityManaCost"				"100 150 200"
-
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/abilities/abilities.lua"
-				"Function"		"rubick_natural_shelter"
-				"Target"		"CASTER"
-			}
-		}
-
-		"OnChannelInterrupted"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/abilities/abilities.lua"
-				"Function"		"rubick_natural_shelter_channel_is"
-				"Target"		"CASTER"
-			}
-		}
-
-		"OnChannelFinish"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/abilities/abilities.lua"
-				"Function"		"rubick_natural_shelter_channel_is"
-				"Target"		"CASTER"
-			}
-		}
-
-		// Special
-		//-----------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"	//作用范围
-			{
-				"var_type"		"FIELD_INTEGER"
-				"radius"		"800"
-			}	
-			"02"	//三围属性增加
-			{
-				"var_type"		"FIELD_INTEGER"
-				"attributes"	"15 20 25"
-			}
-			"03"	//生命和魔法百分比恢复
-			{
-				"var_type"		"FIELD_FLOAT"
-				"heal_mana"		"1.5 2 2.5"
-			}
-			"04"	//最小生命值
-			{
-				"var_type"		"FIELD_INTEGER"
-				"min_heal"		"1"
-			}
-		}
-
-	}
-
-	//隐修议员 自然的庇护 光环
-	"rubick_natural_shelter_aura"
-	{
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_AURA | DOTA_ABILITY_BEHAVIOR_HIDDEN" 
-		"BaseClass"						"ability_datadriven"
-		"MaxLevel"						"3"
-		"AbilityTextureName"			"rubick_telekinesis"
-
-		"Modifiers"
-		{
-			"create_rubick_natural_shelter_aura"
-			{
-				"Passive"	"1"
-				"IsHidden"	"1"
-				"Aura"			"create_rubick_natural_shelter_aura_1"
-				"Aura_Radius"	"800"
-				"Aura_Teams"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
-				"Aura_Types"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
-				"Aura_Flags"	"DOTA_UNIT_TARGET_FLAG_NONE"
-			}
-
-			"create_rubick_natural_shelter_aura_1"
-			{
-				"IsPurgable"	"0"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"	"%attributes"
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"		"%attributes"
-					"MODIFIER_PROPERTY_STATS_INTELLECT_BONUS"	"%attributes"
-					"MODIFIER_PROPERTY_HEALTH_REGEN_PERCENTAGE"	"%heal_mana"
-					"MODIFIER_PROPERTY_MANA_REGEN_PERCENTAGE"	"%heal_mana"
-					"MODIFIER_PROPERTY_MIN_HEALTH"				"1"
-				}
-			}
-		}
-
-		"AbilitySpecial"
-		{
-			"02"	//属性
-			{
-				"var_type"		"FIELD_INTEGER"
-				"attributes"	"15 20 25"
-			}
-			"03"	//生命和魔法百分比恢复
-			{
-				"var_type"		"FIELD_FLOAT"
-				"heal_mana"		"1.5 2 2.5"
-			}
-		}
-		
-	}
-
-	//技能名称， 樱之环
-	"templar_sakura_circle"
-	{
-		"BaseClass"					"ability_datadriven"
-		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityCastPoint"			"0.3"
-		"AbilityTextureName"		"templar_sakura_circle"
-		"AbilityCooldown"			"25"
-		"AbilityCastRange"			"1200"
-		"AbilityManaCost"			"100"
-		"AbilityCastAnimation"		"ACT_DOTA_IDLE+meld"
-
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"			"scripts/vscripts/abilities/templar.lua"
-				"Target"				"POINT"
-				"Function"				"PlantACircleTrap"
-			}
-		}
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"ability_radius"		"400 500 600 700"
-			}
-			"02"
-			{
-				"var_type"				"FIELD_FLOAT"
-				"damage_agi"			"0.15 0.16 0.17 0.18"
-			}
-			"03"
-			{
-				"var_type"				"FIELD_INTEGER"
-				"damage_min"			"150 200 250 300"
-			}
-		}
-	}
-	//樱之杀
-	"templar_sakura_fall"
-	{
-		"BaseClass"					"ability_datadriven"
-		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityCastPoint"			"0.2"
-		"AbilityTextureName"		"templar_sakura_fall"
-		"AbilityCooldown"			"14"
-		"AbilityManaCost"			"30"
-		"AbilityCastAnimation"		"ACT_DOTA_ATTACK+meld"
-
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"			"scripts/vscripts/abilities/templar.lua"
-				"Target"				"CASTER"
-				"Function"				"OnSakuraFall"
-			}
-			"FireSound"
-			{
-				"EffectName"			"Hero_Crystal.CrystalNova"
-				"Target"				"CASTER"
-			}
-		}
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"		"FIELD_INTEGER"
-				"damage_base"			"20 30 40 50"
-			}
-			"02"
-			{
-				"var_type"		"FIELD_INTEGER"
-				"length"		"400 500 700 900"
-			}
-		}
-	}
-	//樱之乱舞
-	"templar_phantom_sakura"
-	{
-		"BaseClass"					"ability_datadriven"
-
-		"AbilityType"				"DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityCastPoint"			"0.3"
-		"AbilityTextureName"		"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityCastAnimation"		"run"
-		"AbilityCooldown"			"28"
-		"AbilityManaCost"			"150"
-
-
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"		"scripts/vscripts/abilities/templar.lua"
-				"Target"			"CASTER"
-				"Function"			"OnPathtonSakura"
-			}
-			"ApplyModifier"
-			{
-				"ModifierName"		"modifier_phantom_sakura_interlock"
-				"Target"			"CASTER"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_phantom_sakura_interlock"
-			{
-				"Passive"		"0"
-				"IsHidden"		"1"
-			}
-		}
-		"AbilitySpecial"
-		{
-			"01"
-			{
-				"var_type"		"FIELD_FLOAT"
-				"damage_agi"			"0.6 0.8 1.2"
-			}
-		}
-	}
-	//樱之疾
-	"templar_sakura_path"
-	{
-		"BaseClass"					"ability_datadriven"
-		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_NO_TARGET  | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityCastPoint"			"0.2"
-		"AbilityTextureName"		"templar_sakura_path"
-		"AbilityCooldown"			"7 5 3 1"
-		"AbilityManaCost"			"10"
-		"AbilityTextureName"		"ACT_DOTA_RUN"
-
-		"precache"
-		{
-			"particle_folder"		"particles/econ/courier/courier_jadehoof_ambient"
-			"particle_folder"		"particles/units/heroes/hero_queenofpain"
-		}
-
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"			"scripts/vscripts/abilities/templar.lua"
-				"Target"				"CASTER"
-				"Function"				"OnSakuraPath"
-			}
-			"ApplyModifier"
-			{
-				"ModifierName"			"modifier_templar_sakura_path"
-				"Target"				"CASTER"
-			}
-			"FireEffect"
-			{
-				"Target"			"CASTER"
-				"EffectAttachType"	"follow_origin"
-				"EffectName"		"particles/units/heroes/hero_queenofpain/queen_blink_end.vpcf"
-			}
-		}
-		"Modifiers"
-		{
-			"modifier_templar_sakura_path"
-			{
-				"OnCreated"
-				{
-					"AttachEffect"
-					{
-						"EffectName"			"particles/econ/courier/courier_jadehoof_ambient/jadehoof_special_blossoms.vpcf"
-						"EffectAttachType"		"follow_overhead"
-						"Target"				"CASTER"
-					}
-				}
-			}
-		}
-	}
-	//樱之魅影
-	"templar_sakura_path_passive"
-	{
-		"BaseClass"					"ability_datadriven"
-		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
-		"AbilityTextureName"		"templar_sakura_path"
-		"MaxLevel"					"7"
-
-		"precache"
-		{
-			
-		}
-
-		"Modifiers"
-		{
-			"modifier_sakura_path_passive_effect"
-			{
-				"IsHidden"			"0"
-				"Passive"			"1"
-				"OnCreated"
-				{
-					
-				}
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_STATS_AGILITY_BONUS"			"%agi_bonus"
-					"MODIFIER_PROPERTY_EVASION_CONSTANT"			"%evasion_bonus"
-					"MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE"		"%bonus_damage"
-				}
-			}
-		}
-		"AbilitySpecial"
-		{
-			"01"
+			"01"  //生命值加成=力量 * heal_bonus
 			{
 				"var_type"			"FIELD_INTEGER"
-				"agi_bonus"			"3 5 7 9 15 20 25"
-			}
-			"02"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"evasion_bonus"		"3 5 7 9 15 20 25"
-			}
-			"03"
-			{
-				"var_type"			"FIELD_INTEGER"
-				"bonus_damage"		"10 20 30 40 50 60 70"
+				"heal_bonus"		"20 40 60"
 			}
 		}
 	}
-	//樱花陷阱的陷阱单位
-	"ability_cf_ta_trap_dummy"
+
+	//隐修议员 E1 幻象术
+	"rubick_e1"
 	{
-		"BaseClass" 					"ability_datadriven"
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-		"AbilityTextureName"            "rubick_empty1"
-    
-        "Modifiers"
-	    {
-	    	"dummy_unit"
-            {
-                "Passive"                        "1"
-                "IsHidden"                        "1"    
-                "States"
-                {
-                    "MODIFIER_STATE_UNSELECTABLE"         "MODIFIER_STATE_VALUE_ENABLED"
-                    "MODIFIER_STATE_INVULNERABLE"         "MODIFIER_STATE_VALUE_ENABLED"
-                    "MODIFIER_STATE_NOT_ON_MINIMAP"       "MODIFIER_STATE_VALUE_ENABLED"
-                    "MODIFIER_STATE_NO_HEALTH_BAR"        "MODIFIER_STATE_VALUE_ENABLED"
-                    "MODIFIER_STATE_NO_UNIT_COLLISION"    "MODIFIER_STATE_VALUE_ENABLED"
-                }
-            }
-		}
-	}
+		"BaseClass"					"ability_datadriven"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_MAGICAL"
+		"MaxLevel"					"3"
 
-	
-	//征战暴君 1技能 主动
-	//技能名字 快速支援
-	//==========================================================================================
-	"centaur_speed_support"
-	{
-		// General
-		//---------------------------------------------------------------------------------------
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT" 
-		"BaseClass"						"ability_datadriven"  
-		"AbilityTextureName"			"centaur_stampede"
+		"AOERadius"					"600"
+		"AbilityCastRange"			"0"
+		"AbilityCooldown"			"10"
+		"AbilityManaCost"			"50"
+		"AbilityTextureName"		"magnataur_reverse_polarity"
 
-		// Casting
-		//---------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.0" 
-		"AbilityCastRange"				"900 1100 1300 1500"
-
-		//Time
-		//---------------------------------------------------------------------------------------
-		"AbilityCooldown"		 		"11 9 7 5"
-
-		// Cost
-		//---------------------------------------------------------------------------------------
-		"AbilityManaCost"				"60 50 40 30"
-
-		//OnSpellStart
-		//---------------------------------------------------------------------------------------
 		"OnSpellStart"
 		{
-			"ApplyModifier"
-			{
-				"ModifierName"		"create_speed_support_animation"
-				"Target"			"CASTER"
-			}
-
-			"FireSound"
-			{
-				"EffectName"		"Hero_Axe.BerserkersCall.Item.Shoutmask"
-				"Target"			"CASTER"
-			}
-
 			"RunScript"
 			{
-				"ScriptFile"	"scripts/vscripts/abilities/abilities.lua"
-				"Function"		"centaur_speed_support"
+				"ScriptFile" 	"scripts/vscripts/abilities/abilityRubick.lua"
 				"Target"		"POINT"
+				"Function"		"RubickE1"
+				"dura"			"%duration"
+				"time"			"%time"
+				"radius"		"%radius"
 			}
-
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_phased"
-				"Target"		"CASTER"
-			}
-
 		}
 
 		"Modifiers"
 		{
-			"create_speed_support_animation"
+			"modifier_rubick_e1"
 			{
-				"IsHidden"				"1"
-				"Duration"				"1"
-				"OverrideAnimation"		"ACT_DOTA_SPAWN"
-				"EffectName"			"particles\units\heroes\hero_centaur\centaur_stampede.vpcf"
-				"EffectAttachType"		"follow_chest"
+				"IsHidden"			"1"
+				"OverrideAnimation"	"ACT_DOTA_FLAIL"
 			}
-		}
 
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
-		"AbilitySpecial"
-		{
-			"01"	//施法距离
+			"modifier_rubick_e1_effect"
 			{
-				"var_type"		"FIELD_INTEGER"
-				"radius"		"900 1100 1300 1500"
-			}
-		}
-	}
+				"IsHidden"			"1"
+				"Duration"			"%stun_duration"
+				"Attributes"		"MODIFIER_ATTRIBUTE_MULTIPLE"
 
-	//征战暴君 2技能 主动
-	//技能名字 引力践踏
-	//==========================================================================================
-	"centaur_gravitational_hoof_stomp"
-	{
-		// General
-		//---------------------------------------------------------------------------------------
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_NO_TARGET" 
-		"BaseClass"						"ability_datadriven"  
-		"AbilityTextureName"			"centaur_hoof_stomp"
-		"AbilityDamageType"				"DAMAGE_TYPE_MAGICAL"
-		"AbilityUnitTargetTeam" 		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-
-		// Casting
-		//---------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.4" 
-		"AbilityCastRange"				"500"
-		"AbilityCastAnimation"			"ACT_DOTA_CAST_ABILITY_1"
-
-		//Time
-		//---------------------------------------------------------------------------------------
-		"AbilityCooldown"		 		"10.0"
-
-		// Cost
-		//---------------------------------------------------------------------------------------
-		"AbilityManaCost"				"65"
-
-		//OnSpellStart
-		//---------------------------------------------------------------------------------------
-		"OnSpellStart"
-		{
-			"RunScript"
-			{
-				"ScriptFile"	"scripts/vscripts/abilities/abilities.lua"
-				"Function"		"centaur_hoof_stomp"
-				"Target"
+				"States"
 				{
-					"Types"		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
-					"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-					"Flags"		"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
-					"Radius"	"%radius"
-					"Center"	"CASTER"
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
-			}
 
-			"ApplyModifier"
-			{
-				"ModifierName"		"create_speed_support_effect"
-				"Target"			"CASTER"
-			}
-		}
-
-		"Modifiers"
-		{
-			"create_speed_support_effect"
-			{
-				"IsHidden"				"1"
-				"Duration"				"0.2"
-				"ThinkInterval"		"0.1"
-				"OnIntervalThink"	
+				"OnCreated"
 				{
 					"AttachEffect"
 					{
-						"Target"				"TARGET"
-						"EffectName"			"particles\units\heroes\hero_elder_titan\elder_titan_echo_stomp_magical.vpcf"
-						"EffectAttachType"		"follow_origin"
-					}
-
-					"Stun"
-					{
-						"Target"
+						"EffectName"		"particles/cf_heros/rubick/rubick_e1.vpcf"
+						"EffectAttachType"  "start_at_customorigin"
+						"Target"  			"TARGET"
+						"ControlPointEntities"
 						{
-							"Types"		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
-							"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Flags"		"DOTA_UNIT_TARGET_FLAG_NOT_MAGIC_IMMUNE_ALLIES"
-							"Radius"	"%radius"
-							"Center"	"TARGET"
+							"CASTER"		"attach_attack1"
+							"TARGET"		"attach_hitloc"
+							"CASTER"		"attach_hitloc"
+							"CASTER"		"attach_hitloc"
+							"CASTER"		"attach_hitloc"
+							"CASTER"		"attach_attack1"
+							"TARGET"		"attach_hitloc"
 						}
-						"Duration"		"%stun"
 					}
 
 					"RunScript"
 					{
 						"ScriptFile"		"scripts/vscripts/util/damage.lua"
 						"Function"			"DamageTarget"
-						"damage_increase"	"%increase"
-						"damage_type"		"DAMAGE_TYPE_MAGICAL"
-						"damage_category"	"force"
-						"damage_str"		"%str"
-						"Target"
-						{
-							"Types"		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
-							"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-							"Flags"		"DOTA_UNIT_TARGET_FLAG_NONE"
-							"Radius"	"%radius"
-							"Center"	"TARGET"
-						}
+						"damage_increase"	"%increase"				//伤害系数
+						"damage_type"		"DAMAGE_TYPE_MAGICAL"	//伤害类型
+						"damage_category"	"wisdom"				//精通类型
+						"damage_int"		"%int"					//智力加成
+						"Target"			"TARGET"
 					}
 
 					"FireSound"
 					{
-						"EffectName"	"Hero_ElderTitan.EchoStomp"
-						"Target"		"TARGET"
+						"EffectName"		"Hero_ShadowShaman.EtherShock"
+						"Target" 			"CASTER"
 					}
 				}
 			}
 		}
 
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-			"01"	//作用范围
+			"01"  //作用范围
 			{
 				"var_type"			"FIELD_INTEGER"
-				"radius"			"500"
+				"radius"			"600"
 			}
-			"02"	//伤害系数
+			"02"  //幻象持续时间
+			{
+				"var_type"			"FIELD_INTEGER"
+				"duration"			"5 6 7"
+			}
+			"03"  //伤害间隔
+			{
+				"var_type"			"FIELD_INTEGER"
+				"time"				"1"
+			}
+			"04"  //束缚时间
 			{
 				"var_type"			"FIELD_FLOAT"
-				"increase"			"1.1"
+				"stun_duration"		"0.3 0.4 0.5"
 			}
-			"03"	//伤害力量加成
+			"05"  //伤害系数
 			{
 				"var_type"			"FIELD_FLOAT"
-				"str"				"1.1 1.2 1.3 1.4"
+				"increase"			"1.5"
 			}
-			"04"	//击晕时间
+			"06"  //伤害智力加成
 			{
 				"var_type"			"FIELD_FLOAT"
-				"stun"				"3"
+				"int"				"1.2"
 			}
 		}
 	}
 
-	//征战暴君 3技能 被动
-	//技能名字 越战越勇
-	//==========================================================================================
-	"centaur_more_fight_more_brave"
+	//隐修议员 E2 魂力汲取
+	"rubick_e2"
 	{
-		// General
-		//---------------------------------------------------------------------------------------
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE" 
-		"BaseClass"						"ability_datadriven"  
-		"AbilityTextureName"			"axe_culling_blade"
+		"BaseClass"					"ability_datadriven"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"MaxLevel"					"3"
 
-		// Casting
-		//---------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.0" 
-		"AbilityCastRange"				"300"
-		"AbilityCooldown"		 		"0"
-		"AbilityManaCost"				"0"
+		"AbilityTextureName"		"dark_seer_vacuum"
 
 		"Modifiers"
 		{
-			"create_more_fight_more_brave"
+			"modifier_e2"
 			{
-				"Passive"	"1"
+				"Passive"			"1"
+				"IsHidden"			"1"
 
-				"OnAttackLanded"
+				"OnAttack"
 				{
-					"ApplyModifier"
-					{
-						"ModifierName"	"create_more_fight_more_brave_buff"
-						"Target"		"CASTER"
-					}
-
 					"Random"
 					{
-						"Chance"	"%chance"
+						"Chance"			"%chance"
+						"PseudeoRandom"		"DOTA_PSEUDO_RANDOM_JUGG_CRIT"
 						"OnSuccess"
 						{
-							"FireSound"
-							{
-								"EffectName"	"Hero_Centaur.DoubleEdge"
-								"Target"		"CASTER"
-							}
-							"RunScript"
-							{
-								"ScriptFile"		"scripts/vscripts/util/damage.lua"
-								"Function"			"DamageTarget"
-								"damage_increase"	"%increase"
-								"damage_type"		"DAMAGE_TYPE_MAGICAL"
-								"damage_category"	"force"
-								"damage_str"		"%str"
-								"Target"
-								{
-									"Types"		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
-									"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-									"Flags"		"DOTA_UNIT_TARGET_FLAG_NONE"
-									"Radius"	"%radius"
-									"Center"	"CASTER"
-								}
-							}
 							"ApplyModifier"
 							{
-								"ModifierName"	"create_more_fight_more_brave_animation"
-								"Target"
-								{
-									"Types"		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
-									"Teams"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
-									"Flags"		"DOTA_UNIT_TARGET_FLAG_NONE"
-									"Radius"	"%radius"
-									"Center"	"CASTER"
-								}
+								"Target" 			"CASTER"
+								"ModifierName"		"modifier_e2_q2_damage"
 							}
 						}
 					}
 				}
 			}
 
-			"create_more_fight_more_brave_buff"
+			"modifier_e2_q2_damage"
 			{
-				"IsHidden"		"1"
-				"Duration"		"5"
-				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_STATS_STRENGTH_BONUS"			"%str_bouns"
-					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT_SECONDARY"	"%speed"
-				}
-			}
+				"Duration"			"%duration"
 
-			"create_more_fight_more_brave_animation"
-			{
-				"IsHidden"	"1"
-				"Duration"	"0.2"
-				"EffectName" 	"particles\units\heroes\hero_centaur\centaur_double_edge.vpcf"
-				"EffectAttachType"	"follow_chest"
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile" 	"scripts/vscripts/abilities/abilityRubick.lua"
+						"Target"		"CASTER"
+						"Function"		"RubickE2Created"
+						"multiple"		"%multiple"
+					}
+				}
+
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile" 	"scripts/vscripts/abilities/abilityRubick.lua"
+						"Target"		"CASTER"
+						"Function"		"RubickE2Destroy"
+					}
+				}
 			}
 		}
 
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-			"01"	//作用范围
+			"01"  //触发概率
 			{
 				"var_type"			"FIELD_INTEGER"
-				"radius"			"300"
+				"chance"			"15 20 25"
 			}
-			"04"	//力量加成
+			"02"  //持续时间
 			{
 				"var_type"			"FIELD_INTEGER"
-				"str_bouns"			"2 3 4 5"
+				"duration"			"10 15 20"
 			}
-			"05"	//攻击速度加成
+			"03"  //Q2技能伤害倍数
 			{
 				"var_type"			"FIELD_INTEGER"
-				"speed"				"5 7 9 11"
+				"multiple"			"2 3 4"
 			}
-			"06"	//触发概率
+			"04"  //转化治疗触发概率
 			{
-				"var_type"			"FIELD_FLOAT"
-				"chance"			"25"
+				"var_type"			"FIELD_INTEGER"
+				"heal_chance"		"15 20 25"
 			}
-			"02"	//伤害系数
+			"05"  //治疗范围
 			{
-				"var_type"			"FIELD_FLOAT"
-				"increase"			"1.1 1.1 1.2 1.2"
-			}
-			"03"	//伤害力量加成
-			{
-				"var_type"			"FIELD_FLOAT"
-				"str"				"1.2"
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"800"
 			}
 		}
 	}
 
-
-	//征战暴君 4技能 主动
-	//技能名字 践踏血路
-	//==========================================================================================
-	"centaur_trample_road"
+	//隐修议员 E3 神之祝福
+	"rubick_e3"
 	{
-		// General
-		//---------------------------------------------------------------------------------------
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_POINT" 
-		"BaseClass"						"ability_datadriven"  
-		"AbilityTextureName"			"centaur_full"
-		"AbilityType"					"DOTA_ABILITY_TYPE_ULTIMATE"
+		"BaseClass"					"ability_datadriven"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"		"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NONE"
+		"MaxLevel"					"3"
 
-		// Casting
-		//---------------------------------------------------------------------------------------
-		"AbilityCastPoint"				"0.0" 
-		"AbilityCastRange"				"700"
-		"AbilityCooldown"		 		"40 50 60"
-		"AbilityManaCost"				"75 85 95"
+		"AbilityCastPoint"			"0"
+		"AbilityCastRange"			"800"
+		"AbilityCooldown"			"10"
+		"AbilityManaCost"			"50"
+		"AbilityTextureName"		"chen_holy_persuasion"
 
 		"OnSpellStart"
 		{
 			"RunScript"
 			{
-				"ScriptFile"	"scripts/vscripts/abilities/abilities.lua"
-				"Function"		"centaur_trample_road"
-				"Target"		"POINT"
-			}
-
-			"ApplyModifier"
-			{
-				"ModifierName"	"modifier_trample_road"
-				"Target"		"CASTER"
-			}
-
-			"FireSound"
-			{
-				"EffectName"	"Hero_Centaur.Stampede.Movement"
-				"Target"		"TARGET"
+				"ScriptFile" 	"scripts/vscripts/abilities/abilityRubick.lua"
+				"Function"		"RubickE3"
+				"duration"		"%duration"
 			}
 		}
 
-		"Modifiers"
-		{
-			"modifier_trample_road"
-			{
-				"IsHidden"	"1"
-				"Duration"	"2"
-				"States"
-			    {
-			        "MODIFIER_STATE_STUNNED" "MODIFIER_STATE_VALUE_ENABLED"
-			    }  
-			}
-		}
-
-		// Special
-		//-------------------------------------------------------------------------------------------------------------
 		"AbilitySpecial"
 		{
-			"01"	//作用范围
+			"01"  //持续时间
 			{
-				"var_type"			"FIELD_FLOAT"
-				"radius"			"700"
-			}
-			"02"	//伤害系数
-			{
-				"var_type"			"FIELD_FLOAT"
-				"increase"			"1.2"
-			}
-			"03"	//伤害力量加成
-			{
-				"var_type"			"FIELD_FLOAT"
-				"str"				"0.5 0.7 0.9"
+				"var_type"			"FIELD_INTEGER"
+				"duration"			"5 8 11"
 			}
 		}
 	}
 
-	"centaur_trample_road_dummy"
+	//隐修议员 r1 束魂咒
+	"rubick_r1"
 	{
-		"AbilityBehavior"				"DOTA_ABILITY_BEHAVIOR_PASSIVE" 
-		"BaseClass"						"ability_datadriven"
+		"BaseClass"					"ability_datadriven"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityUnitDamageType"		"DAMAGE_TYPE_MAGICAL"
+		"MaxLevel"					"1"
+
+		"AbilityCastRange"			"0"
+		"AbilityCooldown"			"10"
+		"AbilityManaCost"			"50"
+		"AbilityTextureName"		"earth_spirit_magnetize"
 
 		"Modifiers"
 		{
-			"modifier_trample_road_dummy_ability"
+			"modifier_rubick_r1"
 			{
-				"Passive"	"1"
-				"IsHidden"	"1"
+				"Passive"			"1"
+				"IsHidden"			"1"
+
+				"OnTakeDamage"
+				{
+					"Random"
+					{
+						"Chance"			"%chance"
+						"PseudeoRandom"		"DOTA_PSEUDO_RANDOM_JUGG_CRIT"
+						"OnSuccess"
+						{
+							"RunScript"
+							{
+								"ScriptFile" 	"scripts/vscripts/abilities/abilityRubick.lua"
+								"Function"		"RubickR1"
+								"Target"
+						        {
+						            "Types"     "DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+						            "Teams"     "DOTA_UNIT_TARGET_TEAM_ENEMY"
+						            "Flags"     "DOTA_UNIT_TARGET_FLAG_NONE"
+						            "Center"    "CASTER"
+						            "Radius"    "%radius"
+						        }
+							}
+						}
+					}
+				}
+			}
+
+			"modifier_rubick_r1_buff"
+			{
+				"IsHidden"			"1"
+				"Duration"			"%duration"
+
 				"States"
 				{
-					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"		//隐藏血条
-					"MODIFIER_STATE_UNSELECTABLE"	"MODIFIER_STATE_VALUE_ENABLED"		//不可选择
-					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"	//无碰撞
-					"MODIFIER_STATE_DISARMED"		"MODIFIER_STATE_VALUE_ENABLED"		//无法攻击
-					"MODIFIER_STATE_NOT_ON_MINIMAP"	"MODIFIER_STATE_VALUE_ENABLED"		//隐藏小地图
-					"MODIFIER_STATE_MAGIC_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"		//魔法免疫
-					"MODIFIER_STATE_ATTACK_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"		//攻击免疫
-				}
-
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_HEALTH_BONUS"	"10000000"	//1000W生命值
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
 				}
 
 				"OnCreated"
 				{
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_centaur_stampede"
-						"Target"		"CASTER"
-					}
-
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_trample_road_dummy_animation"
-						"Target"		"CASTER"
-					}
-
-				}
-			}
-
-			"modifier_trample_road_dummy_animation"
-			{
-				"Duration"	"1.2"
-				"ThinkInterval"	"1"
-				"OnIntervalThink"
-				{
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_trample_road_dummy_animation_1"
-						"Target"		"TARGET"
-					}
-
-					"ApplyModifier"
-					{
-						"ModifierName"	"modifier_trample_road_dummy_animation_2"
-						"Target"		"TARGET"
-					}
-
-				}
-			}
-
-			"modifier_trample_road_dummy_animation_1"
-			{
-				"Duration"	"3"
-				"OverrideAnimation"	"ACT_DOTA_RUN"
-			}
-
-			"modifier_trample_road_dummy_animation_2"
-			{
-				"Duration"	"3"
-				"ThinkInterval"	"0.2"
-				"OnIntervalThink"
-				{
 					"AttachEffect"
 					{
-						"EffectName"	"particles\units\heroes\hero_centaur\centaur_warstomp.vpcf"
-						"EffectAttachType"	"follow_origin"
-						"Target"		"TARGET"
+						"EffectName"		"particles/cf_heros/rubick/rubick_e1.vpcf"
+						"EffectAttachType"  "start_at_customorigin"
+						"Target"  			"TARGET"
+						"ControlPointEntities"
+						{
+							"CASTER"		"attach_attack1"
+							"TARGET"		"attach_hitloc"
+							"CASTER"		"attach_hitloc"
+							"CASTER"		"attach_hitloc"
+							"CASTER"		"attach_hitloc"
+							"CASTER"		"attach_attack1"
+							"TARGET"		"attach_hitloc"
+						}
+					}
+
+					"RunScript"
+					{
+						"ScriptFile"		"scripts/vscripts/util/damage.lua"
+						"Function"			"DamageTarget"
+						"damage_increase"	"%increase"				//伤害系数
+						"damage_type"		"DAMAGE_TYPE_MAGICAL"	//伤害类型
+						"damage_category"	"wisdom"				//精通类型
+						"damage_int"		"%int"					//智力加成
+						"Target"			"TARGET"
+					}
+
+					"FireSound"
+					{
+						"EffectName"		"Hero_ShadowShaman.EtherShock"
+						"Target" 			"CASTER"
 					}
 				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"03"  //触发几率
+			{
+				"var_type"			"FIELD_INTEGER"
+				"chance"			"20"
+			}
+			"01"  //作用范围
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"600"
+			}
+			"02"  //束缚时间
+			{
+				"var_type"			"FIELD_INTEGER"
+				"duration"			"3"
+			}
+			"05"  //伤害系数
+			{
+				"var_type"			"FIELD_FLOAT"
+				"increase"			"2.0"
+			}
+			"06"  //伤害智力加成
+			{
+				"var_type"			"FIELD_FLOAT"
+				"int"				"1.5"
+			}
+		}
+	}
+
+	//隐修议员 r2 厄运瞥视
+	"rubick_r2"
+	{
+		"BaseClass"					"ability_datadriven"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_AOE"
+		"MaxLevel"					"1"
+
+		"AOERadius"					"500"
+		"AbilityCastRange"			"0"
+		"AbilityCooldown"			"10"
+		"AbilityManaCost"			"50"
+		"AbilityTextureName"		"slark_shadow_dance"
+
+		"precache" //缓存特效
+        {
+            "particle"              "particles\econ\courier\courier_roshan_frost\courier_roshan_frost_ambient.vpcf"
+        }
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target"
+				{
+		            "Types"     	"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		            "Teams"     	"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		            "Flags"     	"DOTA_UNIT_TARGET_FLAG_NONE"
+		            "Center"    	"POINT"
+		            "Radius"    	"%radius"
+		        }
+				"ModifierName"		"modifier_rubick_r2_debuff"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_rubick_r2_debuff"
+			{
+				"Duration"			"%debuff_duration"
+				"IsDebuff"			"1"
+				"EffectName"		"particles\econ\courier\courier_roshan_frost\courier_roshan_frost_ambient.vpcf"
+				"EffectAttachType"	"follow_origin"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"%incoming_damage"
+				}
+
+				"OnAttacked"
+				{
+					"ApplyModifier"
+					{
+						"Target" 			"ATTACKER"
+						"ModifierName"		"modifier_rubick_r2_attack_speed"
+					}
+				}
+			}
+
+			"modifier_rubick_r2_attack_speed"
+			{
+				"Duration"			"%buff_duration"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_speed"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"  //作用范围
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"500"
+			}
+			"02"  //Debuff持续时间
+			{
+				"var_type"			"FIELD_INTEGER"
+				"debuff_duration"	"10"
+			}
+			"03"  //攻击速度持续时间
+			{
+				"var_type"			"FIELD_INTEGER"
+				"buff_duration"		"3"
+			}
+			"04"  //伤害加深
+			{
+				"var_type"			"FIELD_INTEGER"
+				"incoming_damage"	"180"
+			}
+			"05"  //攻击速度
+			{
+				"var_type"			"FIELD_INTEGER"
+				"attack_speed"		"120"
+			}
+		}
+	}
+
+	//隐修议员 r3 诅咒
+	"rubick_r3"
+	{
+		"BaseClass"					"ability_datadriven"
+		"AbilityBehavior"			"DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityUnitTargetType"		"DOTA_UNIT_TARGET_BASIC | DOTA_UNIT_TARGET_HERO"
+		"AbilityUnitTargetTeam"		"DOTA_UNIT_TARGET_TEAM_ENEMY"
+		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_NONE"
+		"MaxLevel"					"1"
+
+		"AbilityCastPoint"			"0"
+		"AbilityCastRange"			"800"
+		"AbilityCooldown"			"10"
+		"AbilityManaCost"			"50"
+		"AbilityTextureName"		"dazzle_poison_touch"
+
+		"OnSpellStart"
+		{
+			"ApplyModifier"
+			{
+				"Target" 			"TARGET"
+				"ModifierName"		"modifier_rubick_r3_debuff"
+			}
+		}
+
+		"Modifiers"
+		{
+			"modifier_rubick_r3_debuff"
+			{
+				"IsHidden"			"1"
+				"Duration"			"%duration"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"%incoming_damage"
+				}
+
+				"Aura"          "modifier_rubick_r3_buff"
+                "Aura_Radius"   "%radius"
+                "Aura_Teams"    "DOTA_UNIT_TARGET_TEAM_ENEMY"
+                "Aura_Types"    "DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
+                "Aura_Flags"    "DOTA_UNIT_TARGET_FLAG_NONE"
+			}
+
+			"modifier_rubick_r3_buff"
+			{
+				"IsHidden"			"1"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"%attack_speed"
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"%incoming_damage_down"
+					"MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE"	"%damage_outgoing"
+				}
+			}
+		}
+
+		"AbilitySpecial"
+		{
+			"01"  //持续时间
+			{
+				"var_type"			"FIELD_INTEGER"
+				"duration"			"5"
+			}
+			"02"  //加深受到伤害
+			{
+				"var_type"			"FIELD_INTEGER"
+				"incoming_damage"	"180"
+			}
+			"03"  //作用范围
+			{
+				"var_type"			"FIELD_INTEGER"
+				"radius"			"350"
+			}
+			"04"  //降低受到的伤害
+			{
+				"var_type"				"FIELD_INTEGER"
+				"incoming_damage_down"	"-15"
+			}
+			"05"  //攻击加成
+			{
+				"var_type"			"FIELD_INTEGER"
+				"damage_outgoing"	"30"
+			}
+			"06"  //攻击速度
+			{
+				"var_type"			"FIELD_INTEGER"
+				"attack_speed"		"120"
 			}
 		}
 	}
