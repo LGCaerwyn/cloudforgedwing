@@ -740,11 +740,6 @@
 						"incoming_damage"	"%incoming_damage"
 					}
 				}
-
-				"Properties"
-				{
-					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"300"
-				}
 			}
 		}
 
