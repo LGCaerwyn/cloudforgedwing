@@ -116,7 +116,14 @@ end
 --Q2 跳跃
 function RubickQ2Bounce( hurtHero, caster, target, ability, bounceNum, bounceMax, RubickQ2Unit, RubickQ2FindUnit )
 	--创建特效
-	ability:ApplyDataDrivenModifier(caster,target,"modifier_rubick_q2_effect",nil)
+	local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_rubick/rubick_fade_bolt_head.vpcf",PATTACH_CUSTOMORIGIN_FOLLOW,caster)
+	if caster==hurtHero then
+		ParticleManager:SetParticleControlEnt(particle,0,caster,5,"attach_attack1",caster:GetOrigin(),true)
+	else
+		ParticleManager:SetParticleControlEnt(particle,0,caster,5,"attach_hitloc",caster:GetOrigin(),true)
+	end
+	ParticleManager:SetParticleControlEnt(particle,1,target,5,"attach_hitloc",target:GetOrigin(),true)
+	ParticleManager:ReleaseParticleIndex(particle)
 
 	--添加目标
 	table.insert(RubickQ2Unit,target)
@@ -303,6 +310,33 @@ function RubickW1( keys )
 	unit:AddNewModifier(caster,nil,"modifier_illusion",{duration=keys.dura})
 	unit:AddNewModifier(nil,nil,"modifier_phased",{duration=0.1})
 	unit:AddAbility("majia2")
+	unit:AddAbility("add_health")
+
+	--生命值
+	local ability2 = unit:FindAbilityByName("add_health")
+	ability2:SetLevel(1)
+
+	--假设最高攻击力达到十万位
+	local x = 100000
+
+	--获取加成的攻击力
+	local num = (caster:GetIntellect() + ItemCore:GetAttribute(caster,"wisdom")) * 8
+
+	for i=1,6 do
+		--取整数
+		local bit = math.floor( num / x )
+
+		--添加攻击力
+		if bit>0 then
+			for k=1,bit do
+				local modifierName = string.format("modifier_add_health_%d",i)
+				ability2:ApplyDataDrivenModifier(caster,unit,modifierName,nil)
+			end
+		end
+
+		num = num % x
+		x = x / 10
+	end
 
 	local ability = unit:FindAbilityByName("majia2")
 	ability:SetLevel(1)
@@ -523,6 +557,7 @@ function RubickE2( caster, damage )
 
 		if RollPercentage(chance) then
 			local radius = ability:GetLevelSpecialValueFor("radius",lvl)
+			local heal_percent = ability:GetLevelSpecialValueFor("heal_percent",lvl) / 100
 			local teams = DOTA_UNIT_TARGET_TEAM_FRIENDLY
 		    local types = DOTA_UNIT_TARGET_BASIC+DOTA_UNIT_TARGET_HERO
 		    local flags = DOTA_UNIT_TARGET_FLAG_NONE
@@ -530,7 +565,17 @@ function RubickE2( caster, damage )
 		    local group = FindUnitsInRadius(caster:GetTeamNumber(),caster:GetOrigin(),nil,radius,teams,types,flags,FIND_CLOSEST,true)
 
 		    for i,v in pairs(group) do
-		    	v:SetHealth(v:GetHealth() + damage)
+		    	local heal = math.floor(damage * heal_percent)
+		    	v:SetHealth(v:GetHealth() + heal)
+
+		    	local heal_num = #tostring(heal)
+
+		    	--创建显示数字特效
+		    	local particle = ParticleManager:CreateParticle("particles/msg_fx/msg_heal.vpcf",PATTACH_OVERHEAD_FOLLOW,v)
+		    	ParticleManager:SetParticleControl(particle,0,v:GetOrigin())
+		    	ParticleManager:SetParticleControl(particle,1,Vector(10,heal,0))
+		    	ParticleManager:SetParticleControl(particle,2,Vector(1,heal_num + 1,0))
+		    	ParticleManager:SetParticleControl(particle,3,Vector(0,255,0))
 		    end
 		end
 	end

@@ -207,6 +207,83 @@
 		}
 	}
 
+	"add_health"
+	{
+		"BaseClass"				"ability_datadriven"
+		"AbilityBehavior"		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_HIDDEN"
+		"MaxLevel"				"1"
+
+		"Modifiers"
+		{
+			"modifier_add_health_1"  //十万位
+			{
+				"IsHidden"		"1"
+				"Duration"		"%duration"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_BONUS"	"100000"
+				}
+			}
+			"modifier_add_health_2"  //万位
+			{
+				"IsHidden"		"1"
+				"Duration"		"%duration"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_BONUS"	"10000"
+				}
+			}
+			"modifier_add_health_3"  //千位
+			{
+				"IsHidden"		"1"
+				"Duration"		"%duration"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_BONUS"	"1000"
+				}
+			}
+			"modifier_add_health_4"  //百位
+			{
+				"IsHidden"		"1"
+				"Duration"		"%duration"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_BONUS"	"100"
+				}
+			}
+			"modifier_add_health_5"  //十位
+			{
+				"IsHidden"		"1"
+				"Duration"		"%duration"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_BONUS"	"10"
+				}
+			}
+			"modifier_add_health_6"  //个位
+			{
+				"IsHidden"		"1"
+				"Duration"		"%duration"
+				"Attributes"	"MODIFIER_ATTRIBUTE_MULTIPLE"
+
+				"Properties"
+				{
+					"MODIFIER_PROPERTY_HEALTH_BONUS"	"1"
+				}
+			}
+		}
+	}
+
 	"ability_null_4"
 	{
 		"BaseClass"					"ability_datadriven"
@@ -325,8 +402,8 @@
 
 		"AOERadius"					"300"
 		"AbilityCastRange"			"700"
-		"AbilityCooldown"			"10"
-		"AbilityManaCost"			"50"
+		"AbilityCooldown"			"12"
+		"AbilityManaCost"			"0"
 		"AbilityTextureName"		"rubick_spell_steal"
 
 		"OnSpellStart"
@@ -390,6 +467,7 @@
 					{
 						"ScriptFile"		"scripts/vscripts/util/damage.lua"
 						"Function"			"DamageTarget"
+						"damage_base"		"%base_damage"			//基础伤害
 						"damage_increase"	"%increase"				//伤害系数
 						"damage_type"		"DAMAGE_TYPE_MAGICAL"	//伤害类型
 						"damage_category"	"wisdom"				//精通类型
@@ -416,7 +494,7 @@
 			"02"  //浮空时间
 			{
 				"var_type"			"FIELD_INTEGER"
-				"duration"			"2 3 4 "
+				"duration"			"2"
 			}
 			"06"  //降落
 			{
@@ -433,15 +511,20 @@
 				"var_type"			"FIELD_INTEGER"
 				"speed"				"30"
 			}
-			"04"  //伤害系数
+			"08"  //基础伤害
 			{
-				"var_type"			"FIELD_FLOAT"
-				"increase"			"1.5"
+				"var_type"			"FIELD_INTEGER"
+				"base_damage"		"100"
 			}
-			"05"  //伤害智力加成
+			"05"  //伤害系数
 			{
 				"var_type"			"FIELD_FLOAT"
-				"int"				"1.0 1.2 1.4"
+				"increase"			"0.25 0.38 0.5"
+			}
+			"07"  //伤害智力加成
+			{
+				"var_type"			"FIELD_FLOAT"
+				"int"				"1.0 1.5 2.0"
 			}
 		}
 	}
@@ -459,7 +542,7 @@
 		"AbilityCastPoint"			"0"
 		"AbilityCastRange"			"800"
 		"AbilityCooldown"			"10"
-		"AbilityManaCost"			"50"
+		"AbilityManaCost"			"0"
 		"AbilityTextureName"		"rubick_fade_bolt"
 
 		"OnSpellStart"
@@ -513,22 +596,27 @@
 			"03"  //增加的攻击力
 			{
 				"var_type"			"FIELD_INTEGER"
-				"attack_damage"		"2 4 6"
+				"attack_damage"		"10"
 			}
 			"04"  //BUFF持续时间
 			{
 				"var_type"			"FIELD_INTEGER"
-				"duration"			"11 12 13"
+				"duration"			"4"
+			}
+			"08"  //基础伤害
+			{
+				"var_type"			"FIELD_INTEGER"
+				"base_damage"		"180"
 			}
 			"05"  //伤害系数
 			{
 				"var_type"			"FIELD_FLOAT"
-				"increase"			"1.5"
+				"increase"			"0.3 0.45 0.6"
 			}
 			"06"  //伤害智力加成
 			{
 				"var_type"			"FIELD_FLOAT"
-				"int"				"1.0"
+				"int"				"1.0 1.5 2.0"
 			}
 			"07"  //跳跃间隔
 			{
@@ -548,7 +636,7 @@
 
 		"AbilityCastRange"			"600"
 		"AbilityCooldown"			"10"
-		"AbilityManaCost"			"50"
+		"AbilityManaCost"			"0"
 		"AbilityTextureName"		"ancient_apparition_ice_vortex"
 
 		"OnSpellStart"
@@ -671,7 +759,7 @@
 
 		"AbilityCastRange"			"0"
 		"AbilityCooldown"			"10"
-		"AbilityManaCost"			"50"
+		"AbilityManaCost"			"0"
 		"AbilityTextureName"		"rubick_w1"
 
 		"OnSpellStart"
@@ -804,7 +892,7 @@
 			"01"  //触发概率
 			{
 				"var_type"			"FIELD_INTEGER"
-				"chance"			"10 20 30"
+				"chance"			"13 15 17"
 			}
 		}
 	}
@@ -817,7 +905,7 @@
 		"MaxLevel"					"3"
 
 		"AbilityCooldown"			"10"
-		"AbilityManaCost"			"50"
+		"AbilityManaCost"			"0"
 		"AbilityTextureName"		"rubick_defend"
 
 		"OnSpellStart"
@@ -860,8 +948,8 @@
 
 		"AOERadius"					"600"
 		"AbilityCastRange"			"0"
-		"AbilityCooldown"			"10"
-		"AbilityManaCost"			"50"
+		"AbilityCooldown"			"24"
+		"AbilityManaCost"			"0"
 		"AbilityTextureName"		"magnataur_reverse_polarity"
 
 		"OnSpellStart"
@@ -919,6 +1007,7 @@
 					{
 						"ScriptFile"		"scripts/vscripts/util/damage.lua"
 						"Function"			"DamageTarget"
+						"damage_base"		"%base_damage"			//基础伤害
 						"damage_increase"	"%increase"				//伤害系数
 						"damage_type"		"DAMAGE_TYPE_MAGICAL"	//伤害类型
 						"damage_category"	"wisdom"				//精通类型
@@ -945,7 +1034,7 @@
 			"02"  //幻象持续时间
 			{
 				"var_type"			"FIELD_INTEGER"
-				"duration"			"5 6 7"
+				"duration"			"6"
 			}
 			"03"  //伤害间隔
 			{
@@ -955,17 +1044,22 @@
 			"04"  //束缚时间
 			{
 				"var_type"			"FIELD_FLOAT"
-				"stun_duration"		"0.3 0.4 0.5"
+				"stun_duration"		"0.4"
+			}
+			"08"  //基础伤害
+			{
+				"var_type"			"FIELD_INTEGER"
+				"base_damage"		"50"
 			}
 			"05"  //伤害系数
 			{
 				"var_type"			"FIELD_FLOAT"
-				"increase"			"1.5"
+				"increase"			"0.1 0.15 0.2"
 			}
 			"06"  //伤害智力加成
 			{
 				"var_type"			"FIELD_FLOAT"
-				"int"				"1.2"
+				"int"				"1.0 1.5 2"
 			}
 		}
 	}
@@ -1036,12 +1130,12 @@
 			"01"  //触发概率
 			{
 				"var_type"			"FIELD_INTEGER"
-				"chance"			"15 20 25"
+				"chance"			"17 18 19"
 			}
 			"02"  //持续时间
 			{
 				"var_type"			"FIELD_INTEGER"
-				"duration"			"10 15 20"
+				"duration"			"10"
 			}
 			"03"  //Q2技能伤害倍数
 			{
@@ -1051,7 +1145,12 @@
 			"04"  //转化治疗触发概率
 			{
 				"var_type"			"FIELD_INTEGER"
-				"heal_chance"		"15 20 25"
+				"heal_chance"		"20"
+			}
+			"06"  //伤害转化治疗百分比
+			{
+				"var_type"			"FIELD_INTEGER"
+				"heal_percent"		"200"
 			}
 			"05"  //治疗范围
 			{
@@ -1074,7 +1173,7 @@
 		"AbilityCastPoint"			"0"
 		"AbilityCastRange"			"800"
 		"AbilityCooldown"			"10"
-		"AbilityManaCost"			"50"
+		"AbilityManaCost"			"0"
 		"AbilityTextureName"		"chen_holy_persuasion"
 
 		"OnSpellStart"
@@ -1106,8 +1205,8 @@
 		"MaxLevel"					"1"
 
 		"AbilityCastRange"			"0"
-		"AbilityCooldown"			"10"
-		"AbilityManaCost"			"50"
+		"AbilityCooldown"			"40"
+		"AbilityManaCost"			"0"
 		"AbilityTextureName"		"earth_spirit_magnetize"
 
 		"Modifiers"
@@ -1176,6 +1275,7 @@
 					{
 						"ScriptFile"		"scripts/vscripts/util/damage.lua"
 						"Function"			"DamageTarget"
+						"damage_base"		"%base_damage"			//基础伤害
 						"damage_increase"	"%increase"				//伤害系数
 						"damage_type"		"DAMAGE_TYPE_MAGICAL"	//伤害类型
 						"damage_category"	"wisdom"				//精通类型
@@ -1207,17 +1307,22 @@
 			"02"  //束缚时间
 			{
 				"var_type"			"FIELD_INTEGER"
-				"duration"			"3"
+				"duration"			"2"
+			}
+			"08"  //基础伤害
+			{
+				"var_type"			"FIELD_INTEGER"
+				"base_damage"		"250"
 			}
 			"05"  //伤害系数
 			{
 				"var_type"			"FIELD_FLOAT"
-				"increase"			"2.0"
+				"increase"			"0.2 0.3 0.4"
 			}
 			"06"  //伤害智力加成
 			{
 				"var_type"			"FIELD_FLOAT"
-				"int"				"1.5"
+				"int"				"1.0 1.5 2.0"
 			}
 		}
 	}
@@ -1231,8 +1336,8 @@
 
 		"AOERadius"					"500"
 		"AbilityCastRange"			"0"
-		"AbilityCooldown"			"10"
-		"AbilityManaCost"			"50"
+		"AbilityCooldown"			"36"
+		"AbilityManaCost"			"0"
 		"AbilityTextureName"		"slark_shadow_dance"
 
 		"precache" //缓存特效
@@ -1301,22 +1406,22 @@
 			"02"  //Debuff持续时间
 			{
 				"var_type"			"FIELD_INTEGER"
-				"debuff_duration"	"10"
+				"debuff_duration"	"6"
 			}
 			"03"  //攻击速度持续时间
 			{
 				"var_type"			"FIELD_INTEGER"
-				"buff_duration"		"3"
+				"buff_duration"		"6"
 			}
 			"04"  //伤害加深
 			{
 				"var_type"			"FIELD_INTEGER"
-				"incoming_damage"	"180"
+				"incoming_damage"	"200"
 			}
 			"05"  //攻击速度
 			{
 				"var_type"			"FIELD_INTEGER"
-				"attack_speed"		"120"
+				"attack_speed"		"100"
 			}
 		}
 	}
@@ -1334,7 +1439,7 @@
 		"AbilityCastPoint"			"0"
 		"AbilityCastRange"			"800"
 		"AbilityCooldown"			"10"
-		"AbilityManaCost"			"50"
+		"AbilityManaCost"			"0"
 		"AbilityTextureName"		"dazzle_poison_touch"
 
 		"OnSpellStart"

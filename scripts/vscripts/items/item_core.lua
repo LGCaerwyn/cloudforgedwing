@@ -58,7 +58,7 @@ function OnAddItemCategory(keys)
         local value_old = tonumber( caster:GetContext(name) or "0" )
         local value_add = value_add[name]
         local value_new = value_old + value_add
-        print('玩家的精通等级改变，改变类型:',name,'前后数值',value_old,value_new)
+        print('player Category change type:',name,'change before:',value_old,'now:',value_new)
         caster:SetContext(name,tostring( value_new ),0)
     end
 end
@@ -81,7 +81,7 @@ function OnRemoveItemCategory(keys)
         local value_old = tonumber( caster:GetContext(name) or "0" )
         local value_remove = value_remove[name]
         local value_new = value_old - value_remove
-        print('玩家的精通等级改变，改变类型:',name,'前后数值',value_old,value_new)
+        print('player Category change type:',name,'change before:',value_old,'now:',value_new)
         caster:SetContext(name,tostring( value_new ),0)
     end
 end
@@ -90,7 +90,7 @@ end
 -----------------------------------------------------------------------------------------------------------------
 -- 从物品中获取精通等级的方法，返回值为英雄所拥有的对应精通等级的数值/100 + 1
 function ItemCore:GetAttribute(hero,category_name)
-    return tonumber( hero:GetContext(category_name) or "0") / 50 + 1
+    return tonumber( hero:GetContext(category_name) or "0") + 1
 end
 -----------------------------------------------------------------------------------------------------------------
 
