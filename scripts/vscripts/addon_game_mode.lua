@@ -55,38 +55,9 @@ function Precache( context )
 	]]
     -- 特效文件
 	PrecacheParticle( "particles/econ/items/crystal_maiden/crystal_maiden_cowl_of_ice/maiden_crystal_nova_e_cowlofice.vpcf", context )
-	PrecacheParticle( "particles/units/heroes/hero_jakiro/jakiro_ice_path_shards.vpcf", context )
-	PrecacheParticle( "particles/units/heroes/hero_invoker/invoker_ice_wall_shards.vpcf", context )
-	PrecacheParticle( "particles/units/heroes/hero_jakiro/jakiro_icepath_debuff.vpcf", context )
-	PrecacheParticle( "particles/units/heroes/hero_ancient_apparition/ancient_apparition_cold_feet_marker_b.vpcf", context )
-	PrecacheParticle( "particles/units/heroes/hero_invoker/invoker_ice_wall_icicle.vpcf", context )
-	PrecacheParticle( "particles/hw_fx/hw_roshan_death_e.vpcf", context )
-	PrecacheParticle( "particles/econ/courier/courier_trail_orbit/courier_trail_orbit.vpcf", context )
-	PrecacheParticle( "particles/econ/courier/courier_greevil_green/courier_greevil_green_ambient_3.vpcf", context )
-    PrecacheParticle( "particles/hero_templar/antimage_blink_end_b.vpcf", context)
-    PrecacheParticle( "particles/units/heroes/hero_warlock/warlock_rain_of_chaos_start.vpcf", context)
-    PrecacheParticle( "particles/hero_templar/antimage_blink_start_sparkles.vpcf", context)
-    PrecacheParticle( "particles/hero_templar/antimage_manavoid_explode_b.vpcf", context)
-    PrecacheParticle( "particles/hero_templar/abysal/abyssal_blade.vpcf", context)
-    PrecacheParticle( "particles/econ/courier/courier_jadehoof_ambient/jadehoof_special_blossoms.vpcf", context)
-    PrecacheParticle( "particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf", context)
-    PrecacheParticle( "particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_snow.vpcf", context)
-    PrecacheParticle( "particles/units/heroes/hero_crystalmaiden/maiden_crystal_nova.vpcf", context)
-    PrecacheParticle( "particles/units/heroes/hero_huskar/huskar_inner_vitality.vpcf", context)
-    PrecacheParticle( "particles/units/heroes/hero_juggernaut/juggernaut_healing_ward_variation01.vpcf", context)
-    PrecacheParticle( "particles/units/heroes/hero_lich/lich_chain_frost.vpcf", context)
-    PrecacheParticle( "particles/econ/items/windrunner/windrunner_cape_cascade/windrunner_windrun_cascade.vpcf", context)
-    PrecacheParticle( "particles/units/heroes/hero_batrider/batrider_flamebreak_explosion.vpcf", context)
-    PrecacheParticle( "particles/units/heroes/hero_undying/undying_tombstone_spawn.vpcf", context)
-    PrecacheParticle( "particles/units/heroes/hero_nevermore/nevermore_wings.vpcf", context)
-    PrecacheParticle( "particles/units/unit_greevil/loot_greevil_death.vpcf", context)
-    PrecacheParticle( "particles/units/heroes/hero_skywrath_mage/skywrath_mage_mystic_flare_ambient_hit.vpcf", context)
-    PrecacheParticle( "particles/units/heroes/hero_omniknight/omniknight_purification.vpcf", context)
-    PrecacheParticle( "particles/units/heroes/hero_elder_titan/elder_titan_earth_splitter_b.vpcf", context)
-    PrecacheParticle( "particles/units/heroes/hero_jakiro/jakiro_macropyre.vpcf", context)
-    PrecacheParticle( "particles/econ/items/bounty_hunter/bounty_hunter_shuriken_creeper/bounty_hunter_suriken_toss_creepers_cruel.vpcf", context)
-    PrecacheParticle( "particles/units/heroes/hero_bounty_hunter/bounty_hunter_windwalk.vpcf", context)
-    PrecacheResource( "particles/dagger_blue_tp", context )
+	PrecacheParticle( "particles/items_fx/chain_lightning.vpcf", context )
+    PrecacheParticle( "particles/units/heroes/hero_shadowshaman/shadowshaman_shackle.vpcf", context )
+    PrecacheParticle( "particles/cf_heros/rubick/rubick_e1.vpcf", context )
 
     -- 音效文件
     PrecacheSound( 'soundevents/game_sounds_heroes/game_sounds_templar_assassin.vsndevts', context)
@@ -101,6 +72,7 @@ function Precache( context )
     PrecacheSound( "soundevents/game_sounds_heroes/game_sounds_omniknight.vsndevts", context )
     PrecacheSound( "soundevents/game_sounds_heroes/game_sounds_jakiro.vsndevts", context )
     PrecacheSound( "soundevents/game_sounds_heroes/game_sounds_elder_titan.vsndevts", context )
+    PrecacheSound( "soundevents/game_sounds_heroes/game_sounds_shadowshaman.vsndevts", context )
 
     -- 小兵的统一音效
     PrecacheSound( 'soundevents/game_sounds_heroes/game_sounds_undying.vsndevts', context)
@@ -158,6 +130,10 @@ function CForgedGameMode:InitGameMode()
     -- 事件监听
     --ListenToGameEvent('entity_killed', Dynamic_Wrap(CForgedGameMode, 'OnEntityKilled'), self) -- 暂时禁用
     ListenToGameEvent('dota_player_gained_level', Dynamic_Wrap(CForgedGameMode, 'OnPlayerGainLevel'), self) 
+    
+    --监听单位重生或者出生
+    ListenToGameEvent("npc_spawned", Dynamic_Wrap(CForgedGameMode, "OnNPCSpawned"), self)
+
     -- 注册物品事件监听
     ItemCore:RegistEvents()
 
@@ -215,8 +191,13 @@ function CForgedGameMode:OnPlayerGainLevel(keys)
     tPrintTable(keys)
     local hero = EntIndexToHScript(keys.player):GetAssignedHero()
     local nLevel = hero:GetLevel()
-    -- 如果等级超过25级，不给技能点
-    if nLevel > 25 then
+    -- 如果等级超过45级，不给技能点
+    if nLevel > 45 then
+        hero:SetAbilityPoints(hero:GetAbilityPoints() - 1)
+        return
+    end
+
+    if nLevel%5 ~= 0 then
         hero:SetAbilityPoints(hero:GetAbilityPoints() - 1)
     end
 end
@@ -227,3 +208,65 @@ function CForgedGameMode:RegisterLivingBoss(bossUnit)
     self._boss = self._boss or {}
     table.insert(self._boss,bossUnit)
 end
+-------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------
+--玩家可选择的英雄
+GameRules.HeroCanSelect={ 
+    "npc_dota_hero_axe",
+    "npc_dota_hero_centaur",
+    "npc_dota_hero_juggernaut",
+    "npc_dota_hero_sven",
+    "npc_dota_hero_phantom_assassin",
+    "npc_dota_hero_templar_assassin",
+    "npc_dota_hero_crystal_maiden",
+    "npc_dota_hero_rubick"
+}
+--可选择的英雄的等级1技能
+GameRules.HeroLevelOneAbility={
+    "learn_ability_shuchu",
+    "learn_ability_roudun",
+    "learn_ability_fuzhu",
+    "learn_ability_kongzhi",
+    "ability_null_4"
+}
+--检测技能
+function GameRules:FindHeroLevelOneAbility( abilityName )
+    for i,v in pairs(GameRules.HeroLevelOneAbility) do
+        if abilityName == v then
+            return true
+        end
+    end
+    return false
+end
+
+function CForgedGameMode:OnNPCSpawned( keys )
+    local unit = EntIndexToHScript(keys.entindex)
+
+    --判断是不是可选择的英雄且第一次出生
+    for i,unitName in pairs(GameRules.HeroCanSelect) do
+        --是否第一次出生
+        if unit.FirstSpawn==nil then
+            unit.FirstSpawn=false
+        end
+
+        --判断是不是可选择的英雄
+        if unit:GetUnitName() == unitName and unit.FirstSpawn == false then
+            --设置技能等级
+            for k=0,5 do
+                local ability = unit:GetAbilityByIndex(k)
+                if ability then
+                    if GameRules:FindHeroLevelOneAbility(ability:GetAbilityName()) then
+                        ability:SetLevel(1)
+                    end
+                end
+            end
+            unit.FirstSpawn=true
+            break
+        end
+    end
+end
+-------------------------------------------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------------
+

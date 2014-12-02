@@ -58,14 +58,12 @@
 
 	--造成伤害主函数(技能)
 	function DamageTarget(damage)
-		
-		--获取技能
 		local targets	= damage.target_entities or {damage.victim}	--技能施放目标(数组)
 		
 		--print('damage called for '..#targets)
 		
 		if #targets == 0 then
-			print(debug.traceback '无伤害目标')
+			print("not damage unit")
 		end
 
 		--添加默认值
@@ -84,7 +82,7 @@
 		-- 最终伤害 = 基础伤害 + 加成伤害
 		-- 精通等级 = （1+物品增加的精通等级/100） == 已经在GetAttribute计算
 		-- 加成伤害 = (精通等级 * 伤害系数 * (1+((力量*力量系数 + 敏捷*敏捷系数 + 智力*智力系数) /10 )
-		-- * 技能等级 * 英雄等级)/目标等级
+		-- * 技能等级 * 0.5 + 0.5)/目标等级
 		
 		
 		damage.damage_result=	damage.damage_base +
@@ -98,7 +96,7 @@
 										+	damage.attacker:GetIntellect()	* damage.damage_int
 										) / 100 )
 									)
-								*	damage.ability_level * damage.ability_level
+								*	(damage.ability_level * 0.5 + 0.5)
 								*	damage.attacker_level
 
 		--遍历数组进行伤害		
@@ -110,6 +108,12 @@
 
 					local damage_dealt = ApplyDamage(damage)
 					print('damage dealt[]:'..damage_dealt)
+
+					--下面是某些技能需要记录伤害-------------------------------------------
+					--隐修议员
+					victim.RubickE2Damage=damage_dealt
+
+					-----------------------------------------------------------------------
 				end
 		end
 
